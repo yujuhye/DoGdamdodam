@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title th:replace="~{include/title_header_nav_footer.html::user_title}"></title>
+
+<!-- jQuery CDN - 최신 버전만 사용 -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+	
+<script type="text/javascript" th:src="@{/js/goods/search_form.js}"></script>
+<script type="text/javascript" th:src="@{/js/main/home.js}"></script>
+
+<script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<script type="text/javascript" src="slick/slick.min.js"></script>
+
+<!-- slick 라이브러리 -->
+<!-- Slick 라이브러리 불러오기 -->
+<link rel="stylesheet" type="text/css"
+	href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css">
+<link rel="stylesheet" type="text/css"
+	href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css">
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
+
+<link rel="stylesheet" th:href="@{/css/common.css}">
+<link rel="stylesheet" th:href="@{/css/home.css}">
+<link rel="stylesheet" th:href="@{/css/header_nav_footer.css}">
+<link rel="stylesheet" th:href="@{/css/hom_slick2.css}">
+
+<script type="text/javascript">
+$(document).ready(function(){
+	$('.slider').slick({
+		  centerMode: true,
+		  centerPadding: '15px',
+		  slidesToShow: 4,
+		  autoplay: true,
+		  autoplaySpeed: 2000,
+		});
+    
+    $(document).ready(function() {
+  	  $('.goods-list div').click(function() {
+  	    // 클릭된 라인의 a 태그 (상품 이름) 가져오기
+  	    var productLink = $(this).find('a').attr('href');
+  	    
+  	    // 상세 페이지로 이동
+  	    if (productLink) {
+  	      location.href = productLink;
+  	    }
+  	  });
+  	});
+    
+});
+</script>
+</head>
+<body>
+
+	<header	th:replace="~{include/title_header_nav_footer.html::user_header}">
+	</header>
+
+	<nav th:replace="~{include/title_header_nav_footer.html::user_nav}">
+	</nav>
+
+
+	<div class="allDonation_amount">
+					<span>기부 누적금액</span>
+					<span th:text="${allDonationTotalAmount}"></span><span>원</span>	
+	</div>
+				
+	<a th:href="@{/donation/donation_ranking}">기부 순위></a>
+
+	<!-- 검색 -->
+	<div class="search">
+		<form th:action="@{/user/goods/searchGoodsConfirm}"
+			name="search_goods_form" method="get">
+			<input type="text" name="g_name"
+				placeholder="Enter the name of the goods you are looking for.">
+			<input type="button" value="search" onclick="searchGoodsForm();" />
+		</form>
+	</div>
+	
+	<section>
+		<div id="section_wrap">
+		
+			<div class="word">
+				<span>DoGdam</span>
+			</div>
+			
+			<div class="slider-container">
+				<div class="product-thumbnails">
+					<div>
+						<img src="/img/home/afra-ramio-cp2HCVzguw4-unsplash.jpg" />
+					</div>
+					<div>
+						<img src="/img/home/cute-little-dog-isolated-on-yellow.jpg" />
+					</div>
+					<div>
+						<img src="/img/home/david-clarke-0h3Emf2YLKg-unsplash.jpg" />
+					</div>
+					<div>
+						<img src="/img/home/group-portrait-adorable-puppies.jpg" />
+					</div>
+					<div>
+						<img src="/img/home/honest-paws-ua3Jr7g6KJA-unsplash.jpg" />
+					</div>
+					<div>
+						<img src="/img/home/white-golden-retriever-posing-studio-with-street-clothes-glasses-musical-artist-look.jpg" />
+					</div>
+				</div>
+			</div>
+			
+			<div id="category_wrap">
+			    <div class="category">
+			        <a th:href="@{/user/goods/searchCategory(c_no=${feedCNo})}" >사료</a>
+			        <a th:href="@{/user/goods/searchCategory(c_no=${snackCNo})}" >간식</a>
+			        <a th:href="@{/user/goods/searchCategory(c_no=${beautyCNo})}" >미용용품</a>
+			        <a th:href="@{/user/goods/searchCategory(c_no=${clothesCNo})}" >의류/액세사리</a>
+			        <a th:href="@{/user/goods/searchCategory(c_no=${toyCNo})}" >장난감</a>				
+			    </div>
+			</div>
+
+			<div class="dateGoodsList">
+			    <div>
+			        <h3>신상품</h3>
+			        <!-- <a href="#none">더 보기</a> -->
+			    </div>
+			    <div class="slider">
+			        <div th:each="date : ${orderByRegDate}">
+			            <div class="date_goods_thumbnails">
+			                <a th:href="@{/user/goods/goodsDetailView(g_no=${date.g_no})}">
+			                    <div>
+			                        <img th:src="@{'http://14.42.124.95:8091/goodsUploadImg/' + ${date.g_thumbnail_name}}" />
+			                    </div>
+			                </a>
+			            </div>
+			        </div>
+			    </div>
+			</div>
+
+			<div class="likeGoodsList">
+			    <div>
+			        <h3>인기상품</h3>
+			        <!-- <a href="#none">더 보기</a> -->
+			    </div>
+			    <div class="slider">
+			        <div th:each="bookmark : ${orderByBookmark}">
+			            <div class="like_goods_thumbnails">
+			                <a th:href="@{/user/goods/goodsDetailView(g_no=${bookmark.g_no})}">
+			                    <div>
+			                        <img th:src="@{'http://14.42.124.95:8091/goodsUploadImg/' + ${bookmark.g_thumbnail_name}}" />
+			                    </div>
+			                </a>
+			            </div>
+			        </div>
+			    </div>
+			</div>
+			
+			<div class="reviewGoodsList">
+			    <div>
+			        <h3>추천상품</h3>
+			        <!-- <a href="#none">더 보기</a> -->
+			    </div>
+			    <div class="slider">
+			        <div th:each="buy : ${orderByBuy}">
+			            <div class="buy_goods_thumbnails">
+			                <a th:href="@{/user/goods/goodsDetailView(g_no=${buy.g_no})}">
+			                    <div>
+			                        <img th:src="@{'http://14.42.124.95:8091/goodsUploadImg/' + ${buy.g_thumbnail_name}}" />
+			                    </div>
+			                </a>
+			            </div>
+			        </div>
+			    </div>
+			</div>
+			
+
+		</div>
+	</section>
+	
+	<div></div>
+	
+	<footer th:replace="~{include/title_header_nav_footer::user_footer}">
+	</footer>
+
+</body>
+</html>

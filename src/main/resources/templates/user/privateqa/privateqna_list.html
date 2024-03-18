@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title th:replace="~{include/title_header_nav_footer.html::user_title}"></title>
+    <link rel="stylesheet" th:href="@{/css/common.css}">
+    <link rel="stylesheet" th:href="@{/css/header_nav_footer.css}">
+
+    <link rel="stylesheet" th:href="@{/css/user/privateqna/privateqna_list.css}">
+    <script type="text/javascript" th:src="@{/js/privateqna_list.js}"></script>
+</head>
+
+<body>
+
+    <header th:replace="~{include/title_header_nav_footer.html::user_header}">
+
+    </header>
+
+    <nav th:replace="~{include/title_header_nav_footer.html::user_nav}">
+
+    </nav>
+
+    <section>
+
+        <div id="section_wrap">
+            <span class = "ws_headline">1:1 문의</span>
+
+            <div class = "ws_go_inquery">
+                <a th:href="@{/user/privateqa/createPrivateqnaForm}">문의하기</a>
+            </div>
+
+            <div class="ws_div">
+                               
+                <table class="ws_table">
+                    <tbody class="ws_no_ws_tbody" th:if="${#lists.isEmpty(privateqnaDtos)}">
+                        <tr class="ws_no_ws_tr">
+                            <td colspan="5">1:1 문의가 없습니다.</td>
+                        </tr>
+                    </tbody>
+                    <tbody class="ws_yes_ws_tbody" th:each="privateqnalist : ${privateqnaDtos}">
+
+                        <tr class="ws_yes_ws_tr">
+                            <td th:text="${privateqnalist.ws_select_title}"></td>
+                            <td class = "ws_input_title_td">
+                                <a href="#" class="ws_toggle_title" th:text="${privateqnalist.ws_input_title}"></a>
+
+                            </td>
+                            <td class="privateqnaList" th:if="${privateqnalist.ws_complete eq 0}">
+                                답변대기 </td>
+                            <td class="privateqnaList" th:if="${privateqnalist.ws_complete eq 1}">
+                                답변완료 </td>
+                            <td th:text="${privateqnalist.ws_reg_date}"></td>
+                            <td><a href="#" class="delete_privateqna"
+                                    th:href="@{/user/privateqa/deletePrivateqnaConfirm(ws_no=${privateqnalist.ws_no})}">삭제</a>
+                            </td>
+
+                        </tr>
+
+                        <tr class="hidden_ws_contents collapse">
+                            <td class="hidden_ws_td" colspan="5">
+                                <div class="ws_inquiry" th:text="${privateqnalist.ws_inquiry}"></div><br>
+                                <div class="answerorNot" th:if="${privateqnalist.ws_complete eq 0}"> </div>
+                                <div class="answerorNot" th:if="${privateqnalist.ws_complete eq 1}"> 답변: </div>
+                                <div class="ws_answer" th:text="${privateqnalist.ws_answer}"> </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </section>
+    
+
+
+    <footer th:replace="~{include/title_header_nav_footer.html::user_footer}">
+
+    </footer>
+</body>
+
+</html>

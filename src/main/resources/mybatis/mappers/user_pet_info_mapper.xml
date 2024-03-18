@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dogdam.shop.user.member.petinfo.IUserPetInfoDaoForMybatis">
+
+	<select id="selectUserPetInfos" 
+			parameterType="String" 
+			resultType="com.dogdam.shop.user.member.petinfo.UserPetInfoDto">
+			
+		SELECT * FROM USER_PET_INFO WHERE U_ID = #{u_id} 
+	
+	</select>
+	
+	<select id="selectUserMainPet" 
+			parameterType="String" 
+			resultType="com.dogdam.shop.user.member.petinfo.UserPetInfoDto">
+			
+		SELECT * FROM USER_PET_INFO WHERE U_ID = #{u_id} AND P_STEP = 1;
+	
+	</select>
+	
+	<insert id="insertNewPetInfo" 
+			parameterType="map">
+		
+		INSERT 
+			INTO 
+		USER_PET_INFO
+			(U_ID, P_NAME, P_SPECIES, P_AGE, P_REG_DATE) 
+		VALUES
+			(#{u_id}, #{p_name}, #{p_species}, #{p_age}, NOW())
+		
+	</insert>
+	
+	<select id="selectPetForModify" 
+			parameterType="int" 
+			resultType="com.dogdam.shop.user.member.petinfo.UserPetInfoDto">
+			
+		SELECT 
+			* 
+		FROM 
+			USER_PET_INFO 
+		WHERE 
+			P_NO = #{p_no}
+	
+	</select>
+	
+	<update id="updatePetModifyInfo" 
+			parameterType="map" >
+			
+		UPDATE 
+			USER_PET_INFO 
+		SET
+			P_NAME = #{p_name}, P_SPECIES = #{p_species}, P_AGE = #{p_age}, P_MOD_DATE = NOW() 
+		WHERE
+			P_NO = #{p_no}
+	
+	</update>
+	
+	<update id="updateHasMainPetStep">
+	
+	
+	</update>
+
+	
+	<update id="updateMainPetRegister" 
+			parameterType="map">
+	
+		UPDATE 
+			USER_PET_INFO 
+    	SET 
+    		P_STEP = 
+       			CASE 
+           			WHEN U_ID = #{u_id} AND P_STEP = 1 THEN 0 
+            		WHEN P_NO = #{p_no} THEN 1 
+        		END 
+    	WHERE 
+    		U_ID = #{u_id} OR P_NO = #{p_no};
+    		
+	</update>
+	
+	<delete id="deletePet" 
+			parameterType="int">
+	
+		DELETE 
+			FROM USER_PET_INFO 
+		WHERE 
+			P_NO = #{p_no}
+		
+	</delete>
+	
+</mapper>

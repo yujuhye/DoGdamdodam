@@ -1,0 +1,54 @@
+.userListBody .uNo {
+	display: none;
+}
+
+#section_wrap {
+	margin-bottom: 50px;
+}
+
+#section_wrap .section_header {
+	height: 80px;
+	line-height: 80px;
+	text-align: center;
+	font-size: 1.5em;
+	font-weight: 700;
+}
+
+.mgm_list {
+	margin-top: 10px;
+	text-align: center;
+}
+
+.mgm_list table, th, td {
+	border-collapse : collapse;
+	border: rgba(36, 36, 36, 0.2) 3px solid;
+}
+
+.mgm_list table {
+	outline: 3px solid rgba(36, 36, 36, 0.6);
+}
+
+.user_table {
+	width: 1300px;
+
+	margin: auto;
+
+}
+
+.user_table .user_listHead th {
+	height: 40px;
+	font-size: 18px;
+	font-weight: 600;
+
+}
+
+.user_table .user_tbody td {
+	
+	height: 38px;
+	font-size: 15px;
+}
+
+.userListBody .id:hover {
+	background-color: #9b8c8c;
+	cursor: pointer;
+}

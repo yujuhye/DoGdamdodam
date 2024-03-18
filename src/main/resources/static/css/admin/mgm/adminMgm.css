@@ -1,0 +1,82 @@
+.adminListBody .aNo {
+	display: none;
+}
+
+#section_wrap {
+	margin-bottom: 50px;
+}
+
+#section_wrap .section_header {
+	height: 80px;
+	line-height: 80px;
+	text-align: center;
+	font-size: 1.5em;
+	font-weight: 700;
+}
+
+.mgm_list {
+	margin-top: 10px;
+	text-align: center;
+}
+
+.mgm_list table, th, td {
+	border-collapse : collapse;
+	border: rgba(36, 36, 36, 0.2) 3px solid;
+}
+
+.mgm_list table {
+	outline: 3px solid rgba(36, 36, 36, 0.6);
+}
+
+.admin_table {
+	width: 1300px;
+
+	margin: auto;
+
+}
+
+.admin_table .adminListHead th {
+	height: 40px;
+	font-size: 18px;
+	font-weight: 600;
+
+}
+
+.admin_table .adminListBody td {
+	
+	height: 38px;
+	font-size: 15px;
+}
+
+.adminApvUpdateBtn {
+	padding: 1.5px 7px;
+	border: rgba(132, 126, 126, 0.6) 1px solid;
+	border-radius: 7px;
+} 
+
+.adminApvUpdateBtn:hover {
+	background-color: rgba(207, 193, 193, 0.5);
+}
+
+.waitingForArvList {
+	margin-right: 40px;
+	margin-bottom: 10px;
+	text-align: right;
+	height: 26px;
+}
+
+.waitingForArvList a {
+	font-size: 18px;
+	width: 100px;
+	display: inline-block;
+	text-align: center;
+}
+
+.waitingForArvList a:hover {
+	font-size: 19px;
+	font-weight: bold;
+	background-color: rgba(160, 157, 157, 0.2);
+	border-radius: 8px;
+	
+}
+

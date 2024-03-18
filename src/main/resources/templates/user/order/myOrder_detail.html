@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+
+	<div id="myOrder_Detail">
+	
+		<div class="myOrder_info">
+			
+			<div th:text="${#strings.substring(myOrderInfo.s_reg_date, 0, 10)}"></div>
+			
+			<table>
+					<thead>
+						<tr>
+							<th>주문자 정보</th>
+						</tr>
+					</thead>
+
+					<tbody>
+						<tr>
+							<td>
+								<div th:text="${session.loginedMemberDto.u_name + '(' + session.loginedMemberDto.u_id + ')'}"></div>
+								<div th:text="${session.loginedMemberDto.u_mail}"></div>
+							</td>
+						</tr>
+					</tbody>
+			</table>
+			
+			<table>
+					<thead>
+						<tr>
+							<th>주문 상품</th>
+						</tr>
+					</thead>
+
+					<tbody>
+						<tr th:each="goods : ${myOrderGoods}">
+							<td>
+								 <div><a th:text="${goods.g_name}" th:href="@{/admin/goods/goodsDetailView(g_no=${goods.g_no})}"></a></div>
+								 <a th:href="@{/admin/goods/goodsDetailView(g_no=${goods.g_no})}">
+            						<img th:src="@{${goods.g_thumbnail_name}}">
+        						 </a>
+								<div th:text="${goods.g_price}"></div>
+								<span>주문수량:</span><span th:text="${goods.s_quantity}"></span>
+							</td>
+						</tr>
+					</tbody>
+			</table>
+			
+			<table>
+					<thead>
+						<tr>
+							<th>배송지 정보</th>
+						</tr>
+					</thead>
+
+					<tbody>
+						<tr>
+							<td>
+								<div th:text="${myOrderInfo.da_name}"></div>
+								<div th:text="${myOrderInfo.da_addr_phone}"></div>
+								<div th:text="${myOrderInfo.da_addr_text}"></div>
+							</td>
+						</tr>
+					</tbody>
+			</table>
+			
+			<table>
+					<thead>
+						<tr>
+							<th>주문번호</th>
+						</tr>
+					</thead>
+
+					<tbody>
+						<tr>
+							<td>
+								<div th:text="${myOrderInfo.o_no}"></div>
+							</td>
+						</tr>
+					</tbody>
+			</table>
+			
+			<div><a th:href="@{/donation/mydonationList}">나의 기부내역></a></div>
+			
+		</div>
+	
+	
+	
+	</div>
+	
+	
+
+</body>
+</html>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper	namespace="com.dogdam.shop.admin.category.ICategoryDaoForMybatis">
+
+ 	<select id="getCategoriesByParentsNo" parameterType="Integer" resultType="com.dogdam.shop.admin.category.CategoryDto">
+	
+	    SELECT * FROM CATEGORY WHERE C_PARENTS_NO = #{parentsNo}
+	    
+	</select>
+	
+	<select id="getSecondaryCategoriesByParentsNo" parameterType="Integer" resultType="com.dogdam.shop.admin.category.CategoryDto">
+	
+	    SELECT * FROM CATEGORY WHERE C_PARENTS_NO = #{c_no}
+	    
+	</select>
+
+</mapper>

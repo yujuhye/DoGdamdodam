@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dogdam.shop.admin.member.IAdminDaoForMybatis">
+
+	<select id="searchForDeleteMember" 
+			parameterType="String" 
+			resultType="int">
+	
+		SELECT 
+			COUNT(*) 
+		FROM 
+			DELETE_MEMBER 
+		WHERE 
+			D_M_ID = #{a_id}
+			
+	</select>
+	
+	<select id="searchForHasMember" 
+			parameterType="String" 
+			resultType="int">
+	
+		SELECT 
+			COUNT(*) 
+		FROM 
+			ADMIN 
+		WHERE 
+			A_ID = #{a_id}
+	
+	</select>
+	
+	<insert id="insertAdminMember" 
+			parameterType="com.dogdam.shop.admin.member.AdminMemberDto">
+		
+		INSERT INTO ADMIN(A_ID, A_NAME, A_PW, A_POSITION, A_PART, A_PHONE, A_MAIL, A_REG_DATE) 
+		VALUES(#{a_id}, #{a_name}, #{a_pw}, #{a_position}, #{a_part}, #{a_phone}, #{a_mail}, NOW())
+		
+	</insert>
+	
+	<insert id="insertSuperAdmin" 
+			parameterType="com.dogdam.shop.admin.member.AdminMemberDto">
+	
+		INSERT INTO ADMIN(A_ID, A_NAME, A_PW, A_POSITION, A_PART, A_PHONE, A_MAIL, A_GRADE, A_APPROVAL, A_REG_DATE) 
+		VALUES(#{a_id}, #{a_name}, #{a_pw}, #{a_position}, #{a_part}, #{a_phone}, #{a_mail}, 1, 1, NOW())
+	
+	</insert>
+	
+	<select id="selectAdminForLogin" 
+			parameterType="com.dogdam.shop.admin.member.AdminMemberDto" 
+			resultType="com.dogdam.shop.admin.member.AdminMemberDto">
+			
+		SELECT 
+			* 
+		FROM 
+			ADMIN 
+		WHERE 
+			A_ID = #{a_id} AND A_PW = #{a_pw} AND A_APPROVAL = 1
+	
+	</select>
+	
+	
+	
+	
+
+
+</mapper>

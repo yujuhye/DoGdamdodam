@@ -1,0 +1,88 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #ffffff; /* 배경을 흰색으로 설정 */
+}
+
+#section_wrap {
+    width: 1300px; /* 페이지 너비를 1300px로 설정 */
+    margin: 0 auto;
+    text-align: center;
+}
+
+header {
+    text-align: center; /* 로고를 가운데 정렬하기 위해 */
+    margin-bottom: 20px; /* 헤더와 섹션 사이에 약간의 여백 추가 */
+}
+
+header a {
+   display: inline-block; /* 링크를 블록 요소로 표시하여 이미지 주위에 여백을 만듭니다. */
+}
+
+header img {
+    width: 200px; /* 로고 이미지의 너비를 조정합니다. */
+    height: auto; /* 높이를 자동으로 조정하여 비율을 유지합니다. */
+    margin-top: 10px;
+}
+
+.word {
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+
+.goods_list table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.goods_list th,
+.goods_list td {
+    padding: 10px;
+    border: 1px solid #fff;
+}
+
+.goods_list th {
+    background-color: #FFCD4A;
+    color: #0B2027;
+}
+
+.goods_list tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.goods_list tbody tr:hover {
+    background-color: #ddd;
+}
+
+.goods_list a {
+    text-decoration: none; /* 밑줄 제거 */
+    color: inherit; /* 색상 상속 */
+}
+
+.goods_list a:hover {
+    /*text-decoration: underline; /* 마우스를 올렸을 때 링크에 밑줄 추가 */
+    cursor: pointer;
+} 
+
+.review_list_img img{
+	width: 100px; /* 이미지의 너비를 조정합니다. */
+    height: auto; /* 높이를 자동으로 조정하여 비율을 유지합니다. */
+}
+
+/*버튼*/
+.btn {
+    display: inline-block;
+    padding: 8px 12px;
+    background-color: #FFCD4A; /* 버튼 배경색 */
+    color: #fff; /* 버튼 텍스트 색상 */
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.btn:hover {
+    background-color: #FFCD4A; /* 마우스를 올렸을 때 버튼 배경색 */
+}

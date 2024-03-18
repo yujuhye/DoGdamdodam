@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+
+	<div id="order_list">
+    <h3>주문상품</h3>
+	    <table>
+	        <tbody>
+	            <tr th:each="entry : ${orderNumbersGroupByDatetime.entrySet()}">
+	                <td>
+	                	<div th:text="${#strings.substring(entry.key, 0, 10)}"></div>
+	                    <a th:href="@{/basket/myOrderDetail(s_reg_date=${entry.key})}">주문내역 상세보기></a>
+	                </td>
+	                <td>
+	                    <div th:each="salesDto : ${entry.value}">
+	                        <a th:href="@{/admin/goods/goodsDetailView(g_no=${salesDto.g_no})}">
+	                            <img th:src="@{${salesDto.g_thumbnail_name}}">
+	                        </a><br>
+	                        <a th:text="${salesDto.g_name}" th:href="@{/admin/goods/goodsDetailView(g_no=${salesDto.g_no})}"></a><br>
+	                        <a th:href="@{/admin/goods/goodsDetailView(g_no=${salesDto.g_no})}">리뷰남기기</a><br>
+	                        <span th:text="${salesDto.g_price}"></span><span>원</span><br>
+	                        <span>주문수량:</span> <span th:text="${salesDto.s_quantity}"></span><br>
+	                    </div>
+	                </td>
+	            </tr>
+	        </tbody>
+	    </table>
+	</div>
+	
+
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title th:replace="~{include/title_header_nav_footer.html::user_title}"></title>
+
+<link rel="stylesheet" th:href="@{/css/common.css}">
+<link rel="stylesheet" th:href="@{/css/user/create_account_form.css}">
+<link rel="stylesheet" th:href="@{/css/header_nav_footer.css}">
+
+</head>
+<body>
+
+	<header th:replace="~{include/title_header_nav_footer.html::user_header}">
+	</header>
+	
+	<nav th:replace="~{include/title_header_nav_footer.html::user_nav}">
+	</nav>
+	
+	<section>
+		<div id="section_wrap">
+			<div class="word">
+				<span>회원가입 성공!</span>
+			</div>
+			
+			<div class="go_login_form">
+				<a th:href="@{/user/member/login_form}">로그인</a>
+			</div>
+			
+		</div>
+	</section>
+	
+	<footer th:replace="~{include/title_header_nav_footer::user_footer}">
+	</footer>
+
+</body>
+</html>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dogdam.shop.user.privateqa.IPrivateqnaDao">
+
+
+<insert id="insertPrivateQna" parameterType="com.dogdam.shop.user.privateqa.PrivateqnaDto">
+
+    INSERT INTO WEB_SERVICE_CENTER (
+        U_ID,
+        WS_SELECT_TITLE,
+        WS_INPUT_TITLE,
+        WS_INQUIRY,
+        WS_REG_DATE
+    )
+    VALUES (
+        #{u_id},
+        #{ws_select_title},
+        #{ws_input_title},
+        #{ws_inquiry},
+        NOW()
+    )
+</insert>
+
+<select id="listupPrivateqna" parameterType="String" resultType="com.dogdam.shop.user.privateqa.PrivateqnaDto">
+			
+		SELECT * FROM WEB_SERVICE_CENTER WSC 
+				JOIN USER U ON WSC.U_ID = U.U_ID
+				WHERE WSC.U_ID = #{u_id}
+		        ORDER BY WS_REG_DATE DESC
+</select>
+	
+<delete id="deletePrivateqna" parameterType="Integer" >
+			
+		DELETE FROM WEB_SERVICE_CENTER WHERE WS_NO = #{ws_no}
+	      		
+</delete>
+
+</mapper>

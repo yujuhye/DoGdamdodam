@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dogdam.shop.user.basket.IBasketDaoForMybatis">
+
+	<insert id="basketConfirm" parameterType="map">
+	
+		INSERT INTO SHOPPING_BASKET( 
+	            U_ID, 
+	            S_QUANTITY, 
+	            G_NO, 
+	            SB_REG_DATE) 
+	            VALUES(#{u_id}, #{s_quantity}, #{g_no}, NOW())
+	
+	</insert>
+	
+	<select id="getAllBasketList" 
+	parameterType="String" 
+	resultType="com.dogdam.shop.user.basket.BasketDto">
+		
+		SELECT G.G_NAME, G.G_PRICE, G.G_NO, G.G_THUMBNAIL_NAME, SB.S_QUANTITY 
+	            FROM SHOPPING_BASKET AS SB 
+	            JOIN GOODS AS G ON SB.G_NO = G.G_NO 
+	            WHERE 
+	            U_ID = #{u_id}
+		
+	</select>
+	
+	<delete id="basketDelete" parameterType="Integer">
+		
+		DELETE FROM SHOPPING_BASKET 
+	            WHERE 
+	            G_NO = #{g_no}
+	
+	</delete>
+	
+	<select id="getQuantity" 
+	parameterType="map"
+	resultType="Integer">
+	
+		SELECT S_QUANTITY FROM SHOPPING_BASKET 
+		 		WHERE 
+		 		G_NO = #{g_no} AND U_ID = #{u_id}
+	
+	</select>
+	
+	<select id="getAddressInfoById" 
+	parameterType="String"
+	resultType="com.dogdam.shop.user.basket.AddressDto">
+		
+		SELECT * FROM DELIVERY_ADDR
+		WHERE U_ID = #{u_id}
+		ORDER BY DA_REG_DATE ASC
+		LIMIT 1;
+	
+	</select>
+	
+	
+	<select id="getLastOrderNumber" resultType="String">
+	    SELECT O_NO FROM ORDER_DETAILS 
+	    ORDER BY O_NO DESC 
+	    LIMIT 1
+	</select>
+	
+	<insert id="saveNewAddress"
+	parameterType="map"
+	useGeneratedKeys="true" keyProperty="da_no">
+	    INSERT INTO DELIVERY_ADDR(
+	    	U_ID, 
+	    	DA_NAME, 
+	    	DA_ADDR_PHONE, 
+	    	DA_ADDR_TEXT, 
+	    	DA_REG_DATE, 
+	    	DA_MOD_DATE)
+	    VALUES (#{u_id}, #{addressDto.da_name}, #{addressDto.da_addr_phone}, #{addressDto.da_addr_text}, NOW(), NOW())
+	</insert>
+	
+	<insert id="orderConfirm" parameterType="list">
+	
+    INSERT INTO SALES (O_NO, G_NO, U_ID, DA_NO, S_QUANTITY, S_REG_DATE, S_MOD_DATE)
+    VALUES
+    
+    <foreach collection="list" item="salesDto" separator=",">
+        (#{salesDto.o_no}, #{salesDto.g_no}, #{salesDto.u_id}, #{salesDto.da_no}, #{salesDto.s_quantity}, NOW(), NOW())
+    </foreach>
+    
+	</insert>
+	
+	<insert id="donationSave" 
+	parameterType="map"> 
+		
+		INSERT INTO DONATION(
+			U_ID, 
+			D_DONATION, 
+			D_REG_DATE, 
+			D_MOD_DATE)
+		VALUES(#{u_id}, #{d_donation}, NOW(), NOW())	
+	
+	</insert>
+	
+	<insert id="orderDetailsConfirm"
+	parameterType="map">
+	    INSERT INTO ORDER_DETAILS(
+	    	O_NO, 
+	    	U_ID, 
+	    	O_REG_DATE, 
+	    	O_MOD_DATE 
+	    	)
+	    VALUES(#{newOrderNumber}, #{u_id}, NOW(), NOW())
+	</insert>
+	
+	<select id="getOrderDetails" parameterType="map" resultType="String">
+	    SELECT O_NO
+	    	FROM ORDER_DETAILS
+	    WHERE O_NO = #{newOrderNumber}
+	</select>
+	
+	<select id="getMyOrderList" 
+	parameterType="String" 
+	resultType="com.dogdam.shop.user.basket.SalesDto">
+	
+		SELECT G.G_NAME, G.G_PRICE, G.G_THUMBNAIL_NAME, G.G_NO, S.*
+	            FROM SALES AS S 
+	            JOIN GOODS AS G ON S.G_NO = G.G_NO
+	            WHERE 
+	            U_ID = #{u_id}
+	
+	</select>
+	
+	<select id="isBasketGNum" parameterType="map" resultType="int">
+	
+		SELECT COUNT(*) FROM SHOPPING_BASKET 
+		WHERE
+		G_NO = #{g_no} AND U_ID = #{u_id}
+	
+	</select>
+	
+	<select id="getMyOrderByDate" parameterType="String" 
+	resultType="com.dogdam.shop.user.basket.SalesDto">
+	
+		SELECT D.DA_NAME, D.DA_ADDR_PHONE, D.DA_ADDR_TEXT, S.O_NO, S.S_REG_DATE
+			FROM SALES AS S 
+			JOIN DELIVERY_ADDR AS D ON S.DA_NO = D.DA_NO 
+			WHERE 
+			S_REG_DATE = #{s_reg_date}
+			LIMIT 1
+	
+	</select>
+	
+	<select id="getmyOrderGoods"  parameterType="String" 
+	resultType="com.dogdam.shop.user.basket.SalesDto">
+	
+		SELECT G.G_NAME, G.G_THUMBNAIL_NAME, G.G_PRICE, S.G_NO, S.S_QUANTITY 
+			FROM SALES AS S
+			JOIN GOODS AS G ON S.G_NO = G.G_NO
+			WHERE 
+			S_REG_DATE = #{s_reg_date}
+	
+	</select>
+	
+	<delete id="deleteBasketByOrder" parameterType="int">
+	
+		DELETE FROM SHOPPING_BASKET 
+		WHERE 
+		G_NO = #{g_no}
+	
+	</delete>
+	
+	<select id="getMyAddresslist" 
+	parameterType="String"
+	resultType="com.dogdam.shop.user.basket.AddressDto">
+	
+		SELECT * FROM DELIVERY_ADDR
+		WHERE
+		U_ID = #{u_id}
+	
+	</select>
+	
+	<insert id="saveAddress" 
+	parameterType="map" 
+	useGeneratedKeys="true" keyProperty="da_no">
+	
+		INSERT INTO DELIVERY_ADDR(
+			U_ID,
+			DA_NAME,
+			DA_ADDR_PHONE,
+			DA_ADDR_TEXT,
+			DA_REG_DATE,
+			DA_MOD_DATE
+		)
+		 VALUES (#{u_id}, #{addressDto.da_name}, #{addressDto.da_addr_phone}, #{addressDto.da_addr_text}, NOW(), NOW())
+	
+	</insert>
+	
+</mapper>

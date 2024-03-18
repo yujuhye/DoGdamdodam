@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title th:replace="~{include/title_header_nav_footer.html::user_title}"></title>
+<link rel="stylesheet" th:href="@{/css/common.css}">
+<link rel="stylesheet" th:href="@{/css/header_nav_footer.css}">
+
+<script type="text/javascript" th:src="@{/js/bookmark_list.js}"></script>
+
+</head>
+
+<body>
+
+    <header th:replace="~{include/title_header_nav_footer.html::user_header}">
+
+    </header>
+
+    <nav th:replace="~{include/title_header_nav_footer.html::user_nav}">
+
+    </nav>
+
+    <section>
+
+        <div id="bm_wrap">
+            <span>위시 리스트</span>
+
+            <div class="article">
+                               
+                <table>
+                
+                   <thead>
+                       <tr>
+                           <th>상품이미지</th>
+                           <th>상품이름</th> 
+                           <th>가격</th>                      
+                           <th>삭제</th>                    
+                       </tr>                                      
+                   </thead>
+                    <tbody th:if="${#lists.isEmpty(bookmarkDtos)}">
+                        <tr>
+                            <td colspan="4">위시리스트가 없습니다.</td>
+                        </tr>
+                    </tbody>
+                    <tbody>
+
+                        <tr th:each="bookmarklist : ${bookmarkDtos}">
+                            <td><a th:href="@{/user/goods/goodsDetailView(g_no=${bookmarklist.g_no})}">
+						            <img th:src="@{'http://14.42.124.95:8091/goodsUploadImg/' + ${bookmarklist.g_thumbnail_name}}" />						         
+						        </a> 
+						    </td>
+						    <td>
+    							<a th:href="@{/user/goods/goodsDetailView(g_no=${bookmarklist.g_no})}" th:text="${bookmarklist.g_name}"></a>
+							</td>						                               
+							<td>
+								<a th:text="|${#numbers.formatInteger(bookmarklist.g_price, 0, 'COMMA')}원|" href=""></a>
+							</td>							
+                            <td>
+                            
+                            <a href="#" class="delete_bookmark"
+                             th:href="@{/user/bookmark/deleteBookmarkConfirm(bm_no=${bookmarklist.bm_no}, g_no=${bookmarklist.g_no})}">삭제</a>
+                            </td>
+                        </tr>                
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </section>
+
+    <footer th:replace="~{include/title_header_nav_footer.html::user_footer}">
+
+    </footer>
+</body>
+
+</html>

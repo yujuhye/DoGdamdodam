@@ -1,0 +1,102 @@
+/* 상품 등록 섹션 전체 스타일링 */
+#section_wrap {
+    max-width: 800px; /* 폼의 최대 너비 */
+    margin: 20px auto; /* 센터 정렬 */
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
+}
+
+.word {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 24px;
+    color: #333;
+}
+
+.goods_insert_form {
+    display: flex;
+    flex-direction: column;
+}
+
+.goods_insert_form input[name='g_name'],
+.goods_insert_form input[name='g_explanation'],
+.goods_insert_form input[name='g_price']{
+	width: 252px;
+	height: 25px;
+}
+
+.goodsName, .secondImg, .thirdImg{
+	
+	margin-right: 120px;
+	
+}
+
+.detailImg{
+	margin-right: 45px;
+}
+
+.thumImg{
+	
+	margin-right: 82px;
+	
+}
+
+.category{
+	margin-right: 100px;
+}
+
+.subCategory{
+	margin-right: 66px;
+}
+
+.goodsExplanation, .goodsPrice{
+	
+	margin-right: 100px;
+	
+}
+
+.goods_insert_form input[type=text],
+.goods_insert_form input[type=file],
+.goods_insert_form select {
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px; /* 입력 필드 모서리 둥글게 */
+}
+
+.goods_insert_form label {
+    margin-top: 20px;
+    font-weight: bold; /* 라벨 볼드 처리 */
+}
+
+.goods_insert_form input[type=button], 
+.goods_insert_form input[type=reset] {
+    cursor: pointer;
+    padding: 10px 20px;
+    margin-top: 20px;
+    border: none;
+    border-radius: 5px; /* 버튼 모서리 둥글게 */
+    background-color: #5cb85c; /* 삽입 버튼 색 */
+    color: white;
+    margin-right: 10px; /* 버튼 사이 간격 */
+}
+
+.goods_insert_form input[type=button].goodsCancelBtn {
+    background-color: #d9534f; /* 취소 버튼 색 */
+}
+
+.goods_insert_form input[type=reset] {
+    background-color: #f0ad4e; /* 리셋 버튼 색 */
+}
+
+.goods_insert_form input[value='INSERT']:hover {
+	background-color: #5fc251;/*등록*/
+}
+
+.goods_insert_form input[value='RESET']:hover {
+	background-color: #f2a941; /*리셋*/
+}
+
+.goods_insert_form input[value='CANCEL']:hover {
+	background-color: #eb524d; /*취소*/
+}

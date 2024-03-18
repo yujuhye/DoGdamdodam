@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+
+	<div id="donation_ranking">
+	    <table>
+	      <thead>
+	        <tr>
+	          <th>순위</th>
+	          <th>유저</th>
+	          <th>총 기부 금액</th>
+	        </tr>
+	      </thead>
+	      <tbody>
+	        <tr th:each="rDonation, stat : ${rankingDonationDtos}">
+	          <td th:text="${stat.count} + '등'"></td>
+	          <td th:text="${rDonation.u_id}"></td>
+	          <td th:text="${rDonation.totalDonation}"></td>
+	        </tr>
+	      </tbody>
+	    </table>
+	</div>
+
+</body>
+</html>

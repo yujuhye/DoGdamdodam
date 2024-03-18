@@ -1,0 +1,66 @@
+.dateGoodsList .slider {
+    display: flex;
+    overflow: hidden;
+    margin: 0 auto;
+    width: 80%; /* 슬라이더 너비 조정 */
+}
+
+.dateGoodsList .slider .date_goods_thumbnails {
+    margin: 0 10px;
+    width: auto; /* 슬라이드 아이템 너비 자동 조정 */
+}
+
+.dateGoodsList .slider .date_goods_thumbnails img {
+    width: 100%;
+    height: auto;
+    max-width: none; /* 기존의 max-width 속성 제거 */
+}
+
+.likeGoodsList .slider {
+    display: flex;
+    overflow: hidden;
+    margin: 0 auto;
+    width: 80%; /* 슬라이더 너비 조정 */
+}
+
+.likeGoodsList .slider .like_goods_thumbnails {
+    margin: 0 10px;
+    width: auto; /* 슬라이드 아이템 너비 자동 조정 */
+}
+
+.likeGoodsList .slider .like_goods_thumbnails img {
+    width: 100%;
+    height: auto;
+    max-width: none; /* 기존의 max-width 속성 제거 */
+}
+
+.reviewGoodsList .slider {
+    display: flex;
+    overflow: hidden;
+    margin: 0 auto;
+    width: 80%; /* 슬라이더 너비 조정 */
+}
+
+.reviewGoodsList .slider .buy_goods_thumbnails {
+    margin: 0 10px;
+    width: auto; /* 슬라이드 아이템 너비 자동 조정 */
+}
+
+.reviewGoodsList .slider .buy_goods_thumbnails img {
+    width: 100%;
+    height: auto;
+}
+
+/* 슬라이드 컨테이너 설정 */
+.slick-slide img {
+    max-width: 100%; /* 이미지 너비 최대 크기를 부모 요소의 100%로 설정 */
+    height: auto; /* 이미지 높이 자동 조정 */
+}
+
+.dateGoodsList .slider .date_goods_thumbnails img, 
+.likeGoodsList .slider .like_goods_thumbnails img, 
+.reviewGoodsList .slider .buy_goods_thumbnails img {
+    width: 200px; /* 원하는 너비로 설정 */
+    height: 300px; /* 원하는 높이로 설정 */
+    object-fit: cover; /* 이미지 비율을 유지하면서 지정한 너비와 높이에 맞춤 */
+}

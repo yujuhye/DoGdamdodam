@@ -1,0 +1,146 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #ffffff;
+    width: 1400px;
+    margin: 0 auto;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+header a {
+    display: inline-block;
+}
+
+header img {
+    width: 200px;
+    height: auto;
+    margin-top: 10px;
+}
+
+/* .slider-container, .goods_info, .product-thumbnails, .slider-nav, .review-image, .modal, .modal-content, .close {
+    width: auto;
+    text-align:center;
+    margin: 0 auto;
+} */
+
+.slider-nav, .product-thumbnails {
+    width: 80%;
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.slider-nav {
+    width: 80%;
+    max-width: 600px;
+   /*  margin: 0 auto; slider-nav를 가운데 정렬합니다. */
+    text-align: center;
+}
+
+.slider-nav div {
+    display: inline-block;
+    margin: 0 5px;
+}
+
+.slider-nav img, .product-thumbnails img {
+    max-width: 100%;
+    height: auto;
+    vertical-align: middle;
+}
+
+.btn {
+    display: inline-block;
+    padding: 8px 12px;
+    background-color: #FFCD4A;
+    color: #0B2027;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 14px;
+    margin: 5px; /* 각 버튼 사이의 간격을 추가합니다. */
+}
+
+.btn:hover {
+    background-color: #FFCD0F;
+    color: #fff;
+}
+
+.top-container {
+    display: flex;
+}
+
+.slider-container {
+    width: 50%;
+    float: left;
+}
+
+.goods_info {
+    width: 50%;
+    float: left;
+    padding-left: 20px;
+    position: relative;
+}
+
+.product-thumbnails div {
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.goods_info {
+    border: 1px solid #ddd;
+    padding: 20px;
+    position: relative;
+}
+
+.goods_info h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.goods_info p {
+    font-size: 18px;
+    margin-bottom: 10px;
+    text-align: right;
+}
+
+.price {
+    font-size: 1.5em;
+}
+
+.goods_num {
+    width: 80px;
+    height: 30px;
+    margin-top: 10px;
+    margin-right: 10px;
+}
+
+.btn-group {
+    position: absolute;
+    bottom: 20px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+}
+
+.basket_btn, .bookmark_btn {
+    width: calc(50% - 2.5px);
+    margin-right: 5px;
+}
+
+.buy_btn {
+    flex: 1;
+    margin-right: 5px;
+}
+
+.goods_detail_content{
+	margin-top: 50px;
+	text-align: center;
+}

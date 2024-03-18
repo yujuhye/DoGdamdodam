@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper	namespace="com.dogdam.shop.admin.goods.IGoodsDaoForMybatis">
+	
+	<select id="selectList" parameterType="com.dogdam.shop.admin.goods.GoodsDto" resultType="com.dogdam.shop.admin.goods.GoodsDto">
+		SELECT * FROM GOODS ORDER BY G_NO DESC;
+	</select>
+
+	<insert id="insertGoods" parameterType="map">
+		INSERT INTO GOODS (
+	        G_NAME, G_THUMBNAIL_NAME, G_SECOND_IMG_NAME, G_THIRD_IMG_NAME,
+	        G_DETAIL_CONTENT, C_NO, C_PARENTS_NO, G_EXPLANATION, G_PRICE,
+	        G_APPROVAL, G_REG_DATE, G_MOD_DATE
+   		) VALUES (
+	        #{goodsDto.g_name}, #{goodsDto.g_thumbnail_name}, #{goodsDto.g_second_img_name},
+	        #{goodsDto.g_third_img_name}, #{goodsDto.g_detail_content}, #{c_no},
+	        #{goodsDto.c_no}, #{goodsDto.g_explanation}, #{goodsDto.g_price},
+	        #{goodsDto.g_approval}, NOW(), NOW()
+    	)
+	</insert>
+	
+	<!-- 여기 문제나면 parameterType 이거 확인하기 -->
+	<select id="goodsDetailView" parameterType="com.dogdam.shop.admin.goods.GoodsDto" resultType="com.dogdam.shop.admin.goods.GoodsDto">
+		SELECT * FROM GOODS WHERE G_NO = #{g_no};
+	</select>
+
+	<select id="selectGoods" parameterType="com.dogdam.shop.admin.goods.GoodsDto" resultType="com.dogdam.shop.admin.goods.GoodsDto">
+		SELECT * FROM GOODS WHERE G_NO = #{g_no};
+	</select>
+	
+	<update id="modifyGoodsConfirm" parameterType="com.dogdam.shop.admin.goods.GoodsDto">
+	    UPDATE GOODS SET
+	    	G_NAME = #{g_name},
+		    <if test="g_thumbnail_name != null">G_THUMBNAIL_NAME = #{g_thumbnail_name},</if>
+		    <if test="g_second_img_name != null">G_SECOND_IMG_NAME = #{g_second_img_name},</if>
+		    <if test="g_third_img_name != null">G_THIRD_IMG_NAME = #{g_third_img_name},</if>
+		    <if test="g_detail_content != null">G_DETAIL_CONTENT = #{g_detail_content},</if>
+		    C_NO = #{c_parents_no},
+		    C_PARENTS_NO = #{c_no},
+		    G_EXPLANATION = #{g_explanation},
+		    G_PRICE = #{g_price},
+		    G_MOD_DATE = NOW()
+	    WHERE G_NO = #{g_no}
+	</update>
+	
+	<!-- <update id="modifyGoodsConfirm" parameterType="map">
+	    UPDATE GOODS SET
+	        G_NAME = #{g_name},
+	        <if test="g_thumbnail_name != null">G_THUMBNAIL_NAME = #{g_thumbnail_name},</if>
+	        <if test="g_second_img_name != null">G_SECOND_IMG_NAME = #{g_second_img_name},</if>
+	        <if test="g_third_img_name != null">G_THIRD_IMG_NAME = #{g_third_img_name},</if>
+	        <if test="g_detail_content != null">G_DETAIL_CONTENT = #{g_detail_content},</if>
+	        C_NO = #{c_no},
+	        C_PARENTS_NO = #{goodsDto.c_no},
+	        G_EXPLANATION = #{g_explanation},
+	        G_PRICE = #{g_price},
+	        G_MOD_DATE = NOW()
+	    WHERE G_NO = #{g_no}
+	</update> -->
+	
+	<!-- <update id="modifyGoodsConfirm" parameterType="map">
+	    UPDATE GOODS SET
+	        G_NAME = #{g_name},
+	        <if test="g_thumbnail_name != null">G_THUMBNAIL_NAME = #{g_thumbnail_name},</if>
+	        <if test="g_second_img_name != null">G_SECOND_IMG_NAME = #{g_second_img_name},</if>
+	        <if test="g_third_img_name != null">G_THIRD_IMG_NAME = #{g_third_img_name},</if>
+	        <if test="g_detail_content != null">G_DETAIL_CONTENT = #{g_detail_content},</if>
+	        C_NO = #{c_no},
+	        C_PARENTS_NO = #{c_parents_no},
+	        G_EXPLANATION = #{g_explanation},
+	        G_PRICE = #{g_price},
+	        G_MOD_DATE = NOW()
+	    WHERE G_NO = #{g_no}
+	</update> -->
+	
+	<delete id="deleteGoodsConfirm" parameterType="Integer">
+	    DELETE FROM GOODS WHERE G_NO = #{g_no}
+	</delete>
+	
+	<update id="updateApproval" parameterType="Integer">
+	    UPDATE GOODS SET G_APPROVAL = 1 WHERE G_NO = #{g_no}
+	</update>
+	
+	<select id="searchGoodsConfirm" parameterType="com.dogdam.shop.admin.goods.GoodsDto" resultType="com.dogdam.shop.admin.goods.GoodsDto">
+	    SELECT * FROM GOODS WHERE G_NAME LIKE CONCAT('%', #{g_name}, '%') ORDER BY G_NO DESC
+	</select>
+	
+	
+
+</mapper>

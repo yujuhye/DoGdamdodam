@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<!-- ajax 라이브러리 -->
+<script th:fragment="jquery_cdn" src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+<!-- slick 라이브러리 -->
+<script th:fragment="slick" src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
+
+<script th:replace="~{/include/common_js.html::jquery_cdn}" type="text/javascript"></script>
+<script th:replace="~{/include/common_js.html::slick}" type="text/javascript"></script>
+
+<link rel="stylesheet" th:href="@{/css/common.css}">
+<link rel="stylesheet" th:href="@{/css/header_nav_footer.css}">
+<link rel="stylesheet" th:href="@{/css/admin/goods/goods_list.css}">
+
+<script type="text/javascript">
+$(document).ready(function() {
+	  $('.goods-list tr').click(function() {
+	    // 클릭된 라인의 a 태그 (상품 이름) 가져오기
+	    var productLink = $(this).find('a').attr('href');
+	    
+	    // 상세 페이지로 이동
+	    if (productLink) {
+	      location.href = productLink;
+	    }
+	  });
+	});
+
+</script>
+
+</head>
+<body>
+
+	<header></header>
+	
+	<nav>
+		
+	</nav>
+	
+	<section>
+		<div id="section_wrap">
+			<div class="word">
+				GOODS INSERT FAIL
+			</div>
+			
+			<div class="goods_list">
+			
+				<table>
+					<thead>
+						<tr>
+							<th>상품 이미지</th>
+							<th>상품 이름</th>
+							<th>승인 여부</th>
+						</tr>
+					</thead>
+
+					<tbody class="goods-list">
+						<tr th:each="goods : ${goodsDtos}">
+							<td>
+								<img th:src="@{'http://14.42.124.95:8091/goodsUploadImg/' + ${goods.g_thumbnail_name}}" />
+							</td>
+							<td>
+    							<a th:text="${goods.g_name}" th:href="@{/admin/goods/goodsDetailView(g_no=${goods.g_no})}"></a>
+							</td>
+							<td>
+								<span th:text="${goods.g_approval == 1 ? '승인' : '미승인'}"></span>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+
+				<a th:href="@{/admin/goods/insertGoodsForm}">상품 등록</a>
+			
+			</div>
+		</div>
+	</section>
+	
+	<footer></footer>
+
+</body>
+</html>

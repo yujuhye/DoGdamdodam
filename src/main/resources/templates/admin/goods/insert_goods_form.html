@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<script th:replace="~{/include/common_js.html::jquery_cdn}" type="text/javascript"></script>
+<script th:replace="~{/include/common_js.html::slick}" type="text/javascript"></script>
+
+<script type="text/javascript" th:src="@{/js/goods/insert_goods_form.js}"></script>
+<script type="text/javascript" th:src="@{/js/goods/goods_insert_ajax.js}"></script>
+
+</head>
+<body>
+
+<header></header>
+
+<nav></nav>
+
+<section>
+    <div id="section_wrap">
+        <div class="word">GOODS INSERT</div>
+
+        <div class="goods_insert_form">
+
+            <form th:action="@{/admin/goods/insertGoodsConfirm}" name="insert_goods_form" method="post" enctype="multipart/form-data">
+                <input type="text" name="g_name" placeholder="Input goods name"><br>
+
+                <label>대표 이미지</label>
+                <input type="file" name="file1"><br>
+
+                <label>이미지</label>
+                <input type="file" name="file2"><br>
+
+                <label>이미지</label>
+                <input type="file" name="file3"><br>
+
+                <label>상세 설명 이미지</label>
+                <input type="file" name="file4"><br>
+
+                <label>Category</label>
+                <select name="c_no" id="primaryCategory">
+                    <option>Primary Category</option>
+                </select>
+
+                <label>Subcategory</label>
+                <select id="secondaryCategory" name="c_no2">
+                    <option>Secondary Category</option>
+                </select>
+                <br>
+
+                <input type="text" name="g_explanation" placeholder="Input goods explanation"><br>
+
+                <input type="text" name="g_price" placeholder="Input goods price"><br>
+
+                <input type="button" value="INSERT" class="goodsInsertBtn" onclick="insertGoods();">
+                <input type="reset" value="RESET">
+                <input type="button" value="CANCEL" class="goodsCancelBtn">
+            </form>
+
+        </div>
+
+    </div>
+</section>
+
+<footer></footer>
+
+</body>
+</html>

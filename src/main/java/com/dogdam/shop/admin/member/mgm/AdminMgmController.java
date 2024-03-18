@@ -1,0 +1,151 @@
+package com.dogdam.shop.admin.member.mgm;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.dogdam.shop.admin.AdminConfig;
+import com.dogdam.shop.admin.PageDefaultConfig;
+import com.dogdam.shop.admin.PageMakerDto;
+import com.dogdam.shop.admin.member.AdminMemberDto;
+import com.dogdam.shop.user.member.MemberDto;
+
+import lombok.extern.log4j.Log4j2;
+
+
+
+@Log4j2
+@Controller
+@RequestMapping(AdminConfig.BASIC_MGM_PATH)
+public class AdminMgmController {
+
+	@Autowired
+	AdminConfig adminConfig;
+	
+	@Autowired
+	AdminMgmService adminMgmService;
+	
+	@GetMapping(AdminConfig.LIST_AND_MGM)
+	public Object listAndMgm(Model model) {
+		log.info("listAndMgm()");
+		
+		model.addAttribute(AdminConfig.ATTRIBUTE_NAME, adminConfig);
+		
+		String nextPage = AdminConfig.managementViewPath(AdminConfig.LIST_AND_MGM);
+		
+		
+		
+		List<AdminMemberDto> adminDtos = adminMgmService.adminListup();
+		
+		model.addAttribute("adminListup", adminDtos);
+		
+		
+		return nextPage;
+	}
+	
+	
+	
+	@PostMapping(AdminConfig.APPROVAL_UPDATE)
+	@ResponseBody
+	public Object updateApproval(@RequestBody Map<String, String> apvMap ) {
+		log.info("updateApproval()");
+		
+		try {
+			return adminMgmService.updateApproval(apvMap.get("a_approval"), apvMap.get("a_no"));
+			
+		} catch (Exception e) {
+			log.info("updateApproval() error", e);
+			
+			return new HashMap<String, Object>();
+		}
+		
+		
+		
+	}
+	
+	@GetMapping(AdminConfig.WAITING_FOR_ARV_LIST)
+	public String waitingForArvList(Model model) {
+		log.info("waitingForArvList()");
+		
+		model.addAttribute(AdminConfig.ATTRIBUTE_NAME, adminConfig);
+		
+		String nextPage = AdminConfig.managementViewPath(AdminConfig.WAITING_FOR_ARV_LIST);
+		
+		List<AdminMemberDto> adminDtos = adminMgmService.adminNoArvList();
+		
+		model.addAttribute("adminNoArvList", adminDtos);
+		
+		return nextPage;
+	}
+	
+	@GetMapping(AdminConfig.APPROVED_LIST)
+	public String approvedList(Model model) {
+		log.info("approvedList()");
+		
+		model.addAttribute(AdminConfig.ATTRIBUTE_NAME, adminConfig);
+		
+		String nextPage = AdminConfig.managementViewPath(AdminConfig.APPROVED_LIST);
+		
+		List<AdminMemberDto> adminDtos = adminMgmService.approvedList();
+		
+		model.addAttribute("approvedList", adminDtos);
+		
+		return nextPage;
+	}
+	
+	@GetMapping(AdminConfig.TOOLS)
+	public String mgmTools(Model model) {
+		log.info("mgmTools()");
+		
+		model.addAttribute(AdminConfig.ATTRIBUTE_NAME, adminConfig);
+		
+		String nextPage = AdminConfig.managementViewPath(AdminConfig.TOOLS);
+		
+		return nextPage;
+	}
+	
+	@GetMapping(AdminConfig.USER_LIST_MGM)
+	public Object userListMgm(Model model, 
+							@RequestParam(value = "pageNum", required = false, defaultValue = PageDefaultConfig.DEFAULT_PAGE_NUMBER) int pageNum, 
+							@RequestParam(value = "amonut", required = false, defaultValue = PageDefaultConfig.DEFAULT_AMOUNT) int amount, 
+							@RequestParam(value = "searchText", required = false, defaultValue = "") String searchText) {
+		log.info("userListMgm()");
+		model.addAttribute(AdminConfig.ATTRIBUTE_NAME, adminConfig);
+		
+		String nextPage = AdminConfig.managementViewPath(AdminConfig.USER_LIST_MGM);
+		
+		Map<String, Object> map;
+		if(searchText.isEmpty()) {
+			map = adminMgmService.getAllUserItme(pageNum, amount);
+		} else {
+			map = adminMgmService.searchUserItme(pageNum, amount, searchText);
+		}
+		
+		
+		
+		
+		List<MemberDto> memberDtos = (List<MemberDto>) map.get("memberDtos");
+		PageMakerDto pageMakerDto = (PageMakerDto) map.get("pageMakerDto");
+		
+		model.addAttribute("allUserDtos", memberDtos);
+		model.addAttribute("pageMakerDto", pageMakerDto);
+		model.addAttribute("searchText", searchText);
+	
+		return nextPage;
+	}
+	
+
+	
+	
+	
+}

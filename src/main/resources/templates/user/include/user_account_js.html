@@ -1,0 +1,64 @@
+<script th:fragment="js" type="text/javascript">
+
+function sendIdRequest(u_id) {
+
+    let dto = {
+        'u_id': u_id,
+    }
+
+    $.ajax({
+        url:"/user/member/id_value_test",
+        method:'post',
+        data: JSON.stringify(dto),
+        contentType: 'application/json; charset=utf-8',
+        dataType: 'json',
+        success: function(data) {
+        	console.log('통신 성공');
+            if(data.success) {
+                $("#idTestResult").text("이미 존재하는 아이디입니다, 다시 시도해주세요.");
+            } else {
+                $("#hiddenValue").val("1");
+                $(".userIdTest").text("완료");
+                $("#idTestResult").text("가입 가능한 아이디입니다!");
+            }
+
+        },
+        error: function(data) {
+            console.log('서버 통신 실패');
+        }
+    });
+}
+
+function init() {
+    console.log('init()');
+
+    $(".userIdTest").click(function(e) {
+        e.preventDefault(); // <a>의 기본 속성 저지
+
+        var hiddenValue = $("#hiddenValue").val();
+        var u_id = $("#u_id").val();
+
+        if(hiddenValue === "1") {
+            return;
+        }
+
+        sendIdRequest(u_id);
+
+    })
+
+}
+
+
+
+
+$(document).ready(function() {
+    console.log('document ready!');
+    init();
+
+})
+
+
+
+
+
+</script>

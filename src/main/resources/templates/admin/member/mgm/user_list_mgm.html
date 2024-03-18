@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title th:replace="~{admin/include/title_header_nav_footer.html::admin_title}"></title>
+
+
+<link rel="stylesheet" th:href="@{/css/admin/common.css}">
+<link rel="stylesheet" th:href="@{/css/admin/mgm/userMgm.css}">
+
+
+<script th:replace="~{include/common_js.html::jquery_cdn}" type="text/javascript"></script>
+<script th:replace="~{admin/include/user_list_mgm_js.html::js}" type="text/javascript"></script>
+
+
+</head>
+<body>
+
+<header th:replace="~{admin/include/title_header_nav_footer.html::admin_header}"></header>
+
+<nav th:replace="~{admin/include/title_header_nav_footer.html::admin_nav}"></nav>
+
+<section>
+
+	<div id="section_wrap">
+	
+		<div class="section_header">
+			<p>유저 목록</p>
+		</div>
+		
+		<div class="mgm_list">
+			
+			<div class="user_search">
+				<input type="text" class="searchText" placeholder="ID or NickName">
+				<a href="#" >검색</a>
+			</div>
+			
+			<table class="user_table">
+				<thead>
+					<tr class="user_listHead">
+						<th>ID</th>
+						<th>닉네임</th>
+						<th>등급</th>
+						<th>이메일</th>
+						<th>연락처</th>
+						<th>가입일</th>
+					</tr>
+				</thead>
+			
+				<tbody class="user_tbody">
+					<tr class="userListBody" th:each="userList : ${allUserDtos}">
+						<td class="id" th:text="${userList.u_id}" th:attr="data-u_no=${userList.u_no}"></td>
+						<td th:text="${userList.u_nickname}"></td>
+						<td th:text="${userList.u_grade}"></td>
+						<td th:text="${userList.u_mail}"></td>
+						<td th:text="${userList.u_phone}"></td>
+						<td th:text="${userList.u_reg_date}"></td>
+					</tr>
+				</tbody>
+			
+			</table>
+		
+		</div>
+		
+		
+		<div class="page_container">
+			<div class="page_no">
+			
+			</div>
+			
+			<div class="total_page">
+				<span class="page_total_num"></span>
+			</div>
+		</div>
+		
+		
+	</div>
+
+</section>
+
+<footer th:replace="~{admin/include/title_header_nav_footer.html::admin_footer}"></footer>
+
+</body>
+</html>

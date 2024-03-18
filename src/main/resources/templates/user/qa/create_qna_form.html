@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title th:replace="~{include/title_header_nav_footer.html::user_title}"></title>
+<link rel="stylesheet" th:href="@{/css/common.css}">
+<link rel="stylesheet" th:href="@{/css/header_nav_footer.css}">
+
+<script type="text/javascript" th:src="@{/js/create_qna_form.js}"></script>
+
+</head>
+<body>
+
+    <header th:replace="~{include/title_header_nav_footer.html::user_header}">
+    
+    </header>
+
+    <nav th:replace="~{include/title_header_nav_footer.html::user_nav}">
+
+    </nav>
+    
+    <section>
+		<div id="section_wrap">
+			<span> 저희 도담도담을 이용하시던 중 불편한 사항이나 문의사항을 남겨주세요.<br> 
+			성실히 답변해드리겠습니다.
+            </span>
+		</div>
+		<div class="create_qna_form">
+			
+			<form th:action="@{/user/qa/createQnaConfirm}" 
+			th:name="create_qna_form" th:method="post">
+			
+			<input type="hidden" id="g_no_input" name="g_no" th:value="${goodsDto.g_no}">
+			
+			<div class = "gqa_title">
+		        <select name="gqa_select_title">
+			        <option value="">선택</option>
+				    <option value="상품상세문의">상품 상세 문의</option>
+				    <option value="배송문의">배송 문의</option>
+				    <option value="재입고문의">재입고 문의</option>
+				    <option value="기타문의">기타 문의</option>
+			    </select>
+			    <input type="text" name="gqa_input_title" placeholder="제목을 입력하세요.">
+			</div>
+			
+			<div>
+				<input type="text" name="gqa_inquiry" placeholder="문의사항을 입력하세요."><br>				
+			</div>	
+				
+			<div>					
+			
+			<input type="button" value="문의하기" onclick="createQnaForm()">
+				<input type="reset" value="초기화">
+				
+			</div>	
+			</form>
+			
+		</div>	
+		
+	</section>
+    
+    <footer th:replace="~{include/title_header_nav_footer.html::user_footer}">
+
+    </footer>
+</body>
+</html>

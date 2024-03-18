@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title th:replace="~{admin/include/title_header_nav_footer.html::admin_title}"></title>
+
+
+<link rel="stylesheet" th:href="@{/css/admin/common.css}">
+
+
+
+</head>
+<body>
+
+<header th:replace="~{admin/include/title_header_nav_footer.html::admin_header}"></header>
+
+<nav th:replace="~{admin/include/title_header_nav_footer.html::admin_nav}"></nav>
+
+<section>
+
+	<div id="section_wrap">
+	
+		<div class="section_header">
+			<p>관리자 도구메뉴</p>
+		</div>
+		
+		<div class="menu_container">
+			<a th:href="@{${adminConfig.requestMgmControllerPath(adminConfig.USER_LIST_MGM)}}">유저관리</a>
+			<a th:href="@{/admin/goods/goodsList}">관리자 상품 리스트</a>
+<!-- 		<a href="#none">상품 등록/관리</a>
+			<a href="#none">상품문의</a>
+			<a href="#none">1:1문의</a>
+			<a href="#none">기부상세</a> -->
+		</div>
+		
+		
+	</div>
+
+</section>
+
+<footer th:replace="~{admin/include/title_header_nav_footer.html::admin_footer}"></footer>
+
+</body>
+</html>

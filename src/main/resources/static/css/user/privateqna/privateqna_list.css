@@ -1,0 +1,121 @@
+/* 답변 부분 토글 */
+.hidden_ws_contents {
+    display: none;
+}
+
+.privateqnaListBtn {
+
+    pointer-events: none;
+
+}
+
+.hidden_ws_no {
+    display: none;
+}
+
+/* 섹션 스타일 */
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+#section_wrap {
+    margin: 50px auto;
+    /* 위아래 여백 조정 */
+    width: 80%;
+    /* 적절한 너비를 지정하세요 */
+}
+
+/* 제목 */
+
+.ws_headline {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    display: block;
+}
+
+/* 문의하기 버튼 */
+
+.ws_go_inquery {
+    margin: 0 0 30px 0px;
+    text-align: right;
+}
+
+.ws_go_inquery a {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.ws_go_inquery a:hover {
+    background-color: #1e86f7;
+
+}
+
+/* 테이블 스타일 */
+.ws_table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.ws_table th,
+.ws_table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+.ws_table th,
+.ws_table .ws_yes_ws_tr td:nth-child(1),
+.ws_table .ws_yes_ws_tr td:nth-child(3),
+.ws_table .ws_yes_ws_tr td:nth-child(4),
+.ws_table .ws_yes_ws_tr td:nth-child(5) {
+    text-align: center;
+}
+
+.ws_table .ws_yes_ws_tr td:nth-child(2) {
+    text-align: left;
+    padding: 15px;
+}
+
+.ws_table th {
+    background-color: #f2f2f2;
+    text-align: left;
+}
+
+/* 토글 버튼 스타일 */
+.ws_toggle_title {
+    color: #007bff;
+    cursor: pointer;
+}
+
+/* 토글 버튼 호버 시 스타일 */
+.ws_toggle_title:hover {
+    color: #FF5733;
+    /* 텍스트 색상 변경 */
+}
+
+/* 토글 버튼이 포함된 행의 셀 배경색 변경 */
+.ws_yes_ws_tr:hover td {
+    background-color: #f5f5f5;
+    /* 셀 배경색 변경 */
+}
+
+.ws_table .hidden_ws_td {
+    text-align: left;
+    padding : 20px 300px;
+}
+
+.ws_table .ws_inquiry {
+    margin-bottom : 50px;
+}
+
+.ws_table .answerorNot {
+    margin-bottom : 10px;
+}
+

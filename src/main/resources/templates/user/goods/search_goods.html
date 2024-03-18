@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<!-- include -->
+<script th:replace="~{/include/common_js.html::jquery_cdn}" type="text/javascript"></script>
+<script th:replace="~{/include/common_js.html::slick}" type="text/javascript"></script>
+
+<!-- ajax 라이브러리 -->
+<script th:fragment="jquery_cdn" src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<!-- slick 라이브러리 -->
+<script th:fragment="slick" src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
+
+<!-- css -->
+<link rel="stylesheet" th:href="@{/css/common.css}">
+<link rel="stylesheet" th:href="@{/css/header_nav_footer.css}">
+
+<script type="text/javascript">
+
+$(document).ready(function() {
+	  $('.goods-list tr').click(function() {
+	    // 클릭된 라인의 a 태그 (상품 이름) 가져오기
+	    var productLink = $(this).find('a').attr('href');
+	    
+	    // 상세 페이지로 이동
+	    if (productLink) {
+	      location.href = productLink;
+	    }
+	  });
+	});
+
+</script>
+
+</head>
+<body>
+
+	<header></header>
+	
+	<nav>
+		
+	</nav>
+	
+	<section>
+		<div id="section_wrap">
+			<div class="word">
+				SEARCH GOODS LIST
+			</div>
+			
+			<div class="goods_list">
+			
+				<table>
+					<thead>
+						<tr>
+							<th>상품 이미지</th>
+							<th>상품 이름</th>
+							<th>가격</th>
+							<th>평점</th>
+						</tr>
+					</thead>
+
+					<tbody class="goods-list">
+					    <tr th:if="${goodsDtos == null or #lists.isEmpty(goodsDtos)}">
+					        <td colspan="4">조회된 상품이 없습니다.</td>
+					    </tr>
+					    <tr th:each="goods : ${goodsDtos}" th:unless="${#lists.isEmpty(goodsDtos)}">
+					        <td>
+					            <a th:href="@{/user/goods/goodsDetailView(g_no=${goods.g_no})}">
+					                <img th:src="@{'http://14.42.124.95:8091/goodsUploadImg/' + ${goods.g_thumbnail_name}}" />
+					            </a>
+					        </td>
+					        <td>
+					            <a th:text="${goods.g_name}" th:href="@{/user/goods/goodsDetailView(g_no=${goods.g_no})}"></a>
+					        </td>
+					        <td>
+					            <span th:if="${goods.g_price != 0}" th:text="|${#numbers.formatInteger(goods.g_price, 0, 'COMMA')}원|"></span>
+					        </td>
+					        <td>
+					            <span th:each="review : ${reviewDtos}" th:if="${review.g_no == goods.g_no}" th:text="${review.r_rating}"></span>
+					        </td>
+					    </tr>
+					</tbody>
+				</table>
+
+				<div>
+					page
+				</div>			
+			</div>
+		</div>
+	</section>
+	
+	<footer></footer>
+
+</body>
+</html>

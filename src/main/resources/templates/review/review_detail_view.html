@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<!-- ajax 라이브러리 -->
+<script th:fragment="jquery_cdn" src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+<!-- slick 라이브러리 -->
+<script th:fragment="slick" src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
+
+<script th:replace="~{/include/common_js.html::jquery_cdn}" type="text/javascript"></script>
+<script th:replace="~{/include/common_js.html::slick}" type="text/javascript"></script>
+
+<script type="text/javascript" th:src="@{/js/review/review_insert_ajax.js}"></script>
+
+<script type="text/javascript">
+	$(function(){
+		$('#goodsDeleteConfirm').click(function(){
+			if (!confirm("해당 상품을 삭제하겠습니까?"))
+	          	return false;
+		});
+	});
+
+	
+</script>
+
+<!-- css -->
+<link rel="stylesheet" th:href="@{/css/common.css}">
+<link rel="stylesheet" th:href="@{/css/header_nav_footer.css}">
+<link rel="stylesheet" th:href="@{/css/user/goods/goods_detail_view.css}">
+
+</head>
+<body>
+    <header>
+    </header>
+    <main>
+        <div class="review_detail">
+            <div class="review_image">
+                <!-- <img th:src="@{/goodsUploadImg/{filename}(filename=${goodsDto.g_thumbnail_name})}" /> -->
+                <img th:src="@{'http://14.42.124.95:8091/goodsUploadImg/' + ${goodsDto.g_thumbnail_name}}" />
+            </div>
+            <div class="goods_info">
+                <h1 th:text="${goodsDto.g_name}"></h1>
+                <p th:text="${goodsDto.g_price}">원</p>
+                <input type="number"> 수량
+                
+                <input type="button" value="장바구니">
+                <input type="button" value="즐겨찾기">
+                <input type="button" value="구매하기">
+                
+                <p>설명: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sit amet pretium urna. Nunc vel neque velit.</p>
+                
+            </div>
+            
+            <div class="goods_detail_content">
+           		<img th:src="@{'http://14.42.124.95:8091/goodsUploadImg/' + ${goodsDto.g_detail_content}}" />
+            </div>
+            
+            <a th:href="@{/admin/goods/modifyGoods(g_no=${goodsDto.g_no})}">상품 수정</a>
+			<a th:href="@{/admin/goods/deleteGoods(g_no=${goodsDto.g_no})}" id="goodsDeleteConfirm">상품 삭제</a>
+			<a th:href="@{/admin/goods/goodsList}">리스트</a>
+            
+        </div>
+    </main>
+    <footer>
+        </footer>
+</body>
+</html>

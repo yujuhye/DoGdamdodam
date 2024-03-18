@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>수정 화면</title>
+
+<script th:replace="~{/include/common_js.html::jquery_cdn}" type="text/javascript"></script>
+<script th:replace="~{/include/common_js.html::slick}" type="text/javascript"></script>
+
+<script type="text/javascript" th:src="@{/js/goods/goods_modify_ajax.js}"></script>
+<script type="text/javascript" th:src="@{/js/goods/modify_goods_form.js}"></script>
+
+<link rel="stylesheet" th:href="@{/css/admin/goods/modify_goods_form.css}">
+
+</head>
+<body>
+
+	<header></header>
+
+	<nav></nav>
+
+	<section>
+		<div id="section_wrap">
+			<div class="word">GOODS MODIFY FORM</div>
+
+			<div class="goods_insert_form">
+
+				<form th:action="@{/admin/goods/modifyGoodsConfirm}" name="modify_goods_form" method="post" enctype="multipart/form-data">
+					<input type="hidden" name="g_no" th:value="${goodsDto.g_no}">
+					<!-- <input type="hidden" name="c_no" id="primaryCategoryId" th:value="${goodsDto.c_no}">
+					<input type="hidden" name="c_parents_no" id="secondaryCategoryId" th:value="${goodsDto.c_parents_no}"> -->
+					
+					<label class="goodsName">상품명</label>
+					<input type="text" name="g_name" th:value="${goodsDto.g_name}"><br>
+					
+					<label class="thumImg">대표 이미지</label>
+					<input type="file" name="file1"><br>
+					<input type="hidden" th:value="${goodsDto.g_thumbnail_name}">
+					<img th:src="@{'http://14.42.124.95:8091/goodsUploadImg/' + ${goodsDto.g_thumbnail_name}}" />
+					<br>
+					
+					<label class="secondImg">이미지</label>
+					<input type="file" name="file2"><br>
+					<img th:src="@{'http://14.42.124.95:8091/goodsUploadImg/' + ${goodsDto.g_second_img_name}}" />
+					<input type="hidden" th:value="${goodsDto.g_second_img_name}">
+					<br>
+					
+					<label class="thirdImg">이미지</label>
+					<input type="file" name="file3"><br>
+					<img th:src="@{'http://14.42.124.95:8091/goodsUploadImg/' + ${goodsDto.g_third_img_name}}" />
+					<input type="hidden" th:value="${goodsDto.g_third_img_name}">
+					<br>
+					
+					<label class="detailImg">상세 설명 이미지</label>
+					<input type="file" name="file4"><br>
+					<img th:src="@{'http://14.42.124.95:8091/goodsUploadImg/' + ${goodsDto.g_detail_content}}" />
+					<input type="hidden" th:value="${goodsDto.g_detail_content}">
+					<br>
+						
+					<label class="category">Category</label>
+	                <select name="c_no" id="primaryCategory">
+	                    <option>Primary Category</option>
+	                </select>
+	                
+	                <br>
+	
+	                <label class="subCategory">Sub Category</label>
+	                <select id="secondaryCategory" name="c_no2">
+	                    <option>Secondary Category</option>
+	                </select>
+	                <br>
+
+					<label class="goodsExplanation">상품 설명</label>
+					<input type="text" name="g_explanation" th:value="${goodsDto.g_explanation}"><br>
+					
+					<label class="goodsPrice">상품 가격</label>
+					<input type="text" name="g_price" th:value="${goodsDto.g_price}"><br>
+					
+					<input type="button" value="MODIFY" class="goodsModifyBtn" onclick="modifyGoods();">
+					<input type="reset" value="RESET">
+					<input type="button" value="CANCEL" class="goodsCancelBtn">
+				</form>
+
+			</div>
+
+		</div>
+	</section>
+
+	<footer></footer>
+
+</body>
+</html>

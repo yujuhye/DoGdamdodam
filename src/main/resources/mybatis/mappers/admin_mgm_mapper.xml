@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dogdam.shop.admin.member.mgm.IAdminMgmDaoForMybatis">
+
+	<select id="selectAllAdmins" 
+			resultType="com.dogdam.shop.admin.member.AdminMemberDto">
+		
+		SELECT 
+			* 
+		FROM 
+			ADMIN 
+		WHERE 
+			A_ID != 'superAdmin'	
+		
+	</select>
+	
+	<update id="updateForApproval" 
+			parameterType="int">
+	
+		UPDATE 
+			ADMIN 
+		SET 
+			A_APPROVAL = CASE A_APPROVAL 
+		WHEN
+			 0 THEN 1 
+		ELSE 
+			0 END, A_ARV_DATE = NOW() 
+		WHERE 
+			A_NO = #{a_no}
+	
+	</update>
+	
+	<select id="selectNoArvAdmins" 
+			resultType="com.dogdam.shop.admin.member.AdminMemberDto">
+	
+		SELECT 
+			* 
+		FROM 
+			ADMIN 
+		WHERE 
+			A_ID != 'superAdmin' 
+		AND 
+			A_APPROVAL = 0
+	
+	</select>
+	
+	<select id="selectApprovedAdmins" 
+			resultType="com.dogdam.shop.admin.member.AdminMemberDto">
+	
+		SELECT 
+			* 
+		FROM 
+			ADMIN 
+		WHERE 
+			A_ID != 'superAdmin' 
+		AND 
+			A_APPROVAL = 1
+	
+	</select>
+	
+	<select id="selectForAllUser" 
+			resultType="com.dogdam.shop.user.member.MemberDto">
+		
+		SELECT 
+			* 
+		FROM 
+			USER
+	
+	</select>
+	
+	<select id="getAllUserItme" 
+			parameterType="com.dogdam.shop.admin.CurrentSetPage" 
+			resultType="com.dogdam.shop.user.member.MemberDto">
+	
+		SELECT 
+			* 
+		FROM 
+			USER 
+		ORDER 
+			BY U_NO ASC LIMIT #{skipPage}, #{amount}
+	
+	</select>
+	
+	<select id="getTotalPageNo" resultType="Integer">
+		
+		SELECT 
+			COUNT(*) 
+		FROM 
+			USER
+		
+	</select>
+	
+	<select id="getTotalNoBySearch" 
+			resultType="int">
+			
+			SELECT 
+				COUNT(*) 
+			FROM 
+				USER 
+			WHERE 
+				U_ID LIKE CONCAT('%', #{searchText}, '%') 
+			OR 
+				U_NICKNAME LIKE CONCAT('%', #{searchText}, '%');
+	
+	</select>
+	
+	<select id="searchUserItem" 
+			resultType="com.dogdam.shop.user.member.MemberDto">
+			
+			SELECT 
+				* 
+			FROM 
+				USER 
+			WHERE 
+				U_ID LIKE CONCAT('%', #{searchText}, '%') 
+			OR 
+				U_NICKNAME LIKE CONCAT('%', #{searchText}, '%') 
+			ORDER 
+				BY U_REG_DATE ASC 
+			LIMIT 
+				#{skipPage}, #{amount} ;
+			
+	</select>
+
+</mapper>

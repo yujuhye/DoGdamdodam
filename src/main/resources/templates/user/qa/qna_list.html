@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title th:replace="~{include/title_header_nav_footer.html::user_title}"></title>
+<link rel="stylesheet" th:href="@{/css/common.css}">
+<link rel="stylesheet" th:href="@{/css/header_nav_footer.css}">
+
+<link rel="stylesheet" th:href="@{/css/user/qa/qna_list.css}">
+
+<script type="text/javascript" th:src="@{/js/qna_list.js}"></script>
+
+</head>
+
+<body>
+
+    <header th:replace="~{include/title_header_nav_footer.html::user_header}">
+
+    </header>
+
+    <nav th:replace="~{include/title_header_nav_footer.html::user_nav}">
+
+    </nav>
+
+    <section>
+
+        <div id="gqa_wrap">
+            <span>상품 문의 리스트</span>
+
+            <div class="article">
+                               
+                <table>
+                
+                   <thead>
+                       <tr>
+                           <th>상품이미지</th>
+                           <th>상품이름</th>
+                           <th>질문유형</th>
+                           <th>질문내용</th>
+                           <th>답변여부</th>  
+                           <th>등록시간</th>                      
+                           <th>삭제</th>                      
+                       </tr>                                      
+                   </thead>
+                    <tbody th:if="${#lists.isEmpty(qnaDtos)}">
+                        <tr>
+                            <td colspan="7">상품 문의가 없습니다.</td>
+                        </tr>
+                    </tbody>
+                    <tbody th:each="qnalist : ${qnaDtos}">
+
+                        <tr>
+                            <td><a th:href="@{/user/goods/goodsDetailView(g_no=${qnalist.g_no})}">
+						            <img th:src="@{'http://14.42.124.95:8091/goodsUploadImg/' + ${qnalist.g_thumbnail_name}}" />
+						         
+						        </a> 
+						    </td>
+						    <td>
+    							<a th:href="@{/user/goods/goodsDetailView(g_no=${qnalist.g_no})}" th:text="${qnalist.g_name}"></a>
+							</td>
+						   
+                            <td th:text="${qnalist.gqa_select_title}"></td>
+                            <td>
+                                <a href="#" class="gqa_toggle_title" th:text="${qnalist.gqa_input_title}"></a>
+
+                            </td>
+                            <td class="qnalist" th:if="${qnalist.gqa_complete eq 0}">
+                                답변대기 </td>
+                            <td class="qnalist" th:if="${qnalist.gqa_complete eq 1}">
+                                답변완료 </td>
+                            <td th:text="${qnalist.gqa_reg_date}"></td>
+                            <td><a href="#" class="delete_qna"
+                                    th:href="@{/user/qa/deleteQnaConfirm(gqa_no=${qnalist.gqa_no})}">삭제</a>
+                            </td>
+
+                        </tr>
+
+                        <tr class="hidden_gqa_contents collapse">
+                            <td colspan="7">
+                                <span class="gqa_inquiry" th:text="${qnalist.gqa_inquiry}"></span><br>
+                                <span class="answerorNot" th:if="${qnalist.gqa_complete eq 0}"> </span>
+                                <span class="answerorNot" th:if="${qnalist.gqa_complete eq 1}"> 답변: </span>
+                                <span th:text="${qnalist.gqa_answer}"> </span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </section>
+
+    <footer th:replace="~{include/title_header_nav_footer.html::user_footer}">
+
+    </footer>
+</body>
+
+</html>

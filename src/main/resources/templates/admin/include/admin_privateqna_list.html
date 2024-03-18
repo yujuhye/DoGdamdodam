@@ -1,0 +1,95 @@
+<script th:fragment="js" type="text/javascript">
+
+$(document).ready(function(){
+	console.log('DOCUMENT READY!!');
+	
+	// 이벤트 핸들러 초기화(등록)
+	init_events();
+	
+});
+
+function init_events() {
+	console.log('init_events()');
+	
+	$(document).on('click', '#answer_privateqna_table .answer_privateqna_btn', function(e) {
+		console.log('ANSWER_PRIVATEQNA BTN CLICK HANDLER!!');
+		debugger
+		let ws_no = $(this).data("ws_no");
+		let ws_answer = $("input[name='ws_answer_" + ws_no + "']").val();
+		
+		console.log('ws_no' + ws_no);
+		
+		if (ws_answer.trim() === '') {
+            alert('내용을 입력하세요.');
+            return; 
+        }
+		
+		ajax_answer_privateqna_yes(ws_no, ws_answer);
+		
+	});
+	
+}
+
+function formatDate(date) {
+    var year = date.getFullYear();
+    var month = (date.getMonth() + 1).toString().padStart(2, '0');
+    var day = date.getDate().toString().padStart(2, '0');
+    var hours = date.getHours().toString().padStart(2, '0');
+    var minutes = date.getMinutes().toString().padStart(2, '0');
+    var seconds = date.getSeconds().toString().padStart(2, '0');
+
+    return year + '-' + month + '-' + day + ' ' + hours + ':' + minutes + ':' + seconds;
+}
+
+function ajax_answer_privateqna_yes(ws_no, ws_answer) {
+	console.log('ajax_answer_privateqna_yes()');
+	
+	let msgDto = {
+		'ws_no': ws_no,
+		'ws_answer' : ws_answer,
+	}
+	
+	$.ajax({
+		url: '/admin/privateqa/answerPrivateqnaConfirm',
+		method: 'post',
+		data: JSON.stringify(msgDto),
+		contentType: 'application/json; charset=utf-8',
+		dataType: 'json',
+		success: function(data) {
+			console.log('ajax_answer_privateqna_yes success!!');
+			
+			// location.reload();
+
+			let updateResult = data.updateResult;
+			if (updateResult > 0) {
+				
+				$('#answer_privateqna_table .answer_privateqna_no[data-ws_no=' + ws_no + ']').text('답변완료');
+				$('#answer_privateqna_table .answer_privateqna_no[data-ws_no=' + ws_no + ']').attr('class', 'answer_privateqna_yes');
+				$('#answer_privateqna_table .answer_privateqna_no_input[data-ws_no=' + ws_no + ']').hide();
+				$('#answer_privateqna_table .answer_privateqna_btn[data-ws_no=' + ws_no + ']').hide();
+				$('#answer_privateqna_table .answer_privateqna_no_reset[data-ws_no=' + ws_no + ']').hide();				
+				$('#answer_privateqna_table .answer_privateqna_yes_answer[data-ws_no=' + ws_no + ']').show();		
+				$('#answer_privateqna_table .answer_privateqna_no_text[data-ws_no=' + ws_no + ']').text('답변: ');
+				$('#answer_privateqna_table .answer_privateqna_yes_answer_now[data-ws_no=' + ws_no + ']').append(ws_answer);
+				let currentDate = new Date();
+				$('#answer_privateqna_table .answer_date_td_now[data-ws_no=' + ws_no + ']').append(formatDate(currentDate));
+		    
+			} else {
+				alert('ajax_answer_privateqna_yes FAIL!!');
+				
+				
+			}
+		
+			
+		},
+		error: function(data) {
+			console.log('ajax_answer_privateqna_yes ERROR!!');
+
+		}
+		
+	});
+	
+}
+
+
+</script>

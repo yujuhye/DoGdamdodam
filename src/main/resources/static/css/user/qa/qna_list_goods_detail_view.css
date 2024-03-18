@@ -1,0 +1,16 @@
+/* 상품문의 리스트 */
+
+.hidden_gqa_contents {
+        display: none;
+    }
+    
+.qnaListBtn {
+	
+	 pointer-events: none;
+	
+}
+
+.hidden_gqa_no {
+	display: none;
+}
+

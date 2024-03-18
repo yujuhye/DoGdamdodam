@@ -1,0 +1,13 @@
+.hidden_gqa_contents {
+        display: none;
+    }
+    
+.qnaListBtn {
+	
+	 pointer-events: none;
+	
+}
+
+.hidden_gqa_no {
+	display: none;
+}

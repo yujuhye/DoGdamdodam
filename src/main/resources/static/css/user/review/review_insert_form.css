@@ -1,0 +1,35 @@
+.rating {
+	font-size: 2em;
+}
+
+.rating .star {
+	cursor: pointer;
+	display: inline-block;
+}
+
+.rating .star::before {
+	content: '\2605'; /* 별 모양 */
+	color: #ddd;
+	display: block;
+	font-size: 2em;
+	width: 1em;
+	overflow: hidden;
+	transition: color 0.3s ease;
+}
+
+.rating .star.selected::before, .rating .star.half::before {
+	color: gold;
+}
+
+/* 추가 CSS */
+.review_insert_form {
+	margin: 0 auto; /* 폼을 수평으로 가운데 정렬합니다. */
+	max-width: 600px; /* 폼의 최대 너비를 설정합니다. */
+	padding: 20px; /* 폼 주위에 여백을 추가합니다. */
+}
+
+.review_insert_form form {
+	display: flex;
+	flex-direction: column;
+}
+

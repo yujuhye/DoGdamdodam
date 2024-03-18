@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script th:replace="~{/include/common_js.html::jquery_cdn}" type="text/javascript"></script>
+
+ <script type="text/javascript" th:src="@{/js/goods/order_details_form.js}"></script>
+
+
+</head>
+<body>
+
+		<form th:action="@{/order/order_confirm}" th:name="order_details" th:method="post">
+			<input type="hidden" name="g_no" th:value="${goodsDto.g_no}">
+			<input type="hidden" name="s_quantity" th:value="${session.s_quantity}">
+
+			<div id="order_person">
+
+				<h3>주문자</h3>
+				<span th:text="${session.loginedMemberDto.u_name + '(' + session.loginedMemberDto.u_id + ')'}"></span>
+			
+			</div>
+
+			<div id="delivery_address">
+			
+				
+				<div class="new_address" th:if="${addressDto == null}">
+				
+					<h3>배송지 정보</h3>
+					<input type="text" name="da_name" placeholder="수령인을 입력해주세요" required><br>
+					<input type="text" name="da_addr_phone" placeholder="연락처를 입력해주세요" required><br>
+					<input type="text" name="da_addr_text" placeholder="배송지를 입력해주세요" required>
+					
+				</div>	
+				
+				
+				<div class="origin_address" th:unless="${addressDto == null}">	
+				   <input type="hidden" name="da_no" th:value="${addressDto.da_no}" th:if="${addressDto.da_default} == 1">
+	               <input type="hidden" name="da_no" id="selectedDaNo">
+	               
+		               <h3>배송지 정보</h3>
+		               <span class="da_name" th:text="${addressDto.da_name}" ></span><br>
+		               <span class="da_addr_phone" th:text="${addressDto.da_addr_phone}"></span><br>
+		               <span class="da_addr_text" th:text="${addressDto.da_addr_text}"></span><br>
+		               <input type="button" value="배송지변경" onclick="changeAddress();">
+				   
+				</div>
+				
+				
+			</div>
+			
+			<div id="open_address_popup" style="display:none">
+			
+				<input type="button" value="직접입력" onclick="addAddress()">
+			
+			</div>
+			
+			<div id="addAddress_popup" style="display:none">
+	         
+	            <input type="text" name="da_name" placeholder="수령인을 입력해주세요"><br>
+	            <input type="text" name="da_addr_phone" placeholder="연락처를 입력해주세요"><br>
+	            <input type="text" name="da_addr_text" placeholder="배송지를 입력해주세요">
+	            <input type="button" value="저장" onclick="addAddressConfirm()">
+         
+         	</div>
+         	
+			<div id="order_goods">
+			
+				<h3>주문상품</h3>
+				<a th:href="@{/admin/goods/goodsDetailView(g_no=${goodsDto.g_no})}">
+					<img th:src="@{${goodsDto.g_thumbnail_name}}">
+				</a>
+				<a th:text="${goodsDto.g_name}" th:href="@{/admin/goods/goodsDetailView(g_no=${goodsDto.g_no})}"></a><br>
+				<span th:text="${goodsDto.g_price}"></span><span>원</span><br>
+				<span>주문수량:</span> <span th:text="${session.s_quantity}"></span><br>
+				<span>배송비:3000원</span>
+			
+			</div>
+			
+			<div id="order_amount">
+			
+				<h3>주문금액</h3>
+				<span th:text="${orderAmount}"></span><span>원</span>
+				
+			</div>
+			
+			<div id="donation_amount">
+			
+				<h3>기부금액</h3>
+				<span th:text="${donationAmount}"></span><span>원</span> 
+			
+			</div>
+			
+			
+			<input type="submit" value="주문하기">
+			<input type="reset" value="취소">
+	
+		</form>
+
+
+</body>
+</html>

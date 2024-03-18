@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<!-- ajax 라이브러리 -->
+<script th:fragment="jquery_cdn" src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+<!-- slick 라이브러리 -->
+<script th:fragment="slick" src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
+
+<script th:replace="~{/include/common_js.html::jquery_cdn}" type="text/javascript"></script>
+<script th:replace="~{/include/common_js.html::slick}" type="text/javascript"></script>
+
+</head>
+<body>
+
+	<header></header>
+	
+	<nav>
+		
+	</nav>
+	
+	<section>
+		<div id="section_wrap">
+			<div class="word">
+				이건 아마 안 쓰는 화면인거 같은데?
+			</div>
+			
+			<div class="goods_list">
+			
+				<table>
+					<thead>
+						<tr>
+							<th>상품 이름</th>
+							<th>별점</th>
+						</tr>
+					</thead>
+
+					<tbody>
+						<tr th:each="reviewDtos : ${reviewDtos}">
+							<td>
+    							<td th:text="${reviewDto.g_no}"></td>
+					            <td th:text="${@reviewDto(reviewDto.g_no)}"></td>
+							</td>
+							<td>
+								<span th:text="${reviewDtos.r_rating}"></span>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+
+				<a th:href="@{/admin/goods/goodsList}">목록</a>
+			
+			</div>
+		</div>
+	</section>
+	
+	<footer></footer>
+
+</body>
+</html>

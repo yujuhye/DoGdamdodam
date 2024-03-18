@@ -1,0 +1,231 @@
+body {
+	margin: 0;
+	padding: 0;
+	font-family: Arial, sans-serif;
+	background-color: #ffffff;
+	width: 1400px;
+	margin: 0 auto;
+}
+
+header {
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+header a {
+	display: inline-block;
+}
+
+header img {
+	width: 200px;
+	height: auto;
+	margin-top: 10px;
+}
+
+.slider-container, .goods_info, .product-thumbnails, .slider-nav,
+	.review-image, .modal, .modal-content, .close {
+	width: auto;
+	margin: 0 auto;
+}
+
+.slider-nav, .product-thumbnails, .slider-nav {
+	width: 80%;
+	max-width: 600px;
+	margin: 0 auto;
+	text-align: center;
+}
+
+.slider-nav div {
+	display: inline-block;
+	margin: 0 5px;
+}
+
+.slider-nav img {
+	max-width: 100%;
+	height: auto;
+	vertical-align: middle;
+}
+
+.btn {
+	display: inline-block;
+	padding: 8px 12px;
+	background-color: #FFCD4A;
+	color: #0B2027;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+	text-decoration: none;
+	font-size: 14px;
+}
+
+.btn:hover {
+	background-color: #FFCD0F;
+	color: #fff;
+}
+
+.top-container {
+	display: flex;
+}
+
+.slider-container {
+	width: 50%;
+	float: left;
+}
+
+.goods_info {
+	width: 50%;
+	float: left;
+	padding-left: 20px;
+	position: relative;
+}
+
+.product-thumbnails div {
+	width: 600px;
+	margin: 0 auto;
+	text-align: center;
+}
+
+.product-thumbnails img {
+	max-width: 100%;
+	height: auto;
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.goods_info {
+	border: 1px solid #ddd;
+	padding: 20px;
+	position: relative;
+}
+
+.goods_info h1 {
+	font-size: 24px;
+	margin-bottom: 10px;
+}
+
+.goods_info p {
+	font-size: 18px;
+	margin-bottom: 10px;
+	text-align: right;
+}
+
+.price {
+	font-size: 1.5em;
+}
+
+.goods_num {
+	width: 80px;
+	height: 30px;
+	margin-top: 10px;
+	margin-right: 10px;
+}
+
+.btn-group {
+	position: absolute;
+	bottom: 20px;
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	width: 100%;
+}
+
+.basket_btn, .bookmark_btn {
+	width: calc(50% - 2.5px);
+	margin-right: 5px;
+}
+
+.buy_btn {
+	flex: 1;
+	margin-right: 5px;
+}
+
+/* 리뷰 스타일 */
+.review {
+    display: flex;
+    flex-direction: column; /* 컬럼 방향으로 변경 */
+    border-bottom: 1px solid #ddd;
+    padding: 15px 0;
+}
+
+.review-header {
+    display: flex;
+    justify-content: space-between; /* 헤더 내용을 양 끝으로 정렬 */
+    align-items: center;
+    font-size: 1.2em; /* 아이디 크기 조정 */
+}
+
+.user {
+    font-weight: bold;
+}
+
+.date {
+    align-self: flex-end; /* 날짜를 아래로 정렬 */
+    color: #777;
+    font-size: 0.8em; /* 날짜 크기 조정 */
+}
+
+.rating-container {
+    display: flex;
+    justify-content: flex-end; /* 별점을 오른쪽으로 정렬 */
+    margin-top: 10px; /* 별점과 아이디/날짜 사이에 여백 추가 */
+}
+
+.rating {
+    font-size: 24px; /* 별점 크게 */
+    color: #ffd700; /* 별점 색상 */
+}
+
+.review-content {
+    flex: 1;
+    margin-top: 10px; /* 내용과 이미지 사이 여백 추가 */
+}
+
+/* 이미지를 감싸는 컨테이너에 적용되는 스타일 */
+.review-image {
+    width: auto; /* 또는 원하는 크기 */
+    height: auto; /* 또는 원하는 크기 */
+    max-width: 100%; /* 이미지가 그릇보다 커지지 않도록 함 */
+    display: block;
+    margin: 0; /* 상위 요소에서 지정한 여백을 제거하고 시작 */
+    float: left; /* 이미지를 왼쪽으로 정렬 */
+}
+
+/* 각 이미지에 적용될 스타일 */
+.review-image img {
+	width: 100px; /* 이미지 원본 크기의 50%로 조정 */
+    height: auto; /* 높이를 자동으로 조정하여 비율 유지 */
+    margin-bottom: 10px; /* 이미지 아래 여백 추가 */
+    margin-right: 10px; /* 이미지 오른쪽 여백 추가 - 이미지 사이의 간격을 조정 */
+}
+
+/* 모달 스타일 */
+.modal {
+	display: none; /* 모달 창을 기본적으로 숨깁니다. */
+	position: fixed; /* 고정 위치로 설정하여 스크롤에 따라 따라다니지 않도록 합니다. */
+	z-index: 1; /* 모달이 다른 요소 위에 나타나도록 적절한 z-index를 설정합니다. */
+	padding-top: 50px; /* 모달 내용 상단에 여백을 설정합니다. */
+	left: 0;
+	top: 0;
+	width: 100%; /* 모달 창의 너비를 전체 너비로 설정합니다. */
+	height: 100%; /* 모달 창의 높이를 전체 높이로 설정합니다. */
+	overflow: auto; /* 모달 내용이 넘칠 경우 스크롤링이 가능하도록 합니다. */
+	background-color: rgba(0, 0, 0, 0.8); /* 배경 색상과 투명도를 설정합니다. */
+}
+
+/* 모달 내용의 스타일 */
+.modal-content {
+	display: block;
+	margin: 0 auto; /* 가운데 정렬을 위해 margin을 자동으로 설정합니다. */
+	max-width: 80%; /* 모달 내용의 최대 너비를 설정합니다. */
+	max-height: 80%; /* 모달 내용의 최대 높이를 설정합니다. */
+}
+
+/* 모달 창 닫기 버튼 스타일 */
+.close {
+	position: absolute; /* 절대 위치로 설정하여 모달 창 내에서 위치를 조정합니다. */
+	top: 10px; /* 모달 내용 상단으로부터의 거리를 설정합니다. */
+	right: 20px; /* 모달 내용 우측으로부터의 거리를 설정합니다. */
+	font-size: 30px; /* 닫기 버튼의 아이콘 크기를 설정합니다. */
+	color: #fff; /* 닫기 버튼 아이콘의 색상을 설정합니다. */
+	cursor: pointer; /* 마우스 커서를 포인터로 변경하여 클릭 가능함을 나타냅니다. */
+}

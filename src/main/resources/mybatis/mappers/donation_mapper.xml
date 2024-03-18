@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dogdam.shop.user.donation.IDonationDaoForMybatis">
+
+
+	<select id="getmydonationList" 
+	parameterType="String"
+	resultType="com.dogdam.shop.user.donation.DonationDto">
+	
+		SELECT * FROM DONATION
+		WHERE
+		U_ID = #{u_id}
+	
+	</select>
+	
+	<select id="getAllDonationList"
+	resultType="com.dogdam.shop.user.donation.DonationDto">
+	
+		SELECT * FROM DONATION
+	
+	</select>
+		
+	<select id="getdonationRanking"
+	resultType="com.dogdam.shop.user.donation.DonationDto">
+	
+	    SELECT
+     		 U_ID,
+      		SUM(D_DONATION) AS totalDonation
+    	FROM
+      	    DONATION 
+    	GROUP BY
+      		U_ID
+   		 ORDER BY
+      		totalDonation DESC
+   		 LIMIT 10
+	
+	</select>	
+	
+</mapper>

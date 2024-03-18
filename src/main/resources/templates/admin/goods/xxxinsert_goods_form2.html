@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<script th:replace="~{/include/common_js.html::jquery_cdn}" type="text/javascript"></script>
+<script th:replace="~{/include/common_js.html::slick}" type="text/javascript"></script>
+
+<script type="text/javascript" th:src="@{/js/goods/insert_goods_form.js}"></script>
+
+<script type="text/javascript">
+    $(function(){
+        console.log("insert goods form()");
+        
+        $('.goodsCancelBtn').click(function(){
+            history.back();
+        });
+    });
+    
+    // Ajax로 대분류 카테고리 목록을 가져오는 요청
+    $.ajax({
+            url: '/admin/goods/getPrimaryCategories',
+            method: 'GET',
+            success: function(data) {
+                // 받은 데이터를 사용하여 대분류 카테고리 목록 구성
+                // 사용자에게 보여주거나 셀렉트 박스 등에 추가
+                var primaryOptions = '';
+                $.each(data, function(index, category) {
+                    /* primaryOptions += '<option value="' + category.c_no + '">' + category.c_name + '</option>'; */
+                   primaryOptions = '<option>Category</option><option value="1">사료</option><option value="2">간식</option><option value="3">미용용품</option><option value="4">의류/액세서리</option><option value="5">장난감</option>';
+                });
+                
+                $('#primaryCategory').html(primaryOptions);
+            },
+            error: function() {
+                console.log('Failed to load primary categories.');
+            }
+        });
+    
+   // 대분류 카테고리가 변경되었을 때 중분류 카테고리를 가져오는 요청
+   $(document).ready(function() {
+            $('#primaryCategory').change(function() {
+                var primaryCategory = $(this).val(); // 선택한 대분류의 값
+                console.log(primaryCategory);
+
+                // Ajax 요청
+                $.ajax({
+                    url: '/admin/goods/getSecondaryCategories', // 서버의 URL
+                    method: 'POST', // 요청 메서드
+                    data: { 'c_no2': parseInt(primaryCategory) }, // 요청 데이터
+                    success: function(data) { 
+                        // 받은 데이터를 사용하여 중분류 카테고리 목록 업데이트
+                        var options = '<option value="">Secondary Category</option>';
+                        data.forEach(function(category) {
+                            options += '<option value="' + category.c_no + '">' + category.c_name + '</option>';
+     						
+                        });
+                        
+                        $('#secondaryCategory').html(options); // 중분류 카테고리 옵션 업데이트
+                    },
+                    error: function() { // 요청 실패 시 실행되는 콜백 함수
+                        console.log('Failed to load secondary categories.');
+                    }
+                });
+            });
+            
+        });
+    
+    
+</script>
+</head>
+<body>
+
+	<header></header>
+
+	<nav></nav>
+
+	<section>
+		<div id="section_wrap">
+			<div class="word">GOODS INSERT</div>
+
+			<div class="goods_insert_form">
+
+				<form th:action="@{/admin/goods/insertGoodsConfirm}" name="insert_goods_form" method="post" enctype="multipart/form-data">
+					<input type="text" name="g_name" placeholder="Input goods name"><br>
+					
+					<!-- <input type="text" name="g_thumbnail_name" multiple="multiple"> -->
+					<label>대표 이미지</label>
+					<input type="file" name="file1"><br>
+					
+					<label>이미지</label>
+					<input type="file" name="file2"><br>
+					
+					<label>이미지</label>
+					<input type="file" name="file3"><br>
+					
+					<label>상세 설명 이미지</label>
+					<input type="file" name="file4"><br>
+						
+					<label>Category</label>
+                    <select name="c_no" id="primaryCategory">
+                        <option>Category</option>
+                    </select>
+                    
+                    <label>Category</label>
+                    <select id="secondaryCategory" name="c_no2">
+                        <option>Secondary Category</option>
+                    </select>
+                    <br>
+					
+					<input type="text" name="g_explanation" placeholder="Input goods explanation"><br>
+					
+					<input type="text" name="g_price" placeholder="Input goods price"><br>
+					
+					<input type="button" value="INSERT" class="goodsInsertBtn" onclick="insertGoods();">
+					<input type="reset" value="RESET">
+					<input type="button" value="CANCEL" class="goodsCancelBtn">
+				</form>
+
+			</div>
+
+		</div>
+	</section>
+
+	<footer></footer>
+
+</body>
+</html>

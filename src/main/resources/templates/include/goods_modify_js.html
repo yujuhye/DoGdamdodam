@@ -1,0 +1,167 @@
+<script th:fragment="js" type="text/javascript">
+	$(document).ready(function() {
+		console.log("modify goods form");
+
+		// 취소 버튼
+		$('.goodsCancelBtn').click(function() {
+			history.back();
+		});
+
+	});
+	
+	// 상품 정보 및 카테고리 값 가져오기
+	$.ajax({
+	    url: '/admin/goods/getProductInfo', // 해당 상품의 정보 및 카테고리 정보를 가져오는 엔드포인트
+	    method: 'GET',
+	    data: { 'g_no': g_no }, // 해당 상품의 번호를 서버에 전달
+	    success: function(data) {
+	        // 서버에서 받은 상품 정보를 사용하여 필요한 값들을 세팅
+	        $('#g_name').val(data.g_name);
+	        $('#g_explanation').val(data.g_explanation);
+	        $('#g_price').val(data.g_price);
+
+	        // 대분류와 하위 분류의 선택 상태 설정
+	        $('#primaryCategory').val(data.primaryCategory); // 대분류 선택
+	        // 대분류가 변경되었을 때, 해당 대분류에 속하는 하위 분류 목록 가져오기
+	        $('#primaryCategory').change(); // 대분류 변경 이벤트 트리거
+	        $('#secondaryCategory').val(data.secondaryCategory); // 하위 분류 선택
+	    },
+	    error: function() {
+	        console.log('Failed to load product information.');
+	    }
+	});
+	
+	// 상위 카테고리
+	$(document).ready(function(){
+		console.log('category setting!');
+		
+		$.ajax({
+		    url: '/admin/goods/getPrimaryCategories',
+		    method: 'GET',
+		    success: function(data) {
+		        var primaryOptions = '<option value="">Select Primary Category</option>';
+		        $.each(data, function(index, category) {
+		            primaryOptions += '<option value="' + category.value + '">' + category.label + '</option>';
+		        });
+		        $('#primaryCategory').html(primaryOptions);
+		    },
+		    error: function() {
+		        console.log('Failed to load primary categories.');
+		    }
+		});
+		
+		// 대분류가 변경되었을 때, 해당 대분류에 속하는 하위 분류 목록 가져오기
+	    $('#primaryCategory').change(function() {
+	        var primaryCategory = $(this).val();
+	        
+	        $.ajax({
+	            url: '/admin/goods/getSecondaryCategories',
+	            method: 'POST',
+	            data: { 'c_no2': primaryCategory }, // 요청 데이터
+	            success: function(data) {
+	                var secondaryOptions = '<option value="">Select Secondary Category</option>';
+	                $.each(data, function(index, category) {
+	                    secondaryOptions += '<option value="' + category.c_no + '">' + category.c_name + '</option>';
+	                    
+	                    console.log('category.c_no : ' + category.c_no);
+	                    /* alert(category.c_no); */
+	                    
+	                });
+	                $('#secondaryCategory').html(secondaryOptions);
+	            },
+	            error: function() {
+	                console.log('Failed to load secondary categories.');
+	            }
+	        });
+	    });
+		
+	});
+
+	// 수정 완료 버튼 클릭
+	$(document).on('click',	'input[value="MODIFY"]', function(e) {
+				console.log('MODIFY BTN CLICK!!');
+
+				let g_no = parseInt($('input[name="g_no"]').val());
+				let g_name = $('input[name="g_name"]').val();
+				let c_no = parseInt($('select[name="c_no"]').val());
+				let c_no2 = parseInt($('select[name="c_no2"]').val());
+				let g_explanation = $('input[name="g_explanation"]').val();
+				let g_price = parseInt($('input[name="g_price"]').val());
+
+				if (g_name === '') {
+					alert('상품명을 입력해주세요.');
+					$('input[name="g_name"]').focus();
+					return;
+				} else if (c_no === '') {
+					alert('카테고리를 선택해주세요.');
+					$('select[name="c_no"]').focus();
+					return;
+				} else if (c_no2 === '') {
+					alert('하위 카테고리를 선택해주세요.');
+					$('select[name="c_no2"]').focus();
+					return;
+				} else if (g_explanation === '') {
+					alert('상품 설명을 입력해주세요.');
+					$('input[name="g_explanation"]').focus();
+					return;
+				} else if (g_price === '') {
+					alert('상품 가격을 입력해주세요.');
+					$('input[name="g_price"]').focus();
+					return;
+				}
+
+				// 파일 선택
+				let files = new FormData();
+				files.append('file1', $('input[name="file1"]')[0].files[0]);
+				files.append('file2', $('input[name="file2"]')[0].files[0]);
+				files.append('file3', $('input[name="file3"]')[0].files[0]);
+				files.append('file4', $('input[name="file4"]')[0].files[0]);
+
+				// 상품 정보와 이미지 파일들을 함께 전송
+				ajax_modifyForm(g_no, g_name, c_no, c_no2, g_explanation, g_price, files);
+				
+			});
+
+	function ajax_modifyForm(g_no, g_name, c_no, c_no2, g_explanation, g_price, files) {
+		console.log('ajax_modifyForm()');
+
+		let formData = new FormData();
+		formData.append("g_no", g_no);
+		formData.append("g_name", g_name);
+		formData.append("c_no", c_no);
+		formData.append("c_no2", c_no2);
+		formData.append("g_explanation", g_explanation);
+		formData.append("g_price", g_price);
+		formData.append("files", files);
+		
+		// 파일 추가
+	    if (files.length > 0) { // 파일을 선택한 경우에만 추가
+	        for (let i = 0; i < files.length; i++) {
+	            formData.append("file" + (i + 1), files[i]);
+	        }
+	    } else { // 파일을 선택하지 않은 경우, 기존 이미지 파일의 경로를 전송
+	        formData.append("existing_image_path", $('#existing_image_path').val());
+	    }
+
+		$.ajax({
+			url : '/admin/goods/modifyGoodsConfirm',
+			method : 'POST',
+			processData : false,
+			contentType : false,
+			data : formData,
+			success: function(data){
+				console.log('ajax >>>>>>>>>> goods modify success!!');
+				
+			},
+			error: function(data){
+				console.log('ajax >>>>>>>>>> goods modify erroe!! try again!');
+				
+			},
+			complete: function(data){
+				console.log('ajax >>>>>>>>>> goods modify complete!!');
+				
+				/* locationGoodsList(); */
+			}
+		});
+	}
+</script>

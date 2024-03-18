@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title th:replace="~{include/title_header_nav_footer.html::user_title}"></title>
+<link rel="stylesheet" th:href="@{/css/common.css}">
+<link rel="stylesheet" th:href="@{/css/header_nav_footer.css}">
+</head>
+<body>
+
+    <header th:replace="~{include/title_header_nav_footer.html::user_header}">
+    
+    </header>
+
+    <nav th:replace="~{include/title_header_nav_footer.html::user_nav}">
+
+    </nav>
+
+    <section>
+		<div id="section_wrap">
+			<span> 위시리스트 삭제에 실패했습니다. 관리자에게 문의해주세요. </span>
+		</div>
+		<div id="qna_list">
+			<a th:href="@{/user/qa/qnaList}">상품 문의 목록 보기</a>
+		</div>	
+		
+	</section>
+    
+    <footer th:replace="~{include/title_header_nav_footer.html::user_footer}">
+
+    </footer>
+</body>
+</html>

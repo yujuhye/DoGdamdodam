@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<!-- include -->
+<script th:replace="~{/include/common_js.html::jquery_cdn}" type="text/javascript"></script>
+<script th:replace="~{/include/common_js.html::slick}" type="text/javascript"></script>
+
+<!-- 북마크, qa -->
+<script type="text/javascript" th:src="@{/js/qna_list.js}"></script>
+<link rel="stylesheet" th:href="@{/css/user/qa/qna_list_goods_detail_view.css}">
+<link rel="stylesheet" th:href="@{/css/user/bookmark/bookmark_goods_detail_view.css}">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script th:replace="~{user/include/bookmark_goods_detail_view::js}" type="text/javascript"></script>
+
+<!-- ajax 라이브러리 -->
+<script th:fragment="jquery_cdn"
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+<!-- slick 라이브러리 -->
+<!-- Slick 라이브러리 불러오기 -->
+<link rel="stylesheet" type="text/css"
+	href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css">
+<link rel="stylesheet" type="text/css"
+	href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css">
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
+
+<!-- js -->
+<script type="text/javascript" th:src="@{/js/goods/user_goods_view.js}"></script>
+<script type="text/javascript" th:src="@{/js/goods/goods_details_view.js}"></script> 
+
+<!-- css -->
+<link rel="stylesheet" th:href="@{/css/common.css}">
+<link rel="stylesheet" th:href="@{/css/header_nav_footer.css}">
+<link rel="stylesheet"
+	th:href="@{/css/user/goods/goods_detail_view.css}">
+
+<script type="text/javascript">
+	$(function() {
+		$('#reviewDeleteConfirm').click(function() {
+			if (!confirm("해당 리뷰를 삭제하겠습니까?"))
+				return false;
+		});
+	});
+</script>
+
+</head>
+<body>
+	<header>
+		<a href="/">
+			<img src="/img/logo/001.png" alt="로고">
+		</a>
+	</header>
+	<section>
+		<div class="goods_detail">
+			<div class="goods_top">
+				<div class="top-container">
+					<div class="slider-container">
+						<div class="product-thumbnails">
+							<div>
+								<img
+									th:src="@{'http://14.42.124.95:8091/goodsUploadImg/' + ${goodsDto.g_thumbnail_name}}" />
+							</div>
+							<div>
+								<img
+									th:src="@{'http://14.42.124.95:8091/goodsUploadImg/' + ${goodsDto.g_second_img_name}}" />
+							</div>
+							<div>
+								<img
+									th:src="@{'http://14.42.124.95:8091/goodsUploadImg/' + ${goodsDto.g_third_img_name}}" />
+							</div>
+<!-- 							<div>
+								<img
+									th:src="@{'http://14.42.124.95:8091/goodsUploadImg/' + ${goodsDto.g_detail_content}}" />
+							</div> -->
+						</div>
+						
+						<div class="slider-nav">
+							<div>
+								<img
+									th:src="@{'http://14.42.124.95:8091/goodsUploadImg/' + ${goodsDto.g_thumbnail_name}}" />
+							</div>
+							<div>
+								<img
+									th:src="@{'http://14.42.124.95:8091/goodsUploadImg/' + ${goodsDto.g_second_img_name}}" />
+							</div>
+							<div>
+								<img
+									th:src="@{'http://14.42.124.95:8091/goodsUploadImg/' + ${goodsDto.g_third_img_name}}" />
+							</div>
+						</div>
+					</div>
+	
+	
+					<!-- 상품 정보 -->
+					<!-- 상품 정보 -->
+					<div class="goods_info">
+					    <h1 th:text="${goodsDto.g_name}"></h1>
+					    <p>
+					        <th:block th:if="${goodsDto.g_price != 0}">
+					            <span >배송비 3,000원</span>
+					            
+					            <span class="price" th:text="|${#numbers.formatInteger(goodsDto.g_price, 0, 'COMMA')}원|"></span>
+					           <!--  <span class="price" th:text="${goodsDto.g_price}"></span> -->
+					        </th:block>
+					    </p>
+					    <div>
+					        <form th:action="@{/basket/basketMap}"  th:name="goods_details_form" th:method="post" id="goods_details_form">
+                
+			                	<input type="number" name="s_quantity" min="1" th:value="1">
+				                <input type="hidden" name="g_no"  th:value="${goodsDto.g_no}">
+				                <input type="button" value="주문하기" onclick="goodsDetailsForm();">
+				                <input type="button" value="장바구니" onclick="addBasket();">
+			                
+			                </form>
+			                
+						<div id="bm_heart" class="bm_heart">
+			                <div th:text="${goodsDto.g_bm_count}"></div>
+                           
+                            <a href="#none" class="bm_heart_off" th:if="${isBookmarked}" th:attr="data-g_no=${goodsDto.g_no}">
+                           		<img class = "bm_heart_full" th:src="@{/img/bookmark/fullheart.png}"></a>                          		
+                           
+                           	<a href="#none" class="bm_heart_on" th:unless="${isBookmarked}" th:attr="data-g_no=${goodsDto.g_no}">	
+                           		<img class = "bm_heart_empty" th:src="@{/img/bookmark/emptyheart.png}"></a>
+	                                	                         
+                        </div>
+					</div>
+				</div>
+			</div>
+			<!-- 상품 디테일 정보 -->
+			<!-- <div class="goods_description">
+				<p>설명: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+					Maecenas sit amet pretium urna. Nunc vel neque velit.</p>
+			</div> -->
+		</div>
+	</section>
+	
+	<div class="goods_detail_content">
+		<img
+			th:src="@{'http://14.42.124.95:8091/goodsUploadImg/' + ${goodsDto.g_detail_content}}" />
+	</div>
+
+	<!-- 리뷰 -->
+	<div class="goods_review_wrap">
+		<div class="goods_review_body">
+			<h2>상품 리뷰</h2>
+			<div th:if="${reviewDtos == null or reviewDtos.isEmpty()}">등록된
+				리뷰가 없습니다.</div>
+			<div th:if="${reviewDtos != null}">
+				<div class="reviews">
+					
+					<div th:each="reviewDto : ${reviewDtos}" class="review">
+						<div class="review-header">
+						    <div class="user" th:text="${reviewDto.u_id}"></div>
+						    <div class="date" th:text="${reviewDto.r_reg_date}"></div>
+						</div>
+						<div class="rating-container">
+						    <div class="rating" th:text="${reviewDto.r_rating}"></div>
+						</div>
+						<div class="review-content" th:text="${reviewDto.r_text}"></div>
+						
+						<!-- 이미지가 있다면 표시 -->
+						<div class="review-image">
+							<div th:if="${!reviewDto.r_thumbnail_name.empty}">
+								<div th:each="thumbnail : ${reviewDto.r_thumbnail_name}">
+									<img
+										th:src="@{http://14.42.124.95:8091/goodsUploadImg/__${reviewDto.r_thumbnail_name}__}">
+								</div>
+							</div>
+
+							<div th:if="${!reviewDto.r_second_name.empty}">
+								<div th:each="second : ${reviewDto.r_second_name}">
+									<img
+										th:src="@{http://14.42.124.95:8091/goodsUploadImg/__${reviewDto.r_second_name}__}">
+								</div>
+							</div>
+
+							<div th:if="${!reviewDto.r_third_name.empty}">
+								<div th:each="third : ${reviewDto.r_third_name}">
+									<img
+										th:src="@{http://14.42.124.95:8091/goodsUploadImg/__${reviewDto.r_third_name}__}">
+								</div>
+							</div>
+
+							<div th:if="${!reviewDto.r_last_name.empty}">
+								<div th:each="last : ${reviewDto.r_last_name}">
+									<img
+										th:src="@{http://14.42.124.95:8091/goodsUploadImg/__${reviewDto.r_last_name}__}">
+								</div>
+							</div>
+						</div>
+						<!-- <div>
+			                        <a th:href="@{/review/reviewDelete(r_no=${reviewDto.r_no})}" id="reviewDeleteConfirm">리뷰 삭제</a>
+			                    </div> -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<!-- 상품문의 리스트 -->
+	<!-- 상품문의 리스트 -->
+	<div id="gqa_wrap">
+            <span>상품 문의</span>
+
+            <div>
+                <a th:href="@{/user/qa/createQnaForm(g_no=${goodsDto.g_no})}">문의하기</a>
+            </div>
+
+            <div class="article">
+                               
+                <table>
+                   <thead>
+                       <tr>
+                           <th>고객ID</th>
+                           <th>질문유형</th>
+                           <th>질문내용</th>
+                           <th>답변여부</th>  
+                           <th>등록시간</th>                                        
+                       </tr>                                      
+                   </thead>
+                    <tbody th:if="${#lists.isEmpty(qnaDtos)}">
+                        <tr>
+                            <td colspan="5"> 상품 문의가 없습니다.</td>
+                        </tr>
+                    </tbody>
+                    <tbody th:each="qnalist : ${qnaDtos}" th:if="${qnalist.g_no eq goodsDto.g_no}">
+
+
+                        <tr>
+                            <td th:utext="${#strings.length(qnalist.u_id) > 4 ? #strings.substring(qnalist.u_id, 0, 4) + '****' : qnalist.u_id}"></td>
+                            <td th:text="${qnalist.gqa_select_title}"></td>
+                            <td>
+                                <a href="#" class="gqa_toggle_title" th:text="${qnalist.gqa_input_title}"></a>
+
+                            </td>
+                            <td class="qnalist" th:if="${qnalist.gqa_complete eq 0}">
+                                답변대기 </td>
+                            <td class="qnalist" th:if="${qnalist.gqa_complete eq 1}">
+                                답변완료 </td>
+                            <td th:text="${qnalist.gqa_reg_date}"></td>
+
+
+                        </tr>
+
+                        <tr class="hidden_gqa_contents collapse">
+                            <td colspan="5">
+                                <span class="gqa_inquiry" th:text="${qnalist.gqa_inquiry}"></span><br>
+                                <span class="answerorNot" th:if="${qnalist.gqa_complete eq 0}"> </span>
+                                <span class="answerorNot" th:if="${qnalist.gqa_complete eq 1}"> 답변: </span>
+                                <span th:text="${qnalist.gqa_answer}"> </span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+
+	<!-- 모달 창 -->
+	<div id="myModal" class="modal">
+	    <!-- 모달 창 닫기 버튼 -->
+	    <span class="close">&times;</span> 
+	    <!-- 모달 내용 -->
+	    <img class="modal-content" id="img01">
+	</div>
+
+	<!-- 버튼 -->
+	<div class="list_btn">
+		<a th:href="@{/user/goods/goodsList}">리스트</a>
+	</div>
+	<footer> </footer>
+</body>
+</html>

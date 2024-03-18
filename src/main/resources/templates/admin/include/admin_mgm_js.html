@@ -1,0 +1,62 @@
+<script th:fragment="js" type="text/javascript">
+
+function updateApproval(aNo, approval, btn) {
+	
+	let apvDto = {
+		'a_no': aNo,
+	    'a_approval': approval
+	}
+	
+	  $.ajax({
+	    url: "/admin/mgm/updateApproval",
+	    method: 'post',
+	    data: JSON.stringify(apvDto),
+	    contentType: 'application/json; charset=utf-8',
+	    dataType: 'json',
+	    success: function(data) {
+	      if (data.success) {
+	        btn.text(data.approvalText);
+
+	      } else {
+	        console.log(data.message);
+	        
+	      }
+	    },
+	    error: function(data) {
+	    	console.log('서버 통신 실패');
+	    }
+	  });
+}
+
+function init() {
+	console.log('init()')
+	
+	$('.adminApvUpdateBtn').on('click', function() {
+		if (!confirm('상태를 변경하시겠습니까?')) {
+    		return;
+  		}
+
+	    let aNo = $(this).closest('tr').find('td:first').text();
+		let approval = $(this).text();
+
+	    updateApproval(aNo, approval, $(this));
+
+	  });
+	
+	
+}
+
+
+
+$(document).ready(function() {
+	console.log('document ready!');
+	
+	init();
+	  
+
+});
+
+
+
+
+</script>

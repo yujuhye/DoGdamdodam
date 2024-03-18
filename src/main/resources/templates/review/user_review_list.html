@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<!-- ajax 라이브러리 -->
+<script th:fragment="jquery_cdn" src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+<!-- slick 라이브러리 -->
+<script th:fragment="slick" src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
+
+<script th:replace="~{/include/common_js.html::jquery_cdn}" type="text/javascript"></script>
+<script th:replace="~{/include/common_js.html::slick}" type="text/javascript"></script>
+<!-- <script type="text/javascript" th:src="@{/js/review/review_list_ajax.js}"></script> -->
+<!-- <script type="text/javascript" th:src="@{/js/review/review_modify_ajax.js}"></script> -->
+<script type="text/javascript" th:src="@{/js/review/review_delete_ajax.js}"></script>
+
+<!-- css -->
+<link rel="stylesheet" th:href="@{/css/common.css}">
+<link rel="stylesheet" th:href="@{/css/header_nav_footer.css}">
+
+<link rel="stylesheet" th:href="@{/css/user/review/user_review_list.css}">
+
+</head>
+<body>
+
+	<header>
+		<a href="/">
+	        <img src="/img/logo/001.png" alt="로고">
+	    </a>
+	</header>
+	
+	<nav>
+		
+	</nav>
+	
+	<section>
+		<div id="section_wrap">
+			<div class="word">
+				ALL MY REVIEW
+			</div>
+			
+			<div class="goods_list">
+			
+				<table>
+					<thead>
+						<tr>
+							<th>NO</th>
+							<th>사진</th>
+							<th>상품명</th>
+							<th>리뷰</th>
+							<th>별점</th>
+							<th>수정/삭제</th>
+						</tr>
+					</thead>
+					<tbody>
+					    <tr th:each="reviewDto : ${reviewDtos}">
+					    	
+						   <td>
+								<span th:text="${reviewDto.r_no}"></span>
+							</td>
+							<td>
+								<div class="review_list_img" th:if="${not #strings.isEmpty(reviewDto.r_thumbnail_name)}">
+									<img th:src="@{http://14.42.124.95:8091/goodsUploadImg/__${reviewDto.r_thumbnail_name}__}">
+								</div>
+								<div class="review_list_img" th:unless="${not #strings.isEmpty(reviewDto.r_thumbnail_name)}">
+									<img src="/img/logo/emptyImg.png" alt="로고">
+								</div>
+							</td>
+							<td>
+    							<a th:text="${reviewDto.g_name}"></a>
+							</td>
+							<td>
+    							<a th:text="${reviewDto.r_text}"></a>
+							</td>
+							<td>
+    							<a th:text="${reviewDto.r_rating}"></a>
+							</td>
+							<td>
+								<a th:href="@{/review/reviewModifyForm(r_no=${reviewDto.r_no}, u_id=${reviewDto.u_id})}" id="modifyReview" class="btn">수정</a>
+								<a th:href="@{/review/reviewDelete(r_no=${reviewDto.r_no})}" id="deleteReview" class="btn">삭제</a>
+							</td>
+						</tr>
+						
+					</tbody>
+				</table>
+
+				<!-- <a th:href="@{/admin/goods/goodsList}">목록</a> -->
+			
+			</div>
+		</div>
+	</section>
+	
+	<footer th:replace="~{include/title_header_nav_footer::user_footer}"></footer>
+
+</body>
+</html>

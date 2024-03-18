@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dogdam.shop.user.qa.IQnaDao">
+
+
+<insert id="insertQna" parameterType="map">
+
+    INSERT INTO GOODS_QA (
+        U_ID,
+        G_NO,
+        GQA_SELECT_TITLE,
+        GQA_INPUT_TITLE,
+        GQA_INQUIRY,
+        GQA_REG_DATE
+    )
+    VALUES (
+        #{u_id},
+        #{g_no},
+        #{qnaDto.gqa_select_title},
+        #{qnaDto.gqa_input_title},
+        #{qnaDto.gqa_inquiry},
+        NOW()
+    )
+</insert>
+
+<select id="listupQnaforGoods" parameterType="Integer" resultType="com.dogdam.shop.user.qa.QnaDto">
+			
+		SELECT * FROM GOODS_QA GQ
+				JOIN GOODS G ON GQ.G_NO = G.G_NO
+				WHERE GQ.G_NO = #{g_no}
+		        ORDER BY GQA_REG_DATE DESC
+</select>
+
+<select id="listupQnaforUser" parameterType="String" resultType="com.dogdam.shop.user.qa.QnaDto">
+		
+		SELECT G.G_NAME, G.G_THUMBNAIL_NAME, G.G_NO, GQ.*
+        FROM GOODS_QA AS GQ 
+        JOIN GOODS AS G 
+        ON GQ.G_NO = G.G_NO
+        WHERE 
+        GQ.U_ID = #{u_id}
+        ORDER BY GQ.GQA_REG_DATE DESC
+					
+</select>
+
+<delete id="deleteQna" parameterType="Integer" >
+			
+		DELETE FROM GOODS_QA WHERE GQA_NO = #{gqa_no}
+	      		
+</delete>
+
+</mapper>

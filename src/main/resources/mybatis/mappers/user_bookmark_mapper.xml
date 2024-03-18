@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dogdam.shop.user.bookmark.IBookmarkDao">
+
+
+<select id="selectBookmarked" parameterType="map" resultType="com.dogdam.shop.user.bookmark.BookmarkDto">
+        SELECT * FROM BOOK_MARK BM
+        JOIN USER U ON BM.U_ID = U.U_ID
+        JOIN GOODS G ON BM.G_NO = G.G_NO
+        WHERE BM.U_ID = #{u_id} AND BM.G_NO = #{g_no}
+</select>
+
+<insert id="insertBookmark" parameterType="map">
+
+    INSERT INTO BOOK_MARK (U_ID, G_NO, BM_REG_DATE)
+    VALUES (#{u_id}, #{g_no}, NOW());
+</insert>
+
+<update id="plusBookcount" parameterType="map">
+
+    UPDATE GOODS AS G
+    INNER JOIN BOOK_MARK AS BM ON G.G_NO = BM.G_NO
+    SET G.G_BM_COUNT = G.G_BM_COUNT + 1
+    WHERE G.G_NO = #{g_no};
+
+</update>
+
+<delete id="deleteBookmarkForHeart" parameterType="map">
+    <!-- BOOK_MARK 테이블에 새로운 북마크 추가 -->
+    
+	DELETE FROM BOOK_MARK 
+	WHERE U_ID = #{u_id} AND G_NO = #{g_no}
+
+</delete>
+
+<update id="minusBookcount" parameterType="map">
+    <!-- GOODS 테이블의 G_BM_COUNT 업데이트 -->
+    UPDATE GOODS AS G
+    INNER JOIN BOOK_MARK AS BM 
+    ON G.G_NO = BM.G_NO
+    SET G.G_BM_COUNT = G.G_BM_COUNT - 1
+    WHERE G.G_NO = #{g_no};
+
+</update>
+
+<select id="selectBookmarks" parameterType="String" resultType="com.dogdam.shop.user.bookmark.BookmarkDto">
+		
+		SELECT G.G_NAME, G.G_THUMBNAIL_NAME, G.G_PRICE, G.G_NO, BM.*
+        FROM BOOK_MARK AS BM 
+        JOIN GOODS AS G 
+        ON BM.G_NO = G.G_NO
+        WHERE 
+        BM.U_ID = #{u_id}
+        ORDER BY BM.BM_REG_DATE DESC
+					
+</select>
+
+<delete id="deleteBookmarkForList" parameterType="Integer" >
+			
+		DELETE FROM BOOK_MARK WHERE BM_NO = #{bm_no}
+	      		
+</delete>
+
+</mapper>

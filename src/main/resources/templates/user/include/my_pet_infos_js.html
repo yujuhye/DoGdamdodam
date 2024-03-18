@@ -1,0 +1,443 @@
+<script th:fragment="js" th:inline="javascript" type="text/javascript">
+
+function petDelete() {
+	console.log('petDelete()');
+
+	$(document).on('click', 'ul > li > a.petDelete', function(e){ 
+		e.preventDefault();
+
+		let $ul = $(this).closest('ul');
+		let p_no = $(this).data('pno');
+
+		let requestDto = {
+			'p_no': p_no,
+		}
+
+		$.ajax({
+			url:"/user/member/pet/delete_pet",
+			method:'post',
+			data: JSON.stringify(requestDto),
+			contentType: 'application/json; charset=utf-8',
+			dataType: 'json',
+			success: function(data) {
+					
+				if(data.success) {
+					console.log('data success 성공');
+					petInfoPageSetUp();
+					
+				} else {
+					console.log('서버 통신 성공, false');
+				}
+
+			}, error: function(data) {
+					console.log('서버 통신 실패');
+				}
+			})
+	})
+
+
+}
+
+
+function mainPetChange() {
+	console.log('mainPetChange()');
+
+	$(document).on('click', 'ul > li > a.mainPetChange', function(e) {
+		e.preventDefault();
+
+		let p_no = $(this).data('pno');
+		let $ul = $(this).closest('ul');
+		let mainUl = $('.mainPet > ul').data('pno');
+		let requestDto = {
+			'p_no': p_no,
+		}
+		if(mainUl == p_no) {
+			alert('현재 대표펫으로 설정 되어 있는 마이펫입니다.');
+		} else {
+
+			let result = confirm('대표 마이펫을 변경하시겠습니까?');
+			if(result) {
+				$.ajax({
+						url:"/user/member/pet/main_pet_register",
+						method:'post',
+						data: JSON.stringify(requestDto),
+						contentType: 'application/json; charset=utf-8',
+						dataType: 'json',
+						success: function(data) {
+							
+							if(data.success) {
+								console.log('data success 성공');
+								petInfoPageSetUp();
+								
+	
+							} else {
+								console.log('서버 통신 성공, false');
+							}
+	
+	
+						}, error: function(data) {
+							console.log('서버 통신 실패');
+						}
+				})
+			}
+		}
+	})
+
+}
+
+
+
+// 정보수정 취소
+function modifyCancle() {
+	console.log('modifyCancle()');
+
+	$(document).on('click', 'ul > li > form > a.modifyCancle', function(e) {
+		e.preventDefault();
+
+		let $form = $(this).closest('form');
+		petInfoPageSetUp();
+		
+	})
+}
+
+
+// 등록되어 있는 펫 수정
+function petModifyClickHandler() {
+	console.log('petModifyClickHandler()');
+		
+		$(document).on('click', 'ul > li > a.petModify', function(e) {
+			e.preventDefault();
+			
+			let $ul = $(this).closest('ul');
+			let idNo = $(this).attr('id');
+			let p_no = $(this).data('pno');
+
+		let requestDto = {
+			'p_no': p_no,
+		}
+		if(p_no == idNo) {
+			$.ajax({
+				url:"/user/member/pet/modify_value",
+				method:'post',
+				data: JSON.stringify(requestDto),
+				contentType: 'application/json; charset=utf-8',
+				dataType: 'json',
+				success: function(data) {
+
+					let userPetInfoDto = data.userPetInfoDto;
+					
+					if(data.success) {
+						console.log('data success 성공');
+						
+						$ul.find('li').remove();
+						$ul.append(`
+							<li>
+								<form th:action="/user/member/pet/modify_pet" name="register_pet" method="post">
+									<input type="hidden" name="pm_no" value="${userPetInfoDto.p_no}">
+									<input type="text" name="pm_name" value="${userPetInfoDto.p_name}"><br>
+									<input type="text" name="pm_species" value="${userPetInfoDto.p_species}"><br>
+									<input type="number" name="pm_age" value="${userPetInfoDto.p_age}">
+									<a class="modifyBtnClickHandler">수정</a><a class="modifyCancle">취소</a>
+								</form>
+							</li>
+						`);
+
+						
+
+
+					} else {
+						console.log('서버 통신 성공, but null');
+					}
+
+
+				}, error: function(data) {
+					console.log('서버 통신 실패Modify1');
+				}
+			});
+
+		} else {
+			console('no exist');
+		}
+
+	})
+
+}
+// 펫 정보수정 비동기 전송 후 페이지 재 셋팅
+function sendPetModifyForm(formData) {
+	console.log('sendPetNewForm()');
+	const formDiv = $('.petRegisterForm form');
+	$.ajax({
+        url:"/user/member/pet/modify_pet",
+        method:'post',
+        data: JSON.stringify(formData),
+        contentType: 'application/json; charset=utf-8',
+        dataType: 'json',
+        success: function(data) {
+			console.log('서버 통신 성공');
+
+			if(data.success) {
+				alert('마이펫 정보가 수정되었습니다!');
+				
+				petInfoPageSetUp();
+			} else {
+				alert('마이펫 정보 수정에 실패 하였습니다,\n 잠시 후 다시 시도해주세요.');
+			}
+
+		},
+        error: function(data) {
+			alert('서버통신 오류로 인하여 수정에 실패 하였습니다.\n 잠시 후 다시 시도해주세요.');
+            console.log('서버 통신 실패Modify2');
+        }
+		
+	});
+}
+
+
+// 새로운 펫 등록하기 비동기 요청
+function sendPetNewForm(formData) {
+	console.log('sendPetNewForm()');
+	const formDiv = $('.petRegisterForm form');
+	$.ajax({
+        url:"/user/member/pet/registerNewPet",
+        method:'post',
+        data: JSON.stringify(formData),
+        contentType: 'application/json; charset=utf-8',
+        dataType: 'json',
+        success: function(data) {
+			console.log('서버 통신 성공');
+
+			if(data.success) {
+				alert('마이펫이 등록 되었습니다!');
+				petInfoPageSetUp();
+				$('.registerFormShowBtn').remove();
+				formDiv.remove();
+			} else {
+				alert('마이펫 등록에 실패 하였습니다,\n 잠시 후 다시 시도해주세요.');
+			}
+
+		},
+        error: function(data) {
+			alert('서버통신 오류로 인하여 등록에 실패 하였습니다.\n 잠시 후 다시 시도해주세요.');
+            console.log('서버 통신 실패');
+        }
+		
+	});
+}
+
+// 펫정보 수정 유효성 검사
+function validateFormDataForModify(formData) {
+	console.log('validateFormDataForModify()');
+
+	for (const key in formData) {
+		if (formData[key].trim() === '') {
+			alert(`${key}을(를) 입력해주세요`);
+			return false;
+		}
+		
+	}
+
+	let result = confirm('마이펫 정보를 수정하시겠습니까?');
+	if(result) {
+		return true;
+	} else {
+		return false;
+	}
+
+
+}
+
+// 새로운 펫 등록버튼 유효성검사
+function validateFormData(formData) {
+	console.log('validateFormData()');
+
+	for (const key in formData) {
+		if (formData[key].trim() === '') {
+			alert(`${key}을(를) 입력해주세요`);
+			return false;
+		}
+		
+	}
+
+	let result = confirm('마이펫을 등록하시겠습니까?');
+	if(result) {
+		return true;
+	} else {
+		return false;
+	}
+
+
+}
+
+function modifyBtnClickHandler() {
+	console.log('modifyBtnClickHandler()');
+
+	$(document).on('click', 'ul > li > form > a.modifyBtnClickHandler', function(e) {
+		e.preventDefault();
+
+		let $form = $(this).closest('form');
+
+			const formData = {
+				p_no: $('input[name="pm_no"]').val(),
+				p_name: $('input[name="pm_name"]').val(),
+				p_species: $('input[name="pm_species"]').val(),
+				p_age: $('input[name="pm_age"]').val(),
+			}
+	
+			if(validateFormDataForModify(formData)) {
+				sendPetModifyForm(formData);
+			}
+
+	})
+
+}
+
+// 새로운 펫 등록버튼 클릭 핸들러
+function registerBtnClickHandler() {
+	console.log('registerBtnClickHandler()');
+
+	$(document).on('click', '.registerBtnClickHandler', function(e) {
+		e.preventDefault();
+
+			const formData = {
+				p_name: $('input[name="p_name"]').val(),
+				p_species: $('input[name="p_species"]').val(),
+				p_age: $('input[name="p_age"]').val(),
+			}
+	
+			if(validateFormData(formData)) {
+				sendPetNewForm(formData);
+			}
+
+	})
+
+	
+
+
+};
+
+// 새로운 펫 등록 폼 생성 핸들러
+function newPetRegisterForm() {
+	console.log('newPetRegisterForm()');
+
+	$(document).on('click', '.registerFormShowBtn', function(e) {
+		console.log('registerFormShowBtn()');
+		e.preventDefault();
+		const formDiv = $('.petRegisterForm form');
+
+		if (formDiv.length === 0) {
+
+			$('.petRegisterForm').append(`
+				<form th:action="/user/member/pet/register_pet" name="register_pet" method="post">
+					<input type="text" name="p_name" placeholder="펫이름 입력"><br>
+					<input type="text" name="p_species" placeholder="견종 입력"><br>
+					<input type="number" name="p_age" placeholder="나이 입력">
+					<a class="registerBtnClickHandler">등록</a>
+				</form>
+				`);
+		} else {
+			formDiv.remove();
+		}
+
+
+
+	});
+
+}
+
+// 마이펫 정보 셋업
+function petInfoPageSetUp() {
+	console.log('petInfoPageSetUp()')
+
+	let u_id = /*[[${uId}]]*/'';
+
+	$('.petListWrap').children().remove();
+	$('.petRegisterForm').children().remove();
+	let requestDto = {
+	'u_id': u_id,
+	}
+
+	let RegisterTitle = $('.petRegisterForm').children;
+	
+	$.ajax({
+        url:"/user/member/pet/my_pet_list_up",
+        method:'post',
+        data: JSON.stringify(requestDto),
+        contentType: 'application/json; charset=utf-8',
+        dataType: 'json',
+        success: function(data) {
+
+            if(data.success) {
+            	
+            	let NoMainpet = data.NoMainpet;
+				console.log('NoMainpet :' + NoMainpet);
+    			let petInfoDtos = data.petInfoDtos;
+				let mainPetDto = data.mainPetDto;
+    			console.log('maindto:' + mainPetDto);
+    			$('.petListWrap').append('<div class="mainPet"></div>')
+    			$('.petListWrap').append('<div class="myPetList"><div class="petInfo"></div></div>')
+				$('.mainPet').append('<h3>대표펫</h3>');
+
+				if(NoMainpet == true || mainPetDto == undefined) {
+					$('.mainPet').append('<span>대표펫으로 지정된 펫이 없습니다.</sapn>')
+					} else {
+					$('.mainPet').append('<ul data-pno="' + mainPetDto.p_no + '"><li>'+ mainPetDto.p_name +'</li><li>' + mainPetDto.p_species + '</li><li>' + mainPetDto.p_age + '살</li><li>' + mainPetDto.p_reg_date + '</li></ul>');
+				}
+				
+				for(let i = 0; i < petInfoDtos.length; i++) {
+
+					let appendTag = '<ul>';
+						appendTag += '<li>';
+						appendTag += '<span>이름 : ' + petInfoDtos[i].p_name + '</span><a class="petModify" data-pno="' + petInfoDtos[i].p_no + '" id="' + petInfoDtos[i].p_no + '">수정</a><a class="petDelete" data-pno="' + petInfoDtos[i].p_no + '" >삭제</a>';
+						appendTag += '</li>';
+						appendTag += '<li>';
+						appendTag += '<span>견종 : ' + petInfoDtos[i].p_species + '</span>';
+						appendTag += '</li>';
+						appendTag += '<li>';
+						appendTag += '<span>' + petInfoDtos[i].p_age + '살</span>';
+						appendTag += '</li>';
+						appendTag += '<li>';
+						appendTag += '<span>등록일 : ' + petInfoDtos[i].p_reg_date + '</span><a class="mainPetChange" data-pno="' + petInfoDtos[i].p_no + '">대표 펫 변경</a>';
+						appendTag += '</li>';
+						appendTag += '</ul>';
+
+					$('.petInfo').append(appendTag);
+				}
+					$('.petRegisterForm').append('<a class="registerFormShowBtn">새로운 마이펫 등록하기</a>')
+
+            } else {
+				$('.petListWrap').append('<div class="mainPet"></div>')
+				$('.mainPet').append('<p>등록된 마이펫이 없습니다.</p>');
+				$('.petRegisterForm').append('<a class="registerFormShowBtn">새로운 마이펫 등록하기</a>')
+            }
+
+        },
+        error: function(data) {
+            console.log('서버 통신 실패');
+        }
+    });
+
+}
+
+
+$(document).ready(function() {
+    console.log('document ready!');
+	
+ 	// 로그인유저 펫정보 셋팅 () 펫정보가 없다면 없다는 메세지 랜더링 + <div>생성 그 안에 <a>새로운펫등록하기 생성
+	petInfoPageSetUp();
+ 	
+ 	// <a>새로운펫 등록하기 온클릭이벤트 : form태그와 폼양식 생성, 등록버튼 누를 시 서버요청 후 펫정보 셋팅 함수 다시 호출
+ 	newPetRegisterForm();
+ 	registerBtnClickHandler();
+
+ 	// 수정, 삭제 온클릭 이벤트 
+ 	// 1. 수정 시 그 현재li를 remove하고 input태그에 해당 펫 정보 출력 후 서버에 업데이트 요청, 펫정보 셋팅함수 호출
+ 	// 2. 삭제 시 confirm 후 p_no값 으로 서버요청 후 펫정보 셋팅함수 호출
+	petModifyClickHandler();
+	modifyCancle();
+	modifyBtnClickHandler();
+
+ 	// 대표펫지정 온클릭이벤트시 p_no값 서버요청하여 p_step 1로 변경 이미 1인건 0으로 변경 후 펫정보 셋팅 함수 호출
+ 	mainPetChange();
+ 	petDelete();
+})
+</script>

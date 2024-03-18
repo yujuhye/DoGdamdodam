@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper	namespace="com.dogdam.shop.user.goods.IUserGoodsDaoForMybatis">
+
+	<select id="userGoodsList" resultType="com.dogdam.shop.admin.goods.GoodsDto">
+	    SELECT * FROM GOODS WHERE G_APPROVAL = 1 ORDER BY G_NO DESC
+	</select>
+	
+	<select id="userGoodsDetatilView" parameterType="Integer" resultType="com.dogdam.shop.admin.goods.GoodsDto">
+	    SELECT * FROM GOODS WHERE G_NO = #{g_no}
+	</select>
+	
+	<select id="searchGoodsConfirm" parameterType="com.dogdam.shop.admin.goods.GoodsDto" resultType="com.dogdam.shop.admin.goods.GoodsDto">
+	    SELECT * FROM GOODS 
+	    WHERE G_NAME LIKE CONCAT('%', #{g_name}, '%') AND G_APPROVAL = 1 
+	    ORDER BY G_NO DESC
+	</select>
+	
+<!-- 	<select id="selectListByUId" parameterType="String" resultType="com.dogdam.shop.admin.goods.GoodsDto">
+	    SELECT * FROM GOODS WHERE U_ID = #{u_id}
+	</select> -->
+
+	<select id="selectByGNo" parameterType="Integer" resultType="com.dogdam.shop.admin.goods.GoodsDto">
+	    SELECT * FROM GOODS WHERE G_NO = #{g_no}
+	</select>
+	
+	<!-- 신상품 -->
+	<select id="orderByRegDate" parameterType="com.dogdam.shop.admin.goods.GoodsDto" resultType="com.dogdam.shop.admin.goods.GoodsDto">
+	    SELECT * FROM GOODS 
+	    WHERE G_APPROVAL = 1 
+	    ORDER BY G_REG_DATE DESC
+	    LIMIT 10
+	</select>
+	
+	<!-- bookmark -->
+	<select id="orderByBookmark" parameterType="com.dogdam.shop.admin.goods.GoodsDto" resultType="com.dogdam.shop.admin.goods.GoodsDto">
+	    SELECT * FROM GOODS 
+	    WHERE G_APPROVAL = 1 
+	    ORDER BY G_BM_COUNT DESC
+	    LIMIT 10
+	    <!-- 나중에 bookmark랑 join -->
+	</select>
+	
+	<!-- review -->
+<!-- 	<select id="orderByBuy" parameterType="com.dogdam.shop.admin.goods.GoodsDto" resultType="com.dogdam.shop.admin.goods.GoodsDto">
+	    SELECT * FROM GOODS 
+	    WHERE G_APPROVAL = 1 
+	    ORDER BY G_REG_DATE DESC
+	    LIMIT 10
+	    나중에 review랑 join 
+	</select> -->
+	
+	<select id="orderByBuy" parameterType="com.dogdam.shop.admin.goods.GoodsDto" resultType="com.dogdam.shop.admin.goods.GoodsDto">
+	    SELECT * FROM GOODS 
+	    WHERE G_APPROVAL = 1 
+	    ORDER BY G_REG_DATE DESC
+	    LIMIT 10
+	    <!-- 나중에 review랑 join  -->
+	</select>
+		
+	<!-- 사료 검색 -->
+	<select id="searchCategory" parameterType="Integer" resultType="com.dogdam.shop.admin.goods.GoodsDto">
+	    SELECT G.*
+	    FROM GOODS G
+	    INNER JOIN CATEGORY C ON G.C_NO = C.C_NO
+	    WHERE C.C_PARENTS_NO = #{c_no} AND G_APPROVAL = 1 
+	</select>
+	
+	<select id="searchProductsByCategory" parameterType="Integer" resultType="com.dogdam.shop.admin.goods.GoodsDto">
+	    SELECT G.*
+	    FROM GOODS G
+	    INNER JOIN CATEGORY C ON G.C_NO = C.C_NO
+	    WHERE C.C_NO = #{c_no} AND G_APPROVAL = 1 
+	</select>
+	
+</mapper>

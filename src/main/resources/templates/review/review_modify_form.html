@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<script th:replace="~{/include/common_js.html::jquery_cdn}" type="text/javascript"></script>
+<script th:replace="~{/include/common_js.html::slick}" type="text/javascript"></script>
+<script th:fragment="jquery_cdn" src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+<!-- <script type="text/javascript" th:src="@{/js/review/review_modify_form.js}"></script> -->
+<script type="text/javascript" th:src="@{/js/review/review_modify_ajax.js}"></script>
+
+<style type="text/css">
+        .rating {
+            font-size: 2em;
+        }
+
+        .rating .star {
+            cursor: pointer;
+            display: inline-block;
+        }
+
+        .rating .star::before {
+            content: '\2605'; /* 별 모양 */
+            color: #ddd;
+            display: block;
+            font-size: 2em;
+            width: 1em;
+            overflow: hidden;
+            transition: color 0.3s ease;
+        }
+
+        .rating .star.selected::before, .rating .star.half::before {
+            color: gold;
+        }
+    </style>
+</head>
+<body>
+
+<header></header>
+
+<nav></nav>
+
+<section>
+    <div id="section_wrap">
+        <div class="word">REVIEW MODIFY</div>
+
+        <div class="review_modify_form">
+
+            <form th:action="@{/review/reviewModifyConfirm}" name="review_modify_form" method="post" enctype="multipart/form-data">
+                <input type="text" name="r_no" th:value="${reviewDto.r_no}">
+                <input type="text" name="u_id" th:value="${reviewDto.u_id}">
+                <input type="text" name="g_no" th:value="${reviewDto.g_no}"><br>
+
+                <textarea rows="10" cols="50" name="r_text" th:text="${reviewDto.r_text}"></textarea>
+                <br>
+
+                <!-- 별점 선택 -->
+                <div class="rating">
+                    <span class="star" data-rating="1" onclick="setRating(1)"></span>
+                    <span class="star" data-rating="2" onclick="setRating(2)"></span>
+                    <span class="star" data-rating="3" onclick="setRating(3)"></span>
+                    <span class="star" data-rating="4" onclick="setRating(4)"></span>
+                    <span class="star" data-rating="5" onclick="setRating(5)"></span>
+                    <!-- 이하 생략 -->
+                    <input type="hidden" name="r_rating" id="rating-input" th:value="${reviewDto.r_rating}">
+                </div>
+
+                <label>이미지</label><br>
+                <input type="file" name="file1"><br>
+                <input type="file" name="file2"><br>
+                <input type="file" name="file3"><br>
+                <input type="file" name="file4"><br>
+
+                <input type="submit" value="MODIFY" class="reviewModifyBtn">
+                <input type="reset" value="RESET">
+                <input type="button" value="CANCEL" class="reviewCanceltBtn" onclick="window.history.back()">
+            </form>
+
+        </div>
+    </div>
+</section>
+
+<footer></footer>
+
+<script>
+    let selectedRating = 0;
+
+    function setRating(rating) {
+        
+    	selectedRating = rating;
+        updateStars(rating);
+        
+    }
+
+    function updateStars(rating) {
+        
+    	const stars = document.querySelectorAll('.star');
+        
+    	stars.forEach(star => {
+            const starRating = star.getAttribute('data-rating');
+            const isHalf = rating - Math.floor(rating) === 0.5 && starRating == Math.ceil(rating);
+            star.classList.toggle('half', isHalf);
+            star.classList.toggle('selected', starRating <= rating);
+            
+           // alert("2 : "+selectedRating);
+            
+        });
+        document.getElementById('rating-input').value = rating;
+        
+        //alert("3 : "+selectedRating);
+    }
+</script>
+
+</body>
+</html>

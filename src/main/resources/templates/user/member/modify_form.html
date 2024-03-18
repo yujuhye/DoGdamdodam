@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title th:replace="~{include/title_header_nav_footer.html::user_title}"></title>
+
+<link rel="stylesheet" th:href="@{/css/common.css}">
+<link rel="stylesheet" th:href="@{/css/user/create_account_form.css}">
+<link rel="stylesheet" th:href="@{/css/header_nav_footer.css}">
+
+<script type="text/javascript" th:src="@{/js/userMember.js}"></script>
+
+</head>
+<body>
+
+	<header th:replace="~{include/title_header_nav_footer.html::user_header}">
+	</header>
+	
+	<nav th:replace="~{include/title_header_nav_footer.html::user_nav}">
+	</nav>
+	
+	<section>
+		<div id="section_wrap">
+			<div class="word">
+				<span>개인 정보수정</span>
+			</div>
+			<div class="create_account_form">
+				
+				<form th:action="@{/user/member/modify_confirm}" name="modify_form" method="post">
+					
+					<input type="hidden" name="u_no" th:value="${session.loginedMemberDto.u_no}">
+					<input type="text" name="u_id" th:value="${session.loginedMemberDto.u_id}" readonly disabled><br>
+					<input type="password" name="u_pw" value="******" readonly disabled><br>
+					<input type="text" name="u_nickname" th:value="${session.loginedMemberDto.u_nickname}"><br>
+					<input type="text" name="u_mail" th:value="${session.loginedMemberDto.u_mail}"><br>
+					<input type="text" name="u_phone" th:value="${session.loginedMemberDto.u_phone}"><br>
+					<input type="button" value="정보수정" onclick="memberModifyForm();">
+					<input type="reset" value="되돌리기">
+				</form>
+				
+			</div>
+			
+			<div class="go_login_form">
+				<a th:href="@{/user/member/delete_confirm}" onclick="deleteBtn();">회원탈퇴</a>
+			</div>
+			
+		</div>
+	</section>
+	
+	<footer th:replace="~{include/title_header_nav_footer::user_footer}">
+	</footer>
+
+</body>
+</html>

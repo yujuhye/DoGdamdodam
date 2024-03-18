@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dogdam.shop.admin.qa.IAQnaDao">
+
+
+<select id="listupAdminQna" resultType = "com.dogdam.shop.admin.qa.AQnaDto">
+        SELECT G.G_NAME, G.G_THUMBNAIL_NAME, G.G_NO, GQ.*
+        FROM GOODS_QA AS GQ 
+        JOIN GOODS AS G 
+        ON GQ.G_NO = G.G_NO
+        ORDER BY GQ.GQA_REG_DATE DESC;
+
+</select>
+
+<select id="listupAQnaforGoods" parameterType="Integer" resultType="com.dogdam.shop.admin.qa.AQnaDto">
+			
+		SELECT * FROM GOODS_QA GQ
+				JOIN GOODS G ON GQ.G_NO = G.G_NO
+				WHERE GQ.G_NO = #{g_no}
+		        ORDER BY GQA_REG_DATE DESC
+</select>
+
+<update id="answerQnaYes" parameterType="map">
+			
+		UPDATE GOODS_QA
+	      		SET A_ID = #{a_id},
+	      		GQA_ANSWER = #{gqa_answer},
+	      		GQA_COMPLETE = 1,
+	      		GQA_ANSWER_DATE = NOW()
+	      		WHERE GQA_NO = #{gqa_no}
+	      		
+	</update>
+
+</mapper>

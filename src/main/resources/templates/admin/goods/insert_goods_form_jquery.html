@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<script th:replace="~{/include/common_js.html::jquery_cdn}" type="text/javascript"></script>
+<script th:replace="~{/include/common_js.html::slick}" type="text/javascript"></script>
+
+<script type="text/javascript" th:src="@{/js/goods/insert_goods_form.js}"></script>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		
+		hideAllCategories();
+		
+		$('#primaryCategory').change(function(){
+			var primaryCategory = $(this).val();
+			hideAllCategories();			
+			
+			if(primaryCategory == '1'){
+				
+				$('#firstCategory').show();
+				
+			} else if(primaryCategory == '2'){
+				
+				$('#secondCategory').show();
+				
+			} else if(primaryCategory == '3'){
+				
+				$('#thirdCategory').show();
+				
+			} else if(primaryCategory == '4'){
+				
+				$('#fourthCategory').show();
+				
+			} else if(primaryCategory == '5'){
+				
+				$('#fifthCategory').show();
+				
+			} 
+		});
+    
+        // 취소 버튼
+        $('.goodsCancelBtn').click(function() {
+            history.back();
+        });
+        
+     	// 모든 카테고리를 숨기는 함수
+        function hideAllCategories() {
+            $('#firstCategory').hide();
+            $('#secondCategory').hide();
+            $('#thirdCategory').hide();
+            $('#fourthCategory').hide();
+            $('#fifthCategory').hide();
+        }
+    });
+</script>
+</head>
+<body>
+
+<header></header>
+
+<nav></nav>
+
+<section>
+    <div id="section_wrap">
+        <div class="word">GOODS INSERT</div>
+
+        <div class="goods_insert_form">
+
+            <form th:action="@{/admin/goods/insertGoodsConfirm}" name="insert_goods_form" method="post" enctype="multipart/form-data">
+                <input type="text" name="g_name" placeholder="Input goods name"><br>
+
+                <label>대표 이미지</label>
+                <input type="file" name="file1"><br>
+
+                <label>이미지</label>
+                <input type="file" name="file2"><br>
+
+                <label>이미지</label>
+                <input type="file" name="file3"><br>
+
+                <label>상세 설명 이미지</label>
+                <input type="file" name="file4"><br>
+
+                <label>Category</label>
+                <select name="c_no" id="primaryCategory" required="required">
+                    <option>Primary Category</option>
+                    <option value="1">사료</option>
+                    <option value="2">간식</option>
+                    <option value="3">미용용품</option>
+                    <option value="4">의류 / 액세사리</option>
+                    <option value="5">장난감</option>
+                </select>
+
+                <select id="firstCategory" name="c_no">
+                    <option>second Category</option>
+                    <option value="6">전연령</option>
+                    <option value="7">퍼피</option>
+                    <option value="8">어덜티</option>
+                    <option value="9">시니어</option>
+                </select>
+                <select id="secondCategory" name="c_no">
+                    <option>second Category</option>
+                    <option value="10">껌</option>
+                    <option value="11">육포/사시미</option>
+                    <option value="12">저키/트릿</option>
+                    <option value="13">수제</option>
+                </select>
+                <select id="thirdCategory" name="c_no">
+                    <option>second Category</option>
+                    <option value="14">구강관리</option>
+                    <option value="15">관리용품</option>
+                    <option value="16">브러쉬/가위/클리퍼</option>
+                    <option value="17">목욕용품</option>
+                </select>
+                <select id="fourthCategory" name="c_no">
+                    <option>second Category</option>
+                    <option value="18">티셔츠</option>
+                    <option value="19">아우터</option>
+                    <option value="20">액세사리</option>
+                    <option value="21">올인원</option>
+                </select>
+                <select id="fifthCategory" name="c_no">
+                    <option>second Category</option>
+                    <option value="1">공</option>
+                    <option value="2">노즈워크</option>
+                    <option value="3">로프/터그</option>
+                    <option value="4">인형</option>
+                </select>
+                <br>
+
+                <input type="text" name="g_explanation" placeholder="Input goods explanation"><br>
+
+                <input type="text" name="g_price" placeholder="Input goods price"><br>
+
+                <input type="button" value="INSERT" class="goodsInsertBtn" onclick="insertGoods();">
+                <input type="reset" value="RESET">
+                <input type="button" value="CANCEL" class="goodsCancelBtn">
+            </form>
+
+        </div>
+
+    </div>
+</section>
+
+<footer></footer>
+
+</body>
+</html>

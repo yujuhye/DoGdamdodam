@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title th:replace="~{admin/include/title_header_nav_footer.html::admin_title}"></title>
+
+
+<link rel="stylesheet" th:href="@{/css/admin/common.css}">
+<link rel="stylesheet" th:href="@{/css/admin/mgm/adminMgm.css}">
+
+<script th:replace="~{include/common_js.html::jquery_cdn}" type="text/javascript"></script>
+<script th:replace="~{admin/include/admin_mgm_js.html::js}" type="text/javascript"></script>
+
+
+</head>
+<body>
+
+<header th:replace="~{admin/include/title_header_nav_footer.html::admin_header}"></header>
+
+<nav th:replace="~{admin/include/title_header_nav_footer.html::admin_nav}"></nav>
+
+<section>
+
+	<div id="section_wrap">
+	
+		<div class="section_header">
+			<p>관리자 목록</p>
+		</div>
+		
+		<div class="waitingForArvList">
+			<a th:href="@{${adminConfig.requestMgmControllerPath(adminConfig.LIST_AND_MGM)}}">전체목록</a>
+			<a th:href="@{${adminConfig.requestMgmControllerPath(adminConfig.APPROVED_LIST)}}">승인목록</a>
+		</div>
+		
+		<div class="mgm_list">
+		
+			<table class="admin_table">
+				<thead>
+					<tr class="adminListHead">
+						<th>ID</th>
+						<th>이름</th>
+						<th>부서</th>
+						<th>직급</th>
+						<th>전자우편</th>
+						<th>연락처</th>
+						<th>가입일</th>
+						<th>승인날짜</th>
+						<th>승인여부</th>
+					</tr>
+				</thead>
+			
+				<tbody>
+					<tr class="adminListBody" th:each="adminlist : ${adminNoArvList}">
+					
+						<td class="aNo" th:text="${adminlist.a_no}"></td>
+						<td th:text="${adminlist.a_id}" va></td>
+						<td th:text="${adminlist.a_name}"></td>
+						<td th:text="${adminlist.a_part}"></td>
+						<td th:text="${adminlist.a_position}"></td>
+						<td th:text="${adminlist.a_mail}"></td>
+						<td th:text="${adminlist.a_phone}"></td>
+						<td th:text="${adminlist.a_reg_date}"></td>
+						<td th:text="${adminlist.a_arv_date}"></td>
+						<td class="adminMemberTd">
+							<a class="adminApvUpdateBtn" href="#none" th:text="${adminlist.a_approval eq 0 ? '대기' : '승인'}"></a>
+							
+						</td>
+						
+					</tr>
+				</tbody>
+			
+			</table>
+		
+		</div>
+		
+		
+	</div>
+
+</section>
+
+<footer th:replace="~{admin/include/title_header_nav_footer.html::admin_footer}"></footer>
+
+</body>
+</html>

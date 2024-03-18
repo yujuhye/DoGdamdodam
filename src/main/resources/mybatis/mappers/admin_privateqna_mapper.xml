@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dogdam.shop.admin.privateqa.IAprivateqnaDao">
+
+
+<select id="listupAdminPrivateqna" resultType = "com.dogdam.shop.admin.privateqa.APrivateqnaDto">
+         SELECT * FROM WEB_SERVICE_CENTER 
+				ORDER BY WS_REG_DATE DESC;
+
+</select>
+
+<update id="answerPrivateqnaYes" parameterType="map">
+			
+		UPDATE WEB_SERVICE_CENTER 
+	      		SET A_ID = #{a_id}, 
+	      		WS_ANSWER = #{ws_answer}, 
+	      		WS_COMPLETE = 1, 
+	      		WS_ANSWER_DATE = NOW() 
+	      		WHERE WS_NO = #{ws_no}
+	      		
+	</update>
+
+</mapper>

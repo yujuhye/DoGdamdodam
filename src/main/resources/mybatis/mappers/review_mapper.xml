@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper	namespace="com.dogdam.shop.user.review.IReviewDaoMybatis">
+
+	<select id="selectList" parameterType="Integer" resultType="com.dogdam.shop.user.review.ReviewDto">
+	    SELECT * FROM REVIEW WHERE G_NO = #{g_no} ORDER BY R_NO DESC
+	</select>
+	
+	<insert id="insertReview" parameterType="com.dogdam.shop.user.review.ReviewDto">
+	    INSERT INTO REVIEW(U_ID, G_NO, R_TEXT, R_THUMBNAIL_NAME, R_SECOND_NAME, R_THIRD_NAME, R_LAST_NAME, R_RATING, R_REG_DATE, R_MOD_DATE)
+	    SELECT #{u_id}, #{g_no}, #{r_text}, #{r_thumbnail_name}, #{r_second_name}, #{r_third_name}, #{r_last_name}, #{r_rating}, NOW(), NOW()
+	    FROM GOODS
+	    WHERE G_NO = #{g_no} AND EXISTS (SELECT 1 FROM `USER` WHERE U_ID = #{u_id})
+	</insert>
+	
+	<select id="reviewDetailView" parameterType="Integer" resultType="com.dogdam.shop.user.review.ReviewDto">
+	    SELECT * FROM REVIEW WHERE R_NO = #{r_no}
+	</select>
+	
+	<select id="selectReview" parameterType="Integer" resultType="com.dogdam.shop.user.review.ReviewDto">
+	    SELECT * FROM REVIEW WHERE R_NO = #{r_no}
+	</select>
+	
+	<update id="modifyReviewConfirm" parameterType="com.dogdam.shop.user.review.ReviewDto">
+    	UPDATE REVIEW
+		    SET
+		        R_TEXT = #{r_text},
+		        <if test="r_thumbnail_name != null">R_THUMBNAIL_NAME = #{r_thumbnail_name},</if>
+		        <if test="r_second_name != null">R_SECOND_NAME = #{r_second_name},</if>
+		        <if test="r_third_name != null">R_THIRD_NAME = #{r_third_name},</if>
+		        <if test="r_last_name != null">R_LAST_NAME = #{r_last_name},</if>
+		        R_RATING = #{r_rating},
+		        R_MOD_DATE = NOW()
+		    WHERE
+		        R_NO = #{r_no}
+		</update>
+	
+	<delete id="reviewDeleteConfirm" parameterType="Integer">
+        <![CDATA[
+        DELETE FROM REVIEW
+        WHERE R_NO = #{r_no}
+        ]]>
+    </delete>
+    
+    <!-- 문제 생기면 type 확인 -->
+    <select id="reviewAllSelect" parameterType="String" resultType="com.dogdam.shop.user.review.ReviewDto">
+	    SELECT * FROM REVIEW
+	    WHERE U_ID = #{u_id}
+	    ORDER BY R_NO DESC
+	</select>
+    
+    <select id="seletStar" resultType="com.dogdam.shop.user.review.ReviewDto">
+	    SELECT G_NO, AVG(R_RATING) AS r_rating FROM REVIEW GROUP BY G_NO
+	</select>
+	
+	<select id="userReviewAllSelect" parameterType="java.lang.String" resultType="com.dogdam.shop.user.review.ReviewDto">
+	    SELECT r.*, g.G_NAME, g.G_THUMBNAIL_NAME
+	    FROM REVIEW r
+	    JOIN GOODS g ON r.G_NO = g.G_NO
+	    WHERE r.U_ID = #{u_id}
+	    ORDER BY r.R_NO DESC
+	</select>
+	
+	<select id="selectModifyReview" parameterType="Integer" resultType="com.dogdam.shop.user.review.ReviewDto">
+	    SELECT *
+	    FROM REVIEW
+	    WHERE R_NO = #{r_no}
+	</select>
+	
+	
+</mapper>

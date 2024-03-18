@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+	주문번호: <span th:text="${newOrderNumber}"></span><br>
+	
+	주문이 성공적으로 완료되었습니다.
+	
+	<br><a th:href="@{/basket/myOrderList}">주문내역 ></a>
+	
+</body>
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script th:replace="~{/include/common_js.html::jquery_cdn}" type="text/javascript"></script>
+
+ <script type="text/javascript" th:src="@{/js/goods/order_details_form.js}"></script>
+ <link rel="stylesheet" th:href="@{/css/address_modal.css}">
+
+
+</head>
+<body>
+
+		<form th:action="@{/basket/basket_order_confirm}" th:name="order_details" th:method="post">
+			 
+			
+			<div id="order_person">
+
+				<h3>주문자</h3>
+				<span th:text="${session.loginedMemberDto.u_name + '(' + session.loginedMemberDto.u_id + ')'}"></span>
+			
+			</div>
+
+			<div id="delivery_address">
+			
+				
+				<div class="new_address" th:if="${addressDto == null}">
+				
+					<h3>배송지 정보</h3>
+					<input type="text" name="da_name" placeholder="수령인을 입력해주세요" required><br>
+					<input type="text" name="da_addr_phone" placeholder="연락처를 입력해주세요" required ><br>
+					<input type="text" name="da_addr_text" placeholder="배송지를 입력해주세요" required>
+					
+				</div>	
+				
+				
+				<div class="origin_address" th:unless="${addressDto == null}">	
+				   <input type="hidden" name="origin_da_no" th:value="${addressDto.da_no}">
+				   <input type="hidden" name="selected_da_no">
+				   
+		               <h3>배송지 정보</h3>
+		               <div class="da_name" th:text="${addressDto.da_name}"></div><br>
+		               <div class="da_addr_phone" th:text="${addressDto.da_addr_phone}"></div><br>
+		               <div class="da_addr_text" th:text="${addressDto.da_addr_text}"></div><br>
+		               <input type="button" class="modify_addr_btn" value="배송지변경">
+		               <!-- <input type="button" value="직접입력" onclick="writeAddress();"> -->
+				   
+				</div>
+				
+				<div id="addressModal" class="modal">
+				  <div class="modal-content">
+				    <span class="close">&times;</span>
+				    <div id="modalBody">
+				    	 
+				    </div>
+				  </div>
+				</div>
+				
+				
+			</div>
+			
+         	
+			<div id="order_goods">
+			
+				<h3>주문상품</h3>
+				<table>
+					<tbody>
+					    <tr th:each="entry : ${baksetgoodsMap.entrySet()}">
+					        <td>
+					        	<input type="hidden" name="g_no" th:value="${entry.key}">  
+					        	<input type="hidden" name="s_quantity" th:value="${entry.value.s_quantity}">  
+					            <a th:href="@{/admin/goods/goodsDetailView(g_no=${entry.key})}">
+					                <img th:src="@{${entry.value.g_thumbnail_name}}">
+					            </a>
+					        </td>
+					        <td>
+					            <a th:text="${entry.value.g_name}" th:href="@{/admin/goods/goodsDetailView(g_no=${entry.key})}"></a><br>
+					            <span th:text="${entry.value.g_price}"></span><span>원</span><br>
+					            <span>주문수량:</span> <span th:text="${entry.value.s_quantity}"></span><br>
+					        </td>
+					    </tr>
+					</tbody>
+				</table>
+			
+			</div>
+			
+			<div id="order_amount">
+			
+				<h3>주문금액</h3>
+				<span th:text="${baskettotalAmountExDel}"></span> <span>+ 배송비 3000원 = </span> <span th:text="${basketTotalAmount}"></span><span>원</span>
+			</div>
+			
+			<div id="donation_amount">
+			
+				<h3>기부금액</h3>
+				<span th:text="${basketDonationAmount}"></span><span>원</span>
+			
+			</div>
+			
+			
+			<input type="submit" value="주문하기" >
+			<input type="reset" value="취소">
+	
+		</form>
+
+
+</body>
+</html>

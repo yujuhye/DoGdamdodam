@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dogdam.shop.user.member.IUserMemberDaoForMybatis">
+
+	<select id="searchForDeleteMember" 
+			parameterType="String" 
+			resultType="int">
+	
+		SELECT 
+			COUNT(*) 
+		FROM 
+			DELETE_MEMBER 
+		WHERE 
+			D_M_ID = #{u_id}
+			
+	</select>
+	
+	<select id="searchForHasMember" 
+			parameterType="String" 
+			resultType="int">
+	
+		SELECT 
+			COUNT(*) 
+		FROM 
+			USER 
+		WHERE 
+			U_ID = #{u_id}
+	
+	</select>
+	
+	<insert id="insertMember" 
+			parameterType="com.dogdam.shop.user.member.MemberDto">
+	
+		INSERT INTO USER(U_ID, U_NAME, U_PW, U_NICKNAME, U_MAIL, U_PHONE, U_REG_DATE) 
+		VALUES(#{u_id}, #{u_name}, #{u_pw}, #{u_nickname}, #{u_mail}, #{u_phone}, NOW());
+	
+	</insert>
+	
+	<select id="selectMemberLogin" 
+			parameterType="com.dogdam.shop.user.member.MemberDto" 
+			resultType="com.dogdam.shop.user.member.MemberDto">
+			
+		SELECT 
+			* 
+		FROM 
+			USER 
+		WHERE 
+			U_ID = #{u_id} AND U_PW = #{u_pw}
+	
+	</select>
+	
+	<update id="updateMemberModify" 
+			parameterType="com.dogdam.shop.user.member.MemberDto">
+	
+		UPDATE 
+			USER 
+		SET 
+			U_MAIL= #{u_mail}, U_PHONE = #{u_phone}, U_MOD_DATE = NOW() 
+		WHERE 
+			U_NO = #{u_no}
+		
+	</update>
+	
+	<select id="getLatestMemberInfo" 
+			parameterType="com.dogdam.shop.user.member.MemberDto" 
+			resultType="com.dogdam.shop.user.member.MemberDto">
+			
+		SELECT 
+			* 
+		FROM 
+			USER 
+		WHERE 
+			U_NO = #{u_no}
+	
+	</select>
+	
+	<delete id="deleteMember" 
+			parameterType="int">
+			
+		DELETE 
+		FROM 
+			USER 
+		WHERE 
+			U_NO = #{u_no}
+	
+	</delete>
+	
+	<insert id="insertDeleteMember" 
+			parameterType="String">
+	
+		INSERT INTO DELETE_MEMBER VALUE(#{u_id})
+	
+	</insert>
+
+</mapper>
