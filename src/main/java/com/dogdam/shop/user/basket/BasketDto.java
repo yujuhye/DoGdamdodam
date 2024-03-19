@@ -24,5 +24,5 @@ public class BasketDto {
     private String g_reg_date;
     private String g_mod_date;
     
-    
+  
 }

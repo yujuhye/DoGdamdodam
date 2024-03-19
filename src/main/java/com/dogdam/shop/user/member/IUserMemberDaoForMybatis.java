@@ -22,4 +22,6 @@ public interface IUserMemberDaoForMybatis {
 
 	int insertDeleteMember(String u_id);
 
+	MemberDto selectMemberForLogin(MemberDto memberDto);
+
 }

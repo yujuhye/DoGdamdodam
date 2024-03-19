@@ -47,7 +47,7 @@
 	
 	<select id="getAddressInfoById" 
 	parameterType="String"
-	resultType="com.dogdam.shop.user.basket.AddressDto">
+	resultType="com.dogdam.shop.user.order.AddressDto">
 		
 		SELECT * FROM DELIVERY_ADDR
 		WHERE U_ID = #{u_id}
@@ -58,8 +58,8 @@
 	
 	
 	<select id="getLastOrderNumber" resultType="String">
-	    SELECT O_NO FROM ORDER_DETAILS 
-	    ORDER BY O_NO DESC 
+	    SELECT O_NO FROM ORDER_DETAILS
+	    ORDER BY O_NO DESC
 	    LIMIT 1
 	</select>
 	
@@ -169,7 +169,7 @@
 	
 	<select id="getMyAddresslist" 
 	parameterType="String"
-	resultType="com.dogdam.shop.user.basket.AddressDto">
+	resultType="com.dogdam.shop.user.order.AddressDto">
 	
 		SELECT * FROM DELIVERY_ADDR
 		WHERE

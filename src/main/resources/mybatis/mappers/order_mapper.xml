@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dogdam.shop.user.order.IOrderDaoForMybatis">
+
+	<select id="getGoods" 
+	parameterType="Integer" 
+	resultType="com.dogdam.shop.admin.goods.GoodsDto">
+		
+		SELECT
+		  	* 
+		FROM 
+			GOODS 
+		WHERE 
+		 	G_NO = #{g_no}
+		
+	</select>
+	
+	<select id="calculateDonation" 
+	parameterType="map" 
+	resultType="int">
+		
+		SELECT ROUND(G_PRICE * #{s_quantity}) * 0.01) 
+				FROM GOODS 
+				WHERE 
+				G_NO = #{g_no}
+		
+	</select>
+	
+	<select id="calculateorderAmount" 
+	parameterType="map" 
+	resultType="int">
+		
+		SELECT ROUND(G_PRICE * #{s_quantity}) + 3000
+				FROM GOODS 
+				WHERE 
+				G_NO = #{g_no}
+		
+	</select>
+	
+	<insert id="donationConfirm" parameterType="map">
+	
+		INSERT INTO DONATION(
+				U_ID, 
+				D_DONATION,
+				D_REG_DATE, 
+				D_MOD_DATE) 
+				VALUES(#{u_id}, ROUND(#{g_price} * #{s_quantity} * 0.01), NOW(), NOW())
+	
+	</insert>
+	
+	<insert id="newAddressConfirm" parameterType="map">
+	
+		INSERT INTO DELIVERY_ADDR( 
+				U_ID, 
+				DA_NAME, 
+				DA_ADDR_PHONE, 
+				DA_ADDR_TEXT, 
+				DA_REG_DATE, 
+				DA_MOD_DATE) 
+				VALUES(#{u_id}, #{da_name}, #{da_addr_phone}, #{da_addr_text}, NOW(), NOW())
+	
+	</insert>
+	
+	<update id="updateAddressDefault" parameterType="String">
+	
+		UPDATE DELIVERY_ADDR 
+				SET 
+				DA_DEFAULT = 1 
+				WHERE 
+				U_ID = #{u_id}
+	
+	</update>
+	
+	<select id="selectAddress" 
+	parameterType="String" 
+	resultType="com.dogdam.shop.user.order.AddressDto">
+		
+		SELECT * FROM DELIVERY_ADDR 
+				WHERE 
+				U_ID = #{u_id} AND DA_DEFAULT = 1
+		
+	</select>
+	
+<insert id="orderConfirm" parameterType="map">
+
+  INSERT INTO SALES(
+    G_NO,
+    U_ID,
+    DA_NO,
+    S_QUANTITY,
+    S_REG_DATE,
+    S_MOD_DATE
+  )
+  VALUES(#{g_no}, #{u_id}, #{da_no}, #{s_quantity}, NOW(), NOW())
+  
+</insert>
+	
+	<select id="selectAddressList" 
+	parameterType="String" 
+	resultType="com.dogdam.shop.user.order.AddressDto">
+	
+		SELECT * FROM DELIVERY_ADDR 
+				WHERE 
+				U_ID = #{u_id}
+	
+	</select>
+	
+	<insert id="insertWriteAddress" 
+	parameterType="map">
+	
+		INSERT INTO DELIVERY_ADDR( 
+				U_ID, 
+				DA_NAME, 
+				DA_ADDR_PHONE, 
+				DA_ADDR_TEXT,
+				DA_REG_DATE, 
+				DA_MOD_DATE) 
+				VALUES(#{u_id}, #{da_name}, #{da_addr_phone}, #{da_addr_text}, NOW(), NOW())
+	
+	</insert>
+	
+	<select id="selectedAddress" 
+	parameterType="Integer" 
+	resultType="com.dogdam.shop.user.order.AddressDto">
+	
+		SELECT * FROM DELIVERY_ADDR 
+				WHERE DA_NO = #{da_no}
+	
+	</select>
+	
+	
+</mapper>

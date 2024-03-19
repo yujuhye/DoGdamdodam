@@ -93,5 +93,16 @@
 		INSERT INTO DELETE_MEMBER VALUE(#{u_id})
 	
 	</insert>
+	
+	<select id="selectMemberForLogin"
+	parameterType="com.dogdam.shop.user.member.MemberDto"
+	resultType="com.dogdam.shop.user.member.MemberDto">
+	
+		SELECT * FROM 
+		  USER
+		WHERE 
+		  U_ID = #{u_id}
+	
+	</select>
 
 </mapper>

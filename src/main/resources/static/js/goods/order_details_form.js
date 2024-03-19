@@ -156,6 +156,7 @@ function ajax_save_new_address() {
         success: function(data) {
 			console.log('ajax_save_new_address COMMUNICATION SUCCESS!!');
 			
+			console.log('data>>>>>' + data);
 			
             let modalBody = document.getElementById("modalBody");
             let html = '<label><input type="radio" name="da_no" value="' + data + '">';

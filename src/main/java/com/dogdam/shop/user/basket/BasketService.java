@@ -182,13 +182,14 @@ public class BasketService {
 //			 Map<String, List<SalesDto>> orderNumbersGroupByOrderNumber = salesDtos.stream()
 //			            .collect(Collectors.groupingBy(SalesDto::getO_no));
 			 
-			 Map<String, List<SalesDto>> orderNumbersGroupByDatetime = salesDtos.stream()
+		 Map<String, List<SalesDto>> orderNumbersGroupByDatetime = salesDtos.stream()
 			            .collect(Collectors.groupingBy(SalesDto::getS_reg_date));
+		
+		 //내림차순
+		 Map<String, List<SalesDto>> sortedOrderNumbersGroupByDatetime = new TreeMap<>(Comparator.reverseOrder());
+			 sortedOrderNumbersGroupByDatetime.putAll(orderNumbersGroupByDatetime);
 			 
-//			 Map<Integer, List<SalesDto>> sortedOrderNumbersGroupByOrderNumber = new TreeMap<>(Comparator.reverseOrder());
-//			 sortedOrderNumbersGroupByOrderNumber.putAll(orderNumbersGroupByOrderNumber);
-			 
-			return orderNumbersGroupByDatetime;
+			return sortedOrderNumbersGroupByDatetime;
 		}
 
 		public int isBasketGNum(int g_no, String u_id) {

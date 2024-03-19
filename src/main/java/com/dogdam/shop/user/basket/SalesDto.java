@@ -38,4 +38,5 @@ public class SalesDto {
 	private String da_reg_date;
 	private String da_mod_date;
 
+	
 }

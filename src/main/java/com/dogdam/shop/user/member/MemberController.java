@@ -59,23 +59,23 @@ public class MemberController {
 		return nextPage;
 	}
 
-	@PostMapping("/login_confirm")
-	public String loginConfirm(MemberDto memberDto, HttpSession session) {
-		log.info("loginConfirm()");
-		String nextPage = "user/member/login_success";
-		MemberDto loginedMemberDto = memberService.loginConfirm(memberDto);
-		if (loginedMemberDto != null) {
-			
-			session.setAttribute("loginedMemberDto", loginedMemberDto);
-			session.setMaxInactiveInterval(60 * 30);
-			
-		} else {
-			nextPage = "user/member/login_fail";
-			
-		}
-		
-		return nextPage;
-	}
+//	@PostMapping("/login_confirm")
+//	public String loginConfirm(MemberDto memberDto, HttpSession session) {
+//		log.info("loginConfirm()");
+//		String nextPage = "user/member/login_success";
+//		MemberDto loginedMemberDto = memberService.loginConfirm(memberDto);
+//		if (loginedMemberDto != null) {
+//			
+//			session.setAttribute("loginedMemberDto", loginedMemberDto);
+//			session.setMaxInactiveInterval(60 * 30);
+//			
+//		} else {
+//			nextPage = "user/member/login_fail";
+//			
+//		}
+//		
+//		return nextPage;
+//	}
 
 	@GetMapping("/modify_form")
 	public String modifyForm() {

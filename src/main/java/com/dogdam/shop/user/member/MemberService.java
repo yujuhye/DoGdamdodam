@@ -2,6 +2,7 @@ package com.dogdam.shop.user.member;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import lombok.extern.log4j.Log4j2;
@@ -12,6 +13,9 @@ public class MemberService {
 
     @Autowired
     IUserMemberDaoForMybatis memberDao;
+    
+    @Autowired
+    PasswordEncoder passwordEncoder;
     
     public int selectForId(String u_id) {
 		log.info("selectForId()");
@@ -32,6 +36,7 @@ public class MemberService {
 
       int result = -1;
       
+      memberDto.setU_pw(passwordEncoder.encode(memberDto.getU_pw()));
       result = memberDao.insertMember(memberDto);
 
       return result;
@@ -42,7 +47,15 @@ public class MemberService {
     public MemberDto loginConfirm(MemberDto memberDto) {
         log.info("loginConfirm()");
 
-        return memberDao.selectMemberLogin(memberDto);
+//        return memberDao.selectMemberLogin(memberDto);
+        
+        MemberDto selectedMemberDtoById = memberDao.selectMemberForLogin(memberDto);
+        if(passwordEncoder.matches(memberDto.getU_pw(), selectedMemberDtoById.getU_pw())) {
+        	return selectedMemberDtoById;
+        } else {
+        	return null;
+        }
+        
     }
 
 

@@ -63,7 +63,7 @@ public class UserGoodsController {
 	
 	
 	// 상품 상세 화면 & 리뷰
-	@GetMapping("goodsDetailView")
+	@GetMapping("/goodsDetailView")
 	public String goodsDetailView(@RequestParam("g_no") int g_no, HttpSession session, Model model) {
 		log.info("goodsDetailView()");
 

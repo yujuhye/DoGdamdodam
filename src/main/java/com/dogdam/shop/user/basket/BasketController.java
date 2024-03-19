@@ -28,7 +28,6 @@ import lombok.extern.log4j.Log4j2;
 @RequestMapping("/basket")
 public class BasketController {
 	
-	
 
 	@Autowired 
 	BasketService basketService;
@@ -36,7 +35,7 @@ public class BasketController {
 	GoodsService goodsService;
 
 	
-	@PostMapping("/basketConfirm")
+	   @PostMapping("/basketConfirm")
 	   @ResponseBody
 	   public Object  basketConfirm(@RequestParam("g_no") int g_no, 
 			 @RequestParam("s_quantity") int s_quantity,  
@@ -73,11 +72,11 @@ public class BasketController {
 	      
 	      MemberDto loginedMemberDto =(MemberDto) session.getAttribute("loginedMemberDto");
 	      
-	       if (loginedMemberDto == null) {
-	          loginedMemberDto = new MemberDto();
-	            nextPage =  "redirect:/user/member/login_form";
-	          
-	          }
+//	       if (loginedMemberDto == null) {
+//	          loginedMemberDto = new MemberDto();
+//	            nextPage =  "redirect:/user/member/login_form";
+//	          
+//	          }
 	      
 	      List<BasketDto> basketDtos = basketService.getAllBasketList(loginedMemberDto.getU_id());
 	      
@@ -151,7 +150,7 @@ public class BasketController {
 	   public String basketOrderConfirm(@RequestParam( value="g_no", required = false) List<Integer> gNo, 
 			   @RequestParam(value="origin_da_no", defaultValue = "0") Integer originDaNo, 
 			   @RequestParam(value="selected_da_no", defaultValue = "-1") Integer selectedDaNo, 
-			   @RequestParam( value="s_quantity", required = false) List<Integer> sQuantity, Request request, 
+			   @RequestParam( value="s_quantity", required = false) List<Integer> sQuantity, 
 			    AddressDto addressDto, HttpSession session, Model model) {
 		   log.info("basketOrderConfirm");
 		   
@@ -241,9 +240,9 @@ public class BasketController {
 		          }
 		   
 		   String u_id = loginedMemberDto.getU_id();
-		   Map<String, List<SalesDto>> orderNumbersGroupByDatetime = basketService.getMyOrderList(u_id);
+		   Map<String, List<SalesDto>> sortedOrderNumbersGroupByDatetime = basketService.getMyOrderList(u_id);
 		   
-		   model.addAttribute("orderNumbersGroupByDatetime", orderNumbersGroupByDatetime);
+		   model.addAttribute("orderNumbersGroupByDatetime", sortedOrderNumbersGroupByDatetime);
 		   
 		   return nextPage;
 	   }
