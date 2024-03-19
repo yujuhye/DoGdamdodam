@@ -46,6 +46,7 @@ body {
 .ws_table td {
     border: 1px solid #ddd;
     padding: 8px;
+    word-wrap: break-word;
 }
 
 .ws_table .ws_yes_ws_tr td:nth-child(1),
@@ -87,19 +88,26 @@ body {
 
 .ws_table .hidden_ws_td {
     text-align: left;
-    padding: 20px 300px;
+    padding: 20px 470px 20px 425px;
 }
 
-.collapse.hidden_ws_contents .ws_inquiry {
-    padding-bottom: 50px;
+.ws_inquiry {
+    padding-bottom: 10px;
 }
 
-.collapse.hidden_ws_contents .answerorNot {
+.answer_privateqna_ajax_div textarea {
+    width: 600px;
+    height: 100px;
+    padding: 10px;
     margin-bottom: 10px;
+    resize: none;
+    font-family: inherit;
 }
 
-.ws_table .answer_privateqna_ajax_div > input[type="text"] {
-    width: 500px;
-    height: 300px;
-    /* 추가적인 스타일을 여기에 추가하세요 */
+.answer_privateqna_ajax_div {
+    text-align: left;
+}
+
+.answer_privateqna_wrap {
+	text-align: right;
 }

@@ -6,7 +6,6 @@ import lombok.Data;
 public class AQnaDto {
 	
 	private int gqa_no;
-	private String a_id;
 	private String u_id;
 	private String gqa_select_title;
 	private String gqa_input_title;
@@ -16,6 +15,7 @@ public class AQnaDto {
 	private String gqa_reg_date;
 	private String gqa_answer_date;
 	
+	private String a_id;
     private int g_no;
     private String g_name;
     private String g_thumbnail_name;

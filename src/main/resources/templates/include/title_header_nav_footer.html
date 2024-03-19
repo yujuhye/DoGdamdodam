@@ -13,6 +13,19 @@
 	
 	<div id="header_wrap" th:unless="${session.loginedMemberDto == null}">
 		<a th:href="@{/}">홈</a> &nbsp;&nbsp;
+		<a th:href="@{/}">정보수정</a> &nbsp;&nbsp;
+		<a th:href="@{/user/member/logout_confirm}">로그아웃</a> &nbsp;&nbsp;
+		<a th:href="@{/review/userReviewList(u_id=${session.loginedMemberDto.u_id})}">리뷰 리스트</a> &nbsp;&nbsp;
+		<a th:href="@{/user/qa/qnaListforUser}">상품 Q&A 리스트(개인)</a> &nbsp; &nbsp; 
+		<a th:href="@{/basket/myOrderList}">내주문상품</a>&nbsp;&nbsp;
+		<a th:href="@{/basket/basketList}">장바구니</a>&nbsp;&nbsp;
+		<a th:href="@{/user/bookmark/bookmarkList}">위시리스트</a>&nbsp;&nbsp;		
+
+		
+	</div>
+	
+<!-- 	<div id="header_wrap" th:unless="${session.loginedMemberDto == null}">
+		<a th:href="@{/}">홈</a> &nbsp;&nbsp;
 		<a th:href="@{/user/member/logout_confirm}">로그아웃</a> &nbsp;&nbsp;
 		<a th:href="@{/}">마이페이지</a> &nbsp;&nbsp;
 		<a th:href="@{/review/userReviewList(u_id=${session.loginedMemberDto.u_id})}">리뷰 리스트</a> &nbsp;&nbsp;
@@ -22,7 +35,7 @@
 		<a th:href="@{/basket/basketList}">장바구니</a>&nbsp;&nbsp;
 		<a th:href="@{/admin/goods/goodsList}">상품 리스트(상품 Q&A, 북마크 용)</a> &nbsp;&nbsp;
 		
-	</div>
+	</div> -->
 	
 </header>
 

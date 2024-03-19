@@ -4,7 +4,9 @@
 }
 
 .bm_heart{
-
 	text-align: right;
 }
 
+.bm_heart div {
+	margin-right: 10px;
+}

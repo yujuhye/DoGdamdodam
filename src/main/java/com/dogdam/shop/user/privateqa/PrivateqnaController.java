@@ -94,7 +94,7 @@ public class PrivateqnaController {
 				(MemberDto) session.getAttribute("loginedMemberDto");
 		
 		if(loginedMemberDto == null) {
-			return "user/member/login_form";
+			return "/user/member/login_form";
 		}
 		
 		privateqnaDto.setU_id(loginedMemberDto.getU_id());
@@ -104,7 +104,7 @@ public class PrivateqnaController {
      	int result = privateqnaService.createPrivateqnaConfirm(privateqnaDto);
      			
      	if (result <= 0)
-     	nextPage = "/user/privateqa/create_privateqna_ng";
+     	nextPage = "user/privateqa/create_privateqna_ng";
      			     			
 		return nextPage;
 	}

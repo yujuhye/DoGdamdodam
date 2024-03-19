@@ -123,8 +123,7 @@
                            		<img class = "bm_heart_full" th:src="@{/img/bookmark/fullheart.png}"></a>                          		
                            
                            	<a href="#none" class="bm_heart_on" th:unless="${isBookmarked}" th:attr="data-g_no=${goodsDto.g_no}">	
-                           		<img class = "bm_heart_empty" th:src="@{/img/bookmark/emptyheart.png}"></a>
-	                                	                         
+                           		<img class = "bm_heart_empty" th:src="@{/img/bookmark/emptyheart.png}"></a>	                                	                         
                         </div>
 					</div>
 				</div>
@@ -203,16 +202,16 @@
 	<!-- 상품문의 리스트 -->
 	<!-- 상품문의 리스트 -->
 	<div id="gqa_wrap">
-            <span>상품 문의</span>
+            <span class = "gqa_headline">상품 문의</span>
 
-            <div>
+            <div class = "gqa_go_inquery">
                 <a th:href="@{/user/qa/createQnaForm(g_no=${goodsDto.g_no})}">문의하기</a>
             </div>
 
             <div class="article">
                                
-                <table>
-                   <thead>
+                <table class = "gqa_table">
+                   <thead class = "gqa_thead">
                        <tr>
                            <th>고객ID</th>
                            <th>질문유형</th>
@@ -221,15 +220,15 @@
                            <th>등록시간</th>                                        
                        </tr>                                      
                    </thead>
-                    <tbody th:if="${#lists.isEmpty(qnaDtos)}">
+                    <tbody class="gqa_no_gqa_tbody" th:if="${#lists.isEmpty(qnaDtos)}">
                         <tr>
                             <td colspan="5"> 상품 문의가 없습니다.</td>
                         </tr>
                     </tbody>
-                    <tbody th:each="qnalist : ${qnaDtos}" th:if="${qnalist.g_no eq goodsDto.g_no}">
+                    <tbody class="gqa_yes_gqa_tbody" th:each="qnalist : ${qnaDtos}" th:if="${qnalist.g_no eq goodsDto.g_no}">
 
 
-                        <tr>
+                        <tr class="gqa_yes_gqa_tr">
                             <td th:utext="${#strings.length(qnalist.u_id) > 4 ? #strings.substring(qnalist.u_id, 0, 4) + '****' : qnalist.u_id}"></td>
                             <td th:text="${qnalist.gqa_select_title}"></td>
                             <td>
@@ -246,7 +245,7 @@
                         </tr>
 
                         <tr class="hidden_gqa_contents collapse">
-                            <td colspan="5">
+                            <td class="hidden_gqa_td" colspan="5">
                                 <span class="gqa_inquiry" th:text="${qnalist.gqa_inquiry}"></span><br>
                                 <span class="answerorNot" th:if="${qnalist.gqa_complete eq 0}"> </span>
                                 <span class="answerorNot" th:if="${qnalist.gqa_complete eq 1}"> 답변: </span>

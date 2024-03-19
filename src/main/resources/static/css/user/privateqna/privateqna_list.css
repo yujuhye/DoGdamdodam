@@ -45,8 +45,8 @@ body {
 }
 
 .ws_go_inquery a {
-    background-color: #007bff;
-    color: #fff;
+    background-color: #ffc107;
+    color: #333;
     padding: 10px 20px;
     text-decoration: none;
     border-radius: 5px;
@@ -54,7 +54,7 @@ body {
 }
 
 .ws_go_inquery a:hover {
-    background-color: #1e86f7;
+    background-color: #ffca28;
 
 }
 
@@ -108,11 +108,11 @@ body {
 
 .ws_table .hidden_ws_td {
     text-align: left;
-    padding : 20px 300px;
+    padding: 20px 300px 20px 325px;
 }
 
 .ws_table .ws_inquiry {
-    margin-bottom : 50px;
+    margin-bottom : 20px;
 }
 
 .ws_table .answerorNot {

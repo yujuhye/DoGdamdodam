@@ -7,6 +7,7 @@
 <link rel="stylesheet" th:href="@{/css/header_nav_footer.css}">
 
 <script type="text/javascript" th:src="@{/js/create_privateqna_form.js}"></script>
+<link rel="stylesheet" th:href="@{/css/user/privateqna/create_privateqna_form.css}">
 
 </head>
 <body>
@@ -31,7 +32,7 @@
 			th:name="create_privateqna_form" th:method="post">
 			<div class = "ws_title">
 		        <select name="ws_select_title">
-			        <option value="">선택</option>
+			        <option value="">선택 </option>
 				    <option value="회원정보문의">회원정보 문의</option>
 				    <option value="주문/결제문의">주문/결제문의</option>
 				    <option value="상품문의">상품 문의</option>
@@ -41,8 +42,8 @@
 			    <input type="text" name="ws_input_title" placeholder="제목을 입력하세요.">
 			</div>
 			
-			<div>
-				<input type="text" name="ws_inquiry" placeholder="문의사항을 입력하세요."><br>				
+			<div class = "ws_inquiry">
+				<textarea name="ws_inquiry" placeholder="문의사항을 입력하세요."></textarea><br>				
 			</div>	
 				
 			<div>

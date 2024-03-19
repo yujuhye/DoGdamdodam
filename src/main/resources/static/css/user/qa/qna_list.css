@@ -1,4 +1,126 @@
+/* 답변 부분 토글 */
 .hidden_gqa_contents {
-        display: none;
-    }
-    
+    display: none;
+}
+
+.privateqnaListBtn {
+
+    pointer-events: none;
+
+}
+
+.hidden_gqa_no {
+    display: none;
+}
+
+/* 섹션 스타일 */
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0 auto;
+    padding: 0;
+}
+
+#gqa_wrap {
+    margin: 50px auto;
+    width: 1400px;
+}
+
+/* 제목 */
+
+.gqa_headline {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    display: block;
+    text-align: left;
+}
+
+
+/* 테이블 스타일 */
+.gqa_table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.gqa_table th,
+.gqa_table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+.gqa_table .gqa_yes_gqa_tr td:nth-child(1),
+.gqa_table .gqa_yes_gqa_tr td:nth-child(2),
+.gqa_table .gqa_yes_gqa_tr td:nth-child(3),
+.gqa_table .gqa_yes_gqa_tr td:nth-child(5),
+.gqa_table .gqa_yes_gqa_tr td:nth-child(6),
+.gqa_table .gqa_yes_gqa_tr td:nth-child(7) {
+    text-align: center;
+}
+
+.gqa_table .gqa_yes_gqa_tr td:nth-child(4) {
+    text-align: left;
+    padding: 15px;
+}
+
+.gqa_table .gqa_yes_gqa_tr td:nth-child(1) {
+    width: 200px;
+}
+
+.gqa_table .gqa_yes_gqa_tr td:nth-child(2) {
+	width: 300px;
+}
+
+.gqa_table .gqa_yes_gqa_tr td:nth-child(3) {
+	width: 100px;
+}
+
+.gqa_table .gqa_yes_gqa_tr td:nth-child(5) {
+	width: 100px;
+}
+
+.gqa_table .gqa_yes_gqa_tr td:nth-child(6) {
+	width: 180px;
+}
+
+.gqa_table .gqa_yes_gqa_tr td:nth-child(7) {
+	width: 50px;
+}
+
+.gqa_table th {
+    background-color: #f2f2f2;
+    text-align: center;
+}
+
+/* 토글 버튼 스타일 */
+.gqa_toggle_title {
+    color: #007bff;
+    cursor: pointer;
+}
+
+/* 토글 버튼 호버 시 스타일 */
+.gqa_toggle_title:hover {
+    color: #FF5733;
+    /* 텍스트 색상 변경 */
+}
+
+/* 토글 버튼이 포함된 행의 셀 배경색 변경 */
+.gqa_yes_gqa_tr:hover td {
+    background-color: #f5f5f5;
+    /* 셀 배경색 변경 */
+}
+
+.gqa_table .hidden_gqa_td {
+    text-align: left;
+    padding: 20px 300px 20px 665px;
+}
+
+.gqa_inquiry {
+    padding-bottom: 10px;
+}
+
+.gqa_img {
+	
+	width: 40%;
+	
+}

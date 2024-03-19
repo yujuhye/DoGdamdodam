@@ -34,9 +34,7 @@ public class AQnaController {
 	public String adminQnaList(HttpSession session, Model model) {
 		log.info("adminQnaList()");
 		
-        String nextPage = "admin/qa/admin_qna_list";
-        
-		/* 어드민으로 수정해야 함 */
+        String nextPage = "admin/qa/admin_qna_list";      
         
 		AdminMemberDto adminMemberDto = (AdminMemberDto) session.getAttribute("adminMemberDto");
 		if(adminMemberDto == null)

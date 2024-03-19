@@ -190,7 +190,7 @@ public class GoodsController {
 	 * 상품 상세 화면
 	 */
 	@GetMapping("/goodsDetailView")
-	public String goodsDetailView(@RequestParam("g_no") int g_no, Model model) {
+	public String goodsDetailView(@RequestParam("g_no") int g_no, Model model, HttpSession session) {
 		log.info("goodsDetailView()");
 
 		String nextPage = "admin/goods/goods_detail_view";
@@ -200,6 +200,9 @@ public class GoodsController {
 
 		/* 상품 문의 부분 */
 		List<QnaDto> aQnaDtos = aQnaService.aQnaListforGoods(g_no);
+		AdminMemberDto adminMemberDto = (AdminMemberDto) session.getAttribute("adminMemberDto");
+		if(adminMemberDto == null)
+			return "redirect:/admin/member/login_form";
 		
 		model.addAttribute("goodsDto", goodsDto);
 		model.addAttribute("reviewDtos", reviewDtos);

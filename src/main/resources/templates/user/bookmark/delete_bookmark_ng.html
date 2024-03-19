@@ -5,6 +5,7 @@
 <title th:replace="~{include/title_header_nav_footer.html::user_title}"></title>
 <link rel="stylesheet" th:href="@{/css/common.css}">
 <link rel="stylesheet" th:href="@{/css/header_nav_footer.css}">
+<link rel="stylesheet" th:href="@{/css/user/ng_qna.css}">
 </head>
 <body>
 
@@ -17,10 +18,10 @@
     </nav>
 
     <section>
-		<div id="section_wrap">
+		<div id="section_wrap" class = "fail_text">
 			<span> 위시리스트 삭제에 실패했습니다. 관리자에게 문의해주세요. </span>
 		</div>
-		<div id="qna_list">
+		<div id="qna_list" class = "fail_button">
 			<a th:href="@{/user/qa/qnaList}">상품 문의 목록 보기</a>
 		</div>	
 		

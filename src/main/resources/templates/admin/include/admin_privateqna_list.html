@@ -15,7 +15,7 @@ function init_events() {
 		console.log('ANSWER_PRIVATEQNA BTN CLICK HANDLER!!');
 		debugger
 		let ws_no = $(this).data("ws_no");
-		let ws_answer = $("input[name='ws_answer_" + ws_no + "']").val();
+		let ws_answer = $("textarea[name='ws_answer_" + ws_no + "']").val();
 		
 		console.log('ws_no' + ws_no);
 		
@@ -63,11 +63,12 @@ function ajax_answer_privateqna_yes(ws_no, ws_answer) {
 			let updateResult = data.updateResult;
 			if (updateResult > 0) {
 				
+				alert('답변 등록이 완료되었습니다.');
+				
 				$('#answer_privateqna_table .answer_privateqna_no[data-ws_no=' + ws_no + ']').text('답변완료');
 				$('#answer_privateqna_table .answer_privateqna_no[data-ws_no=' + ws_no + ']').attr('class', 'answer_privateqna_yes');
 				$('#answer_privateqna_table .answer_privateqna_no_input[data-ws_no=' + ws_no + ']').hide();
-				$('#answer_privateqna_table .answer_privateqna_btn[data-ws_no=' + ws_no + ']').hide();
-				$('#answer_privateqna_table .answer_privateqna_no_reset[data-ws_no=' + ws_no + ']').hide();				
+				$('#answer_privateqna_table .answer_privateqna_btn[data-ws_no=' + ws_no + ']').hide();			
 				$('#answer_privateqna_table .answer_privateqna_yes_answer[data-ws_no=' + ws_no + ']').show();		
 				$('#answer_privateqna_table .answer_privateqna_no_text[data-ws_no=' + ws_no + ']').text('답변: ');
 				$('#answer_privateqna_table .answer_privateqna_yes_answer_now[data-ws_no=' + ws_no + ']').append(ws_answer);

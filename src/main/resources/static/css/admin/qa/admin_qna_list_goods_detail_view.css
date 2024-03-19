@@ -14,3 +14,126 @@
 	display: none;
 }
 
+/* 섹션 스타일 */
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0 auto;
+    padding: 0;
+}
+
+#gqa_wrap {
+    margin: 50px auto;
+    width: 1400px;
+}
+
+/* 제목 */
+
+.gqa_headline {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    display: block;
+    text-align: left;
+}
+
+
+/* 테이블 스타일 */
+.answer_gqa_table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.answer_gqa_table th,
+.answer_gqa_table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    word-wrap: break-word;
+}
+
+.answer_gqa_table .gqa_yes_gqa_tr td:nth-child(1),
+.answer_gqa_table .gqa_yes_gqa_tr td:nth-child(2),
+.answer_gqa_table .gqa_yes_gqa_tr td:nth-child(4),
+.answer_gqa_table .gqa_yes_gqa_tr td:nth-child(5) {
+    text-align: center;
+}
+
+.answer_gqa_table .gqa_yes_gqa_tr td:nth-child(3) {
+    text-align: left;
+    padding: 15px;
+}
+
+.answer_gqa_table .gqa_yes_gqa_tr td:nth-child(1) {
+    width: 200px;
+}
+
+.answer_gqa_table .gqa_yes_gqa_tr td:nth-child(2) {
+	width: 200px;
+}
+
+.answer_gqa_table .gqa_yes_gqa_tr td:nth-child(4) {
+	width: 100px;
+}
+
+.answer_gqa_table .gqa_yes_gqa_tr td:nth-child(5) {
+	width: 200px;
+}
+
+.answer_gqa_table th {
+    background-color: #f2f2f2;
+    text-align: center;
+}
+
+
+.gqa_toggle_title {
+    color: #007bff;
+    cursor: pointer;
+    text-decoration: none; 
+}
+
+
+.gqa_toggle_title:hover {
+    color: #FF5733;
+
+}
+
+/* 토글 버튼이 포함된 행의 셀 배경색 변경 */
+.gqa_yes_gqa_tr:hover td {
+    background-color: #f5f5f5;
+    /* 셀 배경색 변경 */
+}
+
+.answer_gqa_table .hidden_gqa_td {
+    text-align: left;
+    padding: 20px 455px 20px 447px;
+}
+
+.gqa_inquiry {
+    padding-bottom: 10px;
+}
+
+.answer_qna_ajax_div textarea {
+    width: 470px;
+    height: 100px;
+    padding: 10px;
+    margin-bottom: 10px;
+    resize: none;
+    font-family: inherit;
+}
+
+.answer_qna_ajax_div {
+    text-align: left;
+}
+
+.answer_qna_wrap {
+	text-align: right;
+}
+
+.answer_qna_btn {
+	text-decoration: none;
+	color: inherit;
+}
+
+.answer_qna_btn:visited  {
+	color: inherit;
+}

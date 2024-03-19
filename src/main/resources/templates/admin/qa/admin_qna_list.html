@@ -27,12 +27,12 @@
     <section>
 
         <div id="gqa_wrap">
-            <span>상품 문의 리스트</span>
+            <span class = "gqa_headline">상품 문의 리스트</span>
 
             <div class="article">
                                
-                <table id="answer_qna_table">
-                   <thead>
+                <table id = "answer_qna_table" class="answer_gqa_table">
+                   <thead class = "gqa_thead">
                        <tr>
                            <th>상품이미지</th>
                            <th>상품이름</th>
@@ -44,16 +44,16 @@
                            <th>답변시간</th>                      
                        </tr>                                      
                    </thead>
-                    <tbody th:if="${#lists.isEmpty(aQnaDtos)}">
+                    <tbody class="gqa_no_gqa_tbody" th:if="${#lists.isEmpty(aQnaDtos)}">
                         <tr>
                             <td colspan="8">상품 문의가 없습니다.</td>
                         </tr>
                     </tbody>
-                    <tbody th:attr="data-gqa_no=${aqnalist.gqa_no}" th:each="aqnalist : ${aQnaDtos}">
+                    <tbody class="gqa_yes_gqa_tbody" th:attr="data-gqa_no=${aqnalist.gqa_no}" th:each="aqnalist : ${aQnaDtos}">
 
-                        <tr>
+                        <tr class="gqa_yes_gqa_tr">
                             <td><a th:href="@{/admin/goods/goodsDetailView(g_no=${aqnalist.g_no})}">
-						            <img th:src="@{'http://14.42.124.95:8091/goodsUploadImg/' + ${aqnalist.g_thumbnail_name}}" />
+						            <img class = "gqa_img" th:src="@{'http://14.42.124.95:8091/goodsUploadImg/' + ${aqnalist.g_thumbnail_name}}" />
 						         
 						        </a> 
 						    </td>
@@ -67,10 +67,10 @@
 
                             </td>
                             <td class ="answer_qna_ajax_td">
-	                            <a class="answer_qna_no" th:attr="data-gqa_no=${aqnalist.gqa_no}" th:if="${aqnalist.gqa_complete eq 0}" href="#none">
-	                                답변대기 </a>
-	                            <a class="answer_qna_yes" th:attr="data-gqa_no=${aqnalist.gqa_no}" th:unless="${aqnalist.gqa_complete eq 0}" href="#none">
-	                                답변완료 </a>	                                
+	                            <div class="answer_qna_no" th:attr="data-gqa_no=${aqnalist.gqa_no}" th:if="${aqnalist.gqa_complete eq 0}" href="#none">
+	                                답변대기 </div>
+	                            <div class="answer_qna_yes" th:attr="data-gqa_no=${aqnalist.gqa_no}" th:unless="${aqnalist.gqa_complete eq 0}" href="#none">
+	                                답변완료 </div>	                                
 	                        </td> 
                             <td th:text="${aqnalist.gqa_reg_date}"></td>
                              <td>
@@ -82,20 +82,22 @@
                         </tr>
 
                         <tr class="hidden_gqa_contents collapse">
-                            <td colspan="8">
+                            <td class="hidden_gqa_td" colspan="8">
                                 <div class="gqa_inquiry" th:text="${aqnalist.gqa_inquiry}"></div>
-                                <div class = "answer_qna_ajax_div">
-	                                <a class="answer_qna_no_input" th:attr="data-gqa_no=${aqnalist.gqa_no}" th:if="${aqnalist.gqa_complete eq 0}" href="#none">                              
-										<input type ="text" th:name="'gqa_answer_' + ${aqnalist.gqa_no}" placeholder = "1:1 문의에 대한 답변을 입력하세요."><br> </a>
-		                            <a class ="answer_qna_btn" href = "#none" th:attr="data-gqa_no=${aqnalist.gqa_no}" th:if="${aqnalist.gqa_complete eq 0}">답변하기</a>		                                                                           
-	                                 
-	                                <a class="answer_qna_no_text" th:attr="data-gqa_no=${aqnalist.gqa_no}" th:if="${aqnalist.gqa_complete eq 0}" href="#none">                              
-										</a>
-									<a class="answer_qna_yes_text" th:attr="data-gqa_no=${aqnalist.gqa_no}" th:unless="${aqnalist.gqa_complete eq 0}" href="#none">
-	                                    답변: </a>
-	                                    
-	                                    <div class="answer_qna_yes_answer_now" th:attr="data-gqa_no=${aqnalist.gqa_no}" > </div>
-										<div class="answer_qna_yes_answer_usual" th:attr="data-gqa_no=${aqnalist.gqa_no}" th:text="${aqnalist.gqa_answer}" th:unless="${aqnalist.gqa_complete eq 0}"> </div>			                                                                           
+                                <div class = "answer_qna_ajax_div" th:attr="data-gqa_no=${aqnalist.gqa_no}">
+	                                <div class="answer_qna_no_input" th:attr="data-gqa_no=${aqnalist.gqa_no}" th:if="${aqnalist.gqa_complete eq 0}" href="#none">                              
+										<textarea type ="text" th:name="'gqa_answer_' + ${aqnalist.gqa_no}" placeholder = "1:1 문의에 대한 답변을 입력하세요."></textarea></div>
+		                            <div class = "answer_qna_wrap" th:attr="data-gqa_no=${aqnalist.gqa_no}">
+		                                <a class ="answer_qna_btn" href = "#none" th:attr="data-gqa_no=${aqnalist.gqa_no}" th:if="${aqnalist.gqa_complete eq 0}">답변하기</a>
+		                            </div>			                            	                          
+	                                <div class = "answerorNot"> 
+		                                <div class="answer_qna_no_text" th:attr="data-gqa_no=${aqnalist.gqa_no}" th:if="${aqnalist.gqa_complete eq 0}" href="#none">                              
+											</div>
+										<div class="answer_qna_yes_text" th:attr="data-gqa_no=${aqnalist.gqa_no}" th:unless="${aqnalist.gqa_complete eq 0}" href="#none">
+		                                    답변: </div>
+	                                </div>    
+	                                <div class="answer_qna_yes_answer_now" th:attr="data-gqa_no=${aqnalist.gqa_no}" > </div>
+									<div class="answer_qna_yes_answer_usual" th:attr="data-gqa_no=${aqnalist.gqa_no}" th:text="${aqnalist.gqa_answer}" th:unless="${aqnalist.gqa_complete eq 0}"> </div>			                                                                           
 	                                 
                                  </div>
                             </td>

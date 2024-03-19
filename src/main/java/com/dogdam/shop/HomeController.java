@@ -73,8 +73,4 @@ public class HomeController {
 	}
 }
 
-// task 001
-// task 002
-// task 003
 
-// kms test

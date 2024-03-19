@@ -5,6 +5,7 @@
 <title th:replace="~{include/title_header_nav_footer.html::user_title}"></title>
 <link rel="stylesheet" th:href="@{/css/common.css}">
 <link rel="stylesheet" th:href="@{/css/header_nav_footer.css}">
+<link rel="stylesheet" th:href="@{/css/user/ng_qna.css}">
 </head>
 <body>
 
@@ -17,10 +18,10 @@
     </nav>
 
     <section>
-		<div id="section_wrap">
+		<div id="section_wrap" class = "fail_text">
 			<span> 질문 등록에 문제가 발생했습니다. 다시 작성해 주세요. </span>
 		</div>
-		<div id="privateqna_form">
+		<div id="privateqna_form" class = "fail_btn">
 			<a th:href="@{/user/privateqa/createPrivateqnaForm}">다시 문의하기</a>
 		</div>	
 		

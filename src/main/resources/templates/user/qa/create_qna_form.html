@@ -7,6 +7,7 @@
 <link rel="stylesheet" th:href="@{/css/header_nav_footer.css}">
 
 <script type="text/javascript" th:src="@{/js/create_qna_form.js}"></script>
+<link rel="stylesheet" th:href="@{/css/user/qa/create_qna_form.css}">
 
 </head>
 <body>
@@ -43,8 +44,8 @@
 			    <input type="text" name="gqa_input_title" placeholder="제목을 입력하세요.">
 			</div>
 			
-			<div>
-				<input type="text" name="gqa_inquiry" placeholder="문의사항을 입력하세요."><br>				
+			<div class = "gqa_inquiry" >
+				<textarea name="gqa_inquiry" placeholder="문의사항을 입력하세요."></textarea>				
 			</div>	
 				
 			<div>					

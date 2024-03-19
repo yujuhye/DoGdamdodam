@@ -57,11 +57,11 @@
                                 <a href="#" class="ws_toggle_title" th:text="${aprivateqnalist.ws_input_title}"></a>
 
                             </td>
-                            <td class ="answer_privateqna_ajax_td">
-	                            <a class="answer_privateqna_no" th:attr="data-ws_no=${aprivateqnalist.ws_no}" th:if="${aprivateqnalist.ws_complete eq 0}" href="#none">
-	                                답변대기 </a>
-	                            <a class="answer_privateqna_yes" th:attr="data-ws_no=${aprivateqnalist.ws_no}" th:unless="${aprivateqnalist.ws_complete eq 0}" href="#none">
-	                                답변완료 </a>
+                            <td class ="answer_privateqna_ajax_td" >
+	                            <div class="answer_privateqna_no" th:attr="data-ws_no=${aprivateqnalist.ws_no}" th:if="${aprivateqnalist.ws_complete eq 0}">
+	                                답변대기 </div>
+	                            <div class="answer_privateqna_yes" th:attr="data-ws_no=${aprivateqnalist.ws_no}" th:unless="${aprivateqnalist.ws_complete eq 0}">
+	                                답변완료 </div>
 	                                
 	                        </td> 
                             <td th:text="${aprivateqnalist.ws_reg_date}"></td>    
@@ -76,18 +76,20 @@
                         <tr class="hidden_ws_contents collapse">
                             <td class="hidden_ws_td" colspan="6">
                                 <div class="ws_inquiry" th:text="${aprivateqnalist.ws_inquiry}"></div>
-                                <div class = "answer_privateqna_ajax_div">
-	                                <a class="answer_privateqna_no_input" th:attr="data-ws_no=${aprivateqnalist.ws_no}" th:if="${aprivateqnalist.ws_complete eq 0}" href="#none">                              
-										<input type ="text" th:name="'ws_answer_' + ${aprivateqnalist.ws_no}" placeholder = "1:1 문의에 대한 답변을 입력하세요."><br> </a>
-		                            <a class ="answer_privateqna_btn" href = "#none" th:attr="data-ws_no=${aprivateqnalist.ws_no}" th:if="${aprivateqnalist.ws_complete eq 0}">답변하기</a>		                                                                           
+                                <div class = "answer_privateqna_ajax_div" th:attr="data-ws_no=${aprivateqnalist.ws_no}">
+	                                <div class="answer_privateqna_no_input" th:attr="data-ws_no=${aprivateqnalist.ws_no}" th:if="${aprivateqnalist.ws_complete eq 0}" > 	                                               
+										 <textarea th:name="'ws_answer_' + ${aprivateqnalist.ws_no}" placeholder="1:1 문의에 대한 답변을 입력하세요." ></textarea></div>
+									<div class = "answer_privateqna_wrap" th:attr="data-ws_no=${aprivateqnalist.ws_no}">
+		                                <a class ="answer_privateqna_btn" href = "#none" th:attr="data-ws_no=${aprivateqnalist.ws_no}" th:if="${aprivateqnalist.ws_complete eq 0}">답변하기</a>
+		                            </div>		                                                                           
 	                            <div class = "answerorNot">    
-	                                <a class="answer_privateqna_no_text" th:attr="data-ws_no=${aprivateqnalist.ws_no}" th:if="${aprivateqnalist.ws_complete eq 0}" href="#none">                              
-										</a>
-									<a class="answer_privateqna_yes_text" th:attr="data-ws_no=${aprivateqnalist.ws_no}" th:unless="${aprivateqnalist.ws_complete eq 0}" href="#none">
-	                                    답변: </a>
+	                                <div class="answer_privateqna_no_text" th:attr="data-ws_no=${aprivateqnalist.ws_no}" th:if="${aprivateqnalist.ws_complete eq 0}" >                              
+										</div>
+									<div class="answer_privateqna_yes_text" th:attr="data-ws_no=${aprivateqnalist.ws_no}" th:unless="${aprivateqnalist.ws_complete eq 0}" >
+	                                    답변: </div>
 	                            </div>         
-	                                    <div class="answer_privateqna_yes_answer_now" th:attr="data-ws_no=${aprivateqnalist.ws_no}" > </div>
-										<div class="answer_privateqna_yes_answer_usual" th:attr="data-ws_no=${aprivateqnalist.ws_no}" th:text="${aprivateqnalist.ws_answer}" th:unless="${aprivateqnalist.ws_complete eq 0}"> </div>			                                                                           
+	                            <div class="answer_privateqna_yes_answer_now" th:attr="data-ws_no=${aprivateqnalist.ws_no}" > </div>
+								<div class="answer_privateqna_yes_answer_usual" th:attr="data-ws_no=${aprivateqnalist.ws_no}" th:text="${aprivateqnalist.ws_answer}" th:unless="${aprivateqnalist.ws_complete eq 0}"> </div>			                                                                           
 	                                 
                                  </div>
                             </td>

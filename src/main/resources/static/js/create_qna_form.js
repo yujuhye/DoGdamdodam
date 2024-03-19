@@ -17,6 +17,7 @@ function createQnaForm() {
 			form.gqa_inquiry.focus();
 			
 		} else {
+			alert('문의 사항이 저장되었습니다.');
 			form.submit();
 			
 		}

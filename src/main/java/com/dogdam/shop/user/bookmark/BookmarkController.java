@@ -87,14 +87,15 @@ public class BookmarkController {
 	public String bookmarkList(HttpSession session, Model model) {
 		log.info("bookmarkList()");
 		
-        String nextPage = "/user/bookmark/bookmark_list";
-        
+     
 		MemberDto loginedMemberDto = 
 				(MemberDto) session.getAttribute("loginedMemberDto");
 		
 		if(loginedMemberDto == null) {
 			return "user/member/login_form";
 		}
+		
+        String nextPage = "/user/bookmark/bookmark_list";
 				
 		List<BookmarkDto> bookmarkDtos = bookmarkService.bookmarkList(loginedMemberDto.getU_id());
 		

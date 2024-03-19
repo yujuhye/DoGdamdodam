@@ -1,0 +1,35 @@
+body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+
+    header, nav, section, footer {
+        width: 100%;
+        background-color: #f5f5f5;
+        padding: 20px;
+        box-sizing: border-box;
+    }
+
+    header, footer {
+        text-align: center;
+    }
+
+    .fail_text {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .fail_btn a {
+        background-color: #ffca28;
+        color: #333;
+        display: inline-block;
+        padding: 10px 20px;
+        text-decoration: none;
+        transition: background-color 0.3s;
+        border-radius: 5px;
+    }
+
+    .fail_btn a:hover {
+        background-color: #FF5733;
+    }

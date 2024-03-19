@@ -15,7 +15,7 @@ function init_events() {
 		console.log('ANSWER_QNA BTN CLICK HANDLER!!');
 		debugger
 		let gqa_no = $(this).data("gqa_no");
-		let gqa_answer = $("input[name='gqa_answer_" + gqa_no + "']").val();
+		let gqa_answer = $("textarea[name='gqa_answer_" + gqa_no + "']").val();
 		
 		console.log('gqa_no' + gqa_no);
 		
@@ -63,11 +63,12 @@ function ajax_answer_qna_yes(gqa_no, gqa_answer) {
 			let updateResult = data.updateResult;
 			if (updateResult > 0) {
 				
+				alert('답변 등록이 완료되었습니다.');
+				
 				$('#answer_qna_table .answer_qna_no[data-gqa_no=' + gqa_no + ']').text('답변완료');
 				$('#answer_qna_table .answer_qna_no[data-gqa_no=' + gqa_no + ']').attr('class', 'answer_qna_yes');
 				$('#answer_qna_table .answer_qna_no_input[data-gqa_no=' + gqa_no + ']').hide();
-				$('#answer_qna_table .answer_qna_btn[data-gqa_no=' + gqa_no + ']').hide();
-				$('#answer_qna_table .answer_qna_no_reset[data-gqa_no=' + gqa_no + ']').hide();				
+				$('#answer_qna_table .answer_qna_btn[data-gqa_no=' + gqa_no + ']').hide();			
 				$('#answer_qna_table .answer_qna_yes_answer[data-gqa_no=' + gqa_no + ']').show();		
 				$('#answer_qna_table .answer_qna_no_text[data-gqa_no=' + gqa_no + ']').text('답변: ');
 				$('#answer_qna_table .answer_qna_yes_answer_now[data-gqa_no=' + gqa_no + ']').append(gqa_answer);

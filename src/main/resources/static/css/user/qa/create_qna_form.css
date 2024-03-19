@@ -1,0 +1,85 @@
+section {
+    text-align: center;
+    margin: 50px 0;
+}
+
+#section_wrap span {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.create_qna_form {
+    margin-top: 30px;
+    display: inline-block;
+    text-align: left;
+    border: 1px solid #ccc;
+    padding: 40px; 
+    border-radius: 5px;
+    text-align: center;
+}
+
+.gqa_title {
+    margin-bottom: 5px;
+}
+
+.gqa_title select,
+.gqa_title input[type="text"] {
+    width: calc(100% - 20px); 
+    margin-bottom: 10px;
+    padding: 10px; 
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.gqa_title select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+}
+
+.gqa_title input[type="text"] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+.gqa_inquiry textarea[name="gqa_inquiry"] {
+    width: calc(100% - 22px); 
+    height: 100px;
+    margin: 5px 0 10px; 
+    padding: 10px; 
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box; 
+    resize: none;
+    font-family: inherit;
+}
+
+.create_qna_form input[type="button"],
+.create_qna_form input[type="reset"] {
+    background-color: #ffc107;
+    color: #333; 
+    border: none;
+    padding: 10px 30px; 
+    margin: 5px;
+    cursor: pointer;
+    width: calc(50% - 50px); 
+    border-radius: 5px;
+}
+
+.create_qna_form input[type="reset"] {
+    width: calc(50% - 50px); 
+}
+
+.create_qna_form input[type="button"]:hover,
+.create_qna_form input[type="reset"]:hover {
+    background-color: #ffca28; 
+}
+
+.create_qna_form input[type="button"]:focus,
+.create_qna_form input[type="reset"]:focus {
+    outline: none;
+}
