@@ -3,21 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-<link rel="stylesheet" th:href="@{/css/user/order/my_order_list.css}">
-<script type="text/javascript" th:src="@{/js/order/myOrder_list.js}"></script>
-	
 </head>
 <body>
 
-
 	<div id="order_list">
-    <h3>나의 주문내역</h3>
-		
-	    <table>
+	
+		 <table>
 	        <tbody>
-	            <tr th:each="entry : ${orderNumbersGroupByDatetime.entrySet()}">
+	            <tr th:each="entry : ${sortedsearchOrderGroupByDatetime.entrySet()}">
 	                <td>
 	                	<div th:text="${#strings.substring(entry.key, 0, 10)}"></div>
 	                	<input type="hidden" class="datetime" th:value="${entry.key}">
@@ -26,10 +19,10 @@
 	                </td>
 	                <td>
 	                    <div th:each="salesDto : ${entry.value}">
-	                        <a th:href="@{/admin/goods/goodsDetailView(g_no=${salesDto.g_no})}">
+	                        <a th:href="@{/user/goods/goodsDetailView(g_no=${salesDto.g_no})}">
 	                            <img th:src="@{'http://14.42.124.95:8091/goodsUploadImg/' + ${salesDto.g_thumbnail_name}}">
 	                        </a><br>
-	                        <a th:text="${salesDto.g_name}" th:href="@{/admin/goods/goodsDetailView(g_no=${salesDto.g_no})}"></a><br>
+	                        <a th:text="${salesDto.g_name}" th:href="@{/user/goods/goodsDetailView(g_no=${salesDto.g_no})}"></a><br>
 	                        <div class="product_info">
 		                        <span class="g_price" th:text="${salesDto.g_price}"></span><span>원</span><br>
 		                        <span>주문수량:</span> <span class="s_quantity" th:text="${salesDto.s_quantity}"></span><br>
@@ -49,6 +42,8 @@
 	            </tr>
 	        </tbody>
 	    </table>
+		
+	
 	</div>
 
 

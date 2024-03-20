@@ -1,0 +1,111 @@
+ul {
+    list-style-type: none; 
+    padding: 0;
+}
+
+/* 장바구니 목록 컨테이너에 대한 스타일 */
+#basket_list {
+    margin: 20px auto; 
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    max-width: 800px; 
+}
+
+/* 체크박스에 대한 스타일 */
+#basket_list input[type="checkbox"] {
+    margin-right: 10px;
+    transform: scale(1.5); 
+}
+
+/* 상품 아이템 컨테이너에 대한 스타일 */
+.goods_item {
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #fff;
+    position: relative; /* 상대 위치 설정 */
+}
+
+/* "삭제" 버튼에 대한 스타일 */
+.goods_info input[type="button"] {
+    position: absolute;
+    top: 0; 
+    right: 0; 
+    background-color: #ff6347;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.goods_info input[type="button"]:hover {
+    background-color: #cc4125; 
+}
+
+/* 상품 이미지에 대한 스타일 */
+.goods_item img {
+    max-width: 100px;
+    max-height: 100px;
+    margin-right: 10px;
+}
+
+/* 상품 정보에 대한 스타일 */
+.goods_info {
+    margin-top: 5px;
+    display: inline-block;
+    vertical-align: top; 
+}
+
+/* 총 가격 컨테이너에 대한 스타일 */
+.total_price {
+    margin-top: 10px;
+    padding: 10px;
+    text-align: center; 
+    border-top: 1px solid #ddd;
+    font-weight: bold; 
+    font-size: 20px; 
+}
+
+/* 상품이 장바구니에 없을 때 문구에 대한 스타일 */
+#basket_list div th:unless p {
+    font-style: italic;
+    color: #777;
+}
+
+/* 주문하기 버튼에 대한 스타일 */
+.order_btn input[type="button"] {
+    display: block; 
+    margin: 20px auto; 
+    background-color: #007bff; 
+    color: white; 
+    padding: 10px 20px; 
+    border: none;
+    border-radius: 5px;
+    font-size: 21px; 
+    cursor: pointer;
+}
+
+/* 주문하기 버튼 호버 효과 */
+.order_btn input[type="button"]:hover {
+    background-color: #0056b3; 
+}
+
+.goods_info span {
+    font-weight: bold;
+    color: #666; 
+}
+
+/* 상품 이름에 대한 스타일 */
+.goods_info h3 a {
+    text-decoration: none; 
+    color: #333;
+}
+
+/* 마우스를 갖다대었을 때 상품 이름에만 밑줄 표시 */
+.goods_info h3 a:hover {
+    text-decoration: underline; 
+}

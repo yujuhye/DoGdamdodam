@@ -43,6 +43,8 @@ public interface IBasketDaoForMybatis {
 	public List<AddressDto> getMyAddresslist(String u_id);
 
 	public int saveAddress(Map<String, Object> addressConfirmMap);
+
+	public List<SalesDto> getMySearchList(Map<String, Object> searchMap);
 	
 	
 }

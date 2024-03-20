@@ -200,4 +200,14 @@
 	
 	</insert>
 	
+	<select id="getMySearchList"
+	parameterType="map"
+	resultType="com.dogdam.shop.user.basket.SalesDto">
+	
+		SELECT * FROM SALES
+		WHERE 
+		U_ID = #{u_id} AND S_REG_DATE LIKE CONCAT('%', #{s_reg_date}, '%')
+	
+	</select>
+	
 </mapper>

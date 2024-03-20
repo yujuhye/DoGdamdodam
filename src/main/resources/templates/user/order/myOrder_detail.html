@@ -3,6 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
+<link rel="stylesheet" th:href="@{/css/user/order/myOrder_detail.css}">
+
 </head>
 <body>
 
@@ -37,15 +40,35 @@
 						</tr>
 					</thead>
 
+					  <tbody>
+	                    <tr th:each="goods : ${myOrderGoods}">
+	                        <td>
+	                            <div class="product_info">
+	                                <a th:href="@{/user/goods/goodsDetailView(g_no=${goods.g_no})}">
+	                                    <img th:src="@{'http://14.42.124.95:8091/goodsUploadImg/' + ${goods.g_thumbnail_name}}" />
+	                                </a>
+	                                <div>
+	                                    <a th:text="${goods.g_name}" th:href="@{/admin/goods/goodsDetailView(g_no=${goods.g_no})}"></a>
+	                                    <span th:text="${goods.g_price}"></span><span>원</span>
+	                                    <span>주문수량:</span> <span th:text="${goods.s_quantity}"></span>
+	                                </div>
+	                            </div>
+	                        </td>
+	                    </tr>
+                	</tbody>
+			</table>
+			
+			<table>
+					<thead>
+						<tr>
+							<th>총주문 가격</th>
+						</tr>
+					</thead>
+
 					<tbody>
-						<tr th:each="goods : ${myOrderGoods}">
+						<tr>
 							<td>
-								 <div><a th:text="${goods.g_name}" th:href="@{/admin/goods/goodsDetailView(g_no=${goods.g_no})}"></a></div>
-								 <a th:href="@{/admin/goods/goodsDetailView(g_no=${goods.g_no})}">
-            						<img th:src="@{${goods.g_thumbnail_name}}">
-        						 </a>
-								<div th:text="${goods.g_price}"></div>
-								<span>주문수량:</span><span th:text="${goods.s_quantity}"></span>
+								 <span th:text="${totalPrice}"></span><span>원</span>
 							</td>
 						</tr>
 					</tbody>
@@ -61,9 +84,9 @@
 					<tbody>
 						<tr>
 							<td>
-								<div th:text="${myOrderInfo.da_name}"></div>
-								<div th:text="${myOrderInfo.da_addr_phone}"></div>
-								<div th:text="${myOrderInfo.da_addr_text}"></div>
+								<span>수령인:</span> <span th:text="${myOrderInfo.da_name}"></span><br>
+								<span>연락처:</span> <span th:text="${myOrderInfo.da_addr_phone}"></span><br>
+								<span>주소:</span> <span th:text="${myOrderInfo.da_addr_text}"></span><br>
 							</td>
 						</tr>
 					</tbody>
