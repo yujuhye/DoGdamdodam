@@ -245,6 +245,26 @@ public class BasketService {
 			return da_no;
 		}
 
+		public Map<String, List<SalesDto>> getMySearchList(String u_id, String s_reg_date) {
+			log.info("getMySearchList");
+			
+			 Map<String, Object> searchMap = new HashMap<>();
+			 searchMap.put("u_id", u_id);
+			 searchMap.put("s_reg_date", s_reg_date);
+			
+			List<SalesDto> salesDtos = basketDao.getMySearchList(searchMap);
+			
+			 Map<String, List<SalesDto>> searchOrderGroupByDatetime = salesDtos.stream()
+			            .collect(Collectors.groupingBy(SalesDto::getS_reg_date));
+		
+			 //내림차순
+			 Map<String, List<SalesDto>> sortedsearchOrderGroupByDatetime = new TreeMap<>(Comparator.reverseOrder());
+			 sortedsearchOrderGroupByDatetime.putAll(searchOrderGroupByDatetime);
+			
+			
+			return sortedsearchOrderGroupByDatetime;
+		}
+
 
 
 

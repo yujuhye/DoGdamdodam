@@ -268,7 +268,9 @@ public class BasketController {
 	   }
 	   
 	   @GetMapping("/myOrderDetail")
-	   public String myOrderDetail(@RequestParam("s_reg_date") String s_reg_date, Model model) {
+	   public String myOrderDetail(@RequestParam("s_reg_date") String s_reg_date, 
+			   @RequestParam("totalPrice") int totalPrice,
+			   Model model) {
 		   log.info("myOrderDetail");
 		   
 		   String nextPage="user/order/myOrder_detail";
@@ -278,6 +280,8 @@ public class BasketController {
 		   
 		   model.addAttribute("myOrderInfo", myOrderInfo);
 		   model.addAttribute("myOrderGoods", myOrderGoods);
+		   model.addAttribute("totalPrice", totalPrice);
+		   
 		   
 		   return nextPage;
 	   }
@@ -306,6 +310,23 @@ public class BasketController {
 		  int da_no =  basketService.saveAddress(u_id, addressDto);
 		   
 		   return da_no;
+	   }
+	   
+	   @GetMapping("/searchOrderConfirm")
+	   public String searchOrderConfirm(@RequestParam("s_reg_date") String s_reg_date,
+			   HttpSession session, Model model) {
+		   log.info("searchOrderConfirm");
+		   
+		   String nextPage="/user/order/search_date";
+		   
+		   MemberDto loginedMemberDto =(MemberDto) session.getAttribute("loginedMemberDto");
+		   String u_id = loginedMemberDto.getU_id();
+		   
+		   Map<String, List<SalesDto>> sortedsearchOrderGroupByDatetime = basketService.getMySearchList(u_id, s_reg_date);
+		   
+		   model.addAttribute("sortedsearchOrderGroupByDatetime", sortedsearchOrderGroupByDatetime);
+		   
+		   return nextPage;
 	   }
 	
 }
