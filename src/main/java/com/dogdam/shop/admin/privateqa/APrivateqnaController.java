@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.dogdam.shop.admin.AdminConfig;
 import com.dogdam.shop.admin.member.AdminMemberDto;
 import com.dogdam.shop.user.member.MemberDto;
 
@@ -26,6 +27,9 @@ public class APrivateqnaController {
 	
 	@Autowired
 	APrivateqnaService aPrivateqnaService;
+	
+	@Autowired
+	AdminConfig adminConfig;
 	/*
 	 * PRIVATE Q&A LIST
 	 */
@@ -35,6 +39,7 @@ public class APrivateqnaController {
 		log.info("adminPrivateqnaList()");
 		
         String nextPage = "/admin/privateqa/admin_privateqna_list";
+        model.addAttribute(AdminConfig.ATTRIBUTE_NAME, adminConfig);
         
         AdminMemberDto adminMemberDto = (AdminMemberDto) session.getAttribute("adminMemberDto");
 		if(adminMemberDto == null)

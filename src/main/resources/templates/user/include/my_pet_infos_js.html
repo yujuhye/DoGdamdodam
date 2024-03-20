@@ -12,27 +12,33 @@ function petDelete() {
 		let requestDto = {
 			'p_no': p_no,
 		}
+		let result = confirm('해당 마이펫을 삭제하시겠습니까?')
+		if(result) {
 
-		$.ajax({
-			url:"/user/member/pet/delete_pet",
-			method:'post',
-			data: JSON.stringify(requestDto),
-			contentType: 'application/json; charset=utf-8',
-			dataType: 'json',
-			success: function(data) {
-					
-				if(data.success) {
-					console.log('data success 성공');
-					petInfoPageSetUp();
-					
-				} else {
-					console.log('서버 통신 성공, false');
-				}
+			$.ajax({
+				url:"/user/member/pet/delete_pet",
+				method:'post',
+				data: JSON.stringify(requestDto),
+				contentType: 'application/json; charset=utf-8',
+				dataType: 'json',
+				success: function(data) {
+						
+					if(data.success) {
+						console.log('data success 성공');
+						petInfoPageSetUp();
+						
+					} else {
+						console.log('서버 통신 성공, false');
+					}
+	
+				}, error: function(data) {
+						console.log('서버 통신 실패');
+					}
+				})
+		} else {
+			return;
+		}
 
-			}, error: function(data) {
-					console.log('서버 통신 실패');
-				}
-			})
 	})
 
 
@@ -131,12 +137,12 @@ function petModifyClickHandler() {
 						
 						$ul.find('li').remove();
 						$ul.append(`
-							<li>
+							<li class="modifyLi">
 								<form th:action="/user/member/pet/modify_pet" name="register_pet" method="post">
 									<input type="hidden" name="pm_no" value="${userPetInfoDto.p_no}">
-									<input type="text" name="pm_name" value="${userPetInfoDto.p_name}"><br>
-									<input type="text" name="pm_species" value="${userPetInfoDto.p_species}"><br>
-									<input type="number" name="pm_age" value="${userPetInfoDto.p_age}">
+									<input type="text" name="pm_name" value="${userPetInfoDto.p_name}">
+									<input type="text" name="pm_species" value="${userPetInfoDto.p_species}">
+									<input type="number" name="pm_age" value="${userPetInfoDto.p_age}">살<br>
 									<a class="modifyBtnClickHandler">수정</a><a class="modifyCancle">취소</a>
 								</form>
 							</li>
@@ -330,7 +336,7 @@ function newPetRegisterForm() {
 				<form th:action="/user/member/pet/register_pet" name="register_pet" method="post">
 					<input type="text" name="p_name" placeholder="펫이름 입력"><br>
 					<input type="text" name="p_species" placeholder="견종 입력"><br>
-					<input type="number" name="p_age" placeholder="나이 입력">
+					<input type="number" name="p_age" placeholder="나이 입력"><br>
 					<a class="registerBtnClickHandler">등록</a>
 				</form>
 				`);
@@ -375,28 +381,29 @@ function petInfoPageSetUp() {
     			console.log('maindto:' + mainPetDto);
     			$('.petListWrap').append('<div class="mainPet"></div>')
     			$('.petListWrap').append('<div class="myPetList"><div class="petInfo"></div></div>')
-				$('.mainPet').append('<h3>대표펫</h3>');
+    			$('.mainPet').append('<div class="mainPetDiv"></div>')
+				$('.mainPetDiv').append('<h3>대표 마이펫</h3>');
 
 				if(NoMainpet == true || mainPetDto == undefined) {
-					$('.mainPet').append('<span>대표펫으로 지정된 펫이 없습니다.</sapn>')
+					$('.mainPetDiv').append('<span>대표펫으로 지정된 펫이 없습니다.</sapn>')
 					} else {
-					$('.mainPet').append('<ul data-pno="' + mainPetDto.p_no + '"><li>'+ mainPetDto.p_name +'</li><li>' + mainPetDto.p_species + '</li><li>' + mainPetDto.p_age + '살</li><li>' + mainPetDto.p_reg_date + '</li></ul>');
+					$('.mainPetDiv').append('<ul data-pno="' + mainPetDto.p_no + '"><li>'+ mainPetDto.p_name +'</li><li>' + mainPetDto.p_species + '</li></ul>');
 				}
 				
 				for(let i = 0; i < petInfoDtos.length; i++) {
 
 					let appendTag = '<ul>';
-						appendTag += '<li>';
-						appendTag += '<span>이름 : ' + petInfoDtos[i].p_name + '</span><a class="petModify" data-pno="' + petInfoDtos[i].p_no + '" id="' + petInfoDtos[i].p_no + '">수정</a><a class="petDelete" data-pno="' + petInfoDtos[i].p_no + '" >삭제</a>';
+						appendTag += '<li class="firstLi">';
+						appendTag += '<span>' + petInfoDtos[i].p_name + '</span><a class="petModify" data-pno="' + petInfoDtos[i].p_no + '" id="' + petInfoDtos[i].p_no + '">수정</a><a class="petDelete" data-pno="' + petInfoDtos[i].p_no + '" >삭제</a>';
 						appendTag += '</li>';
 						appendTag += '<li>';
-						appendTag += '<span>견종 : ' + petInfoDtos[i].p_species + '</span>';
+						appendTag += '<span>' + petInfoDtos[i].p_species + '</span>';
 						appendTag += '</li>';
 						appendTag += '<li>';
 						appendTag += '<span>' + petInfoDtos[i].p_age + '살</span>';
 						appendTag += '</li>';
-						appendTag += '<li>';
-						appendTag += '<span>등록일 : ' + petInfoDtos[i].p_reg_date + '</span><a class="mainPetChange" data-pno="' + petInfoDtos[i].p_no + '">대표 펫 변경</a>';
+						appendTag += '<li class="lastLi">';
+						appendTag += '<span>등록일  ' + petInfoDtos[i].p_reg_date + '</span><a class="mainPetChange" data-pno="' + petInfoDtos[i].p_no + '">대표마이펫 변경</a>';
 						appendTag += '</li>';
 						appendTag += '</ul>';
 

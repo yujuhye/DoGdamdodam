@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.dogdam.shop.admin.AdminConfig;
 import com.dogdam.shop.admin.member.AdminMemberDto;
 import com.dogdam.shop.user.member.MemberDto;
 
@@ -26,6 +27,10 @@ public class AQnaController {
 	
 	@Autowired
 	AQnaService aQnaService;
+	
+	@Autowired
+	AdminConfig adminConfig;
+	
 	/*
 	 * GOODS Q&A LIST
 	 */
@@ -34,7 +39,12 @@ public class AQnaController {
 	public String adminQnaList(HttpSession session, Model model) {
 		log.info("adminQnaList()");
 		
+
         String nextPage = "admin/qa/admin_qna_list";      
+
+        model.addAttribute(AdminConfig.ATTRIBUTE_NAME, adminConfig);
+		/* 어드민으로 수정해야 함 */
+
         
 		AdminMemberDto adminMemberDto = (AdminMemberDto) session.getAttribute("adminMemberDto");
 		if(adminMemberDto == null)

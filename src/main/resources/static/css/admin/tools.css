@@ -1,0 +1,11 @@
+#section_wrap .section_header {
+	height: 80px;
+	line-height: 80px;
+	text-align: center;
+	font-size: 1.7em;
+	font-weight: 700;
+}
+
+.menu_container {
+	display: grid;
+}

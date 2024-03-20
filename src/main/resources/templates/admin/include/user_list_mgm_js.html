@@ -50,7 +50,7 @@ function setPagination() {
     }
     
     //처음 페이지
-    if(pageMakerDto.currentSetPage.pageNum > 10) {
+    if(pageMakerDto.currentSetPage.pageNum > 5) {
             $('.page_no').append('<a href="#none" data-pagenum="1">1</a><span>..</span>');
     }
     
@@ -74,7 +74,9 @@ function setPagination() {
     }
 
     //전체 페이지 숫자와 클릭시 해당 마지막페이지 이동
+    if(pageMakerDto.currentSetPage.pageNum > 5) {
     $('.page_no').append('<a href="#none" data-pagenum="' + pageMakerDto.totalPage + '">..' + pageMakerDto.totalPage + '</a>');
+    }
 
 }
 

@@ -2,9 +2,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title th:replace="~{include/title_header_nav_footer.html::user_title}"></title>
-<link rel="stylesheet" th:href="@{/css/common.css}">
-<link rel="stylesheet" th:href="@{/css/header_nav_footer.css}">
+<title th:replace="~{admin/include/title_header_nav_footer.html::admin_title}"></title>
+<link rel="stylesheet" th:href="@{/css/admin/common.css}">
+
 
 <link rel="stylesheet" th:href="@{/css/admin/qa/admin_qna_list.css}">
 <script type="text/javascript" th:src="@{/js/admin_qna_list.js}"></script>
@@ -16,13 +16,9 @@
 
 <body>
 
-    <header th:replace="~{include/title_header_nav_footer.html::user_header}">
+    <header th:replace="~{admin/include/title_header_nav_footer.html::admin_header}"></header>
 
-    </header>
-
-    <nav th:replace="~{include/title_header_nav_footer.html::user_nav}">
-
-    </nav>
+    <nav th:replace="~{admin/include/title_header_nav_footer.html::admin_nav}"></nav>
 
     <section>
 
@@ -109,9 +105,8 @@
         </div>
     </section>
 
-    <footer th:replace="~{include/title_header_nav_footer.html::user_footer}">
-
-    </footer>
+    <footer th:replace="~{admin/include/title_header_nav_footer.html::admin_footer}"></footer>
+    
 </body>
 
 </html>

@@ -36,21 +36,34 @@ public class AdminMgmController {
 	AdminMgmService adminMgmService;
 	
 	@GetMapping(AdminConfig.LIST_AND_MGM)
-	public Object listAndMgm(Model model) {
+	public Object listAndMgm(Model model, 
+							@RequestParam(value = "pageNum", required = false, defaultValue = PageDefaultConfig.DEFAULT_PAGE_NUMBER) int pageNum, 
+							@RequestParam(value = "amonut", required = false, defaultValue = PageDefaultConfig.DEFAULT_AMOUNT) int amount, 
+							@RequestParam(value = "searchText", required = false, defaultValue = "") String searchText) {
 		log.info("listAndMgm()");
 		
 		model.addAttribute(AdminConfig.ATTRIBUTE_NAME, adminConfig);
 		
 		String nextPage = AdminConfig.managementViewPath(AdminConfig.LIST_AND_MGM);
 		
+		Map<String, Object> map;
 		
+		if(searchText.isEmpty()) {
+			map = adminMgmService.getAllAdminItme(pageNum, amount);
+		} else {
+			map = adminMgmService.searchAdminItme(pageNum, amount, searchText);
+		}
 		
-		List<AdminMemberDto> adminDtos = adminMgmService.adminListup();
+		List<AdminMemberDto> adminDtos = (List<AdminMemberDto>) map.get("adminDtos");
+		PageMakerDto pageMakerDto = (PageMakerDto) map.get("pageMakerDto");
 		
 		model.addAttribute("adminListup", adminDtos);
 		
-		
+		model.addAttribute("pageMakerDto", pageMakerDto);
+		model.addAttribute("searchText", searchText);
+	
 		return nextPage;
+		
 	}
 	
 	
@@ -74,31 +87,59 @@ public class AdminMgmController {
 	}
 	
 	@GetMapping(AdminConfig.WAITING_FOR_ARV_LIST)
-	public String waitingForArvList(Model model) {
+	public String waitingForArvList(Model model, 
+									@RequestParam(value = "pageNum", required = false, defaultValue = PageDefaultConfig.DEFAULT_PAGE_NUMBER) int pageNum, 
+									@RequestParam(value = "amonut", required = false, defaultValue = PageDefaultConfig.DEFAULT_AMOUNT) int amount, 
+									@RequestParam(value = "searchText", required = false, defaultValue = "") String searchText) {
 		log.info("waitingForArvList()");
 		
 		model.addAttribute(AdminConfig.ATTRIBUTE_NAME, adminConfig);
 		
 		String nextPage = AdminConfig.managementViewPath(AdminConfig.WAITING_FOR_ARV_LIST);
 		
-		List<AdminMemberDto> adminDtos = adminMgmService.adminNoArvList();
+		Map<String, Object> map;
+		
+		if(searchText.isEmpty()) {
+			map = adminMgmService.getWaitingAdminItme(pageNum, amount);
+		} else {
+			map = adminMgmService.searchWaitingAdminItme(pageNum, amount, searchText);
+		}
+		
+		List<AdminMemberDto> adminDtos = (List<AdminMemberDto>) map.get("adminDtos");
+		PageMakerDto pageMakerDto = (PageMakerDto) map.get("pageMakerDto");
 		
 		model.addAttribute("adminNoArvList", adminDtos);
+		model.addAttribute("pageMakerDto", pageMakerDto);
+		model.addAttribute("searchText", searchText);
 		
 		return nextPage;
 	}
 	
 	@GetMapping(AdminConfig.APPROVED_LIST)
-	public String approvedList(Model model) {
+	public String approvedList(Model model, 
+								@RequestParam(value = "pageNum", required = false, defaultValue = PageDefaultConfig.DEFAULT_PAGE_NUMBER) int pageNum, 
+								@RequestParam(value = "amonut", required = false, defaultValue = PageDefaultConfig.DEFAULT_AMOUNT) int amount, 
+								@RequestParam(value = "searchText", required = false, defaultValue = "") String searchText) {
 		log.info("approvedList()");
 		
 		model.addAttribute(AdminConfig.ATTRIBUTE_NAME, adminConfig);
 		
 		String nextPage = AdminConfig.managementViewPath(AdminConfig.APPROVED_LIST);
 		
-		List<AdminMemberDto> adminDtos = adminMgmService.approvedList();
+		Map<String, Object> map;
+		
+		if(searchText.isEmpty()) {
+			map = adminMgmService.getApprovedAdminItme(pageNum, amount);
+		} else {
+			map = adminMgmService.searchApprovedAdminItme(pageNum, amount, searchText);
+		}
+		
+		List<AdminMemberDto> adminDtos = (List<AdminMemberDto>) map.get("adminDtos");
+		PageMakerDto pageMakerDto = (PageMakerDto) map.get("pageMakerDto");
 		
 		model.addAttribute("approvedList", adminDtos);
+		model.addAttribute("pageMakerDto", pageMakerDto);
+		model.addAttribute("searchText", searchText);
 		
 		return nextPage;
 	}
@@ -125,14 +166,12 @@ public class AdminMgmController {
 		String nextPage = AdminConfig.managementViewPath(AdminConfig.USER_LIST_MGM);
 		
 		Map<String, Object> map;
+		
 		if(searchText.isEmpty()) {
 			map = adminMgmService.getAllUserItme(pageNum, amount);
 		} else {
 			map = adminMgmService.searchUserItme(pageNum, amount, searchText);
 		}
-		
-		
-		
 		
 		List<MemberDto> memberDtos = (List<MemberDto>) map.get("memberDtos");
 		PageMakerDto pageMakerDto = (PageMakerDto) map.get("pageMakerDto");

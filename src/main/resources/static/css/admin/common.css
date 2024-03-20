@@ -3,6 +3,12 @@
 	
 }
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 a {
 	color: #404040;
 	text-decoration: none;
@@ -20,8 +26,8 @@ body {
 #header_wrap {
 	height: 90px;
 
-    background-color: rgba(242, 102, 102, 0.3);
-	
+    background-color: rgba(242, 102, 102, 0.2);
+	border-radius: 0 0 15px 15px;
 }
 
 #header_wrap p {
@@ -40,7 +46,7 @@ body {
 	border-top: rgba(160, 157, 157, 0.3) 2px double;
 	border-bottom: rgba(160, 157, 157, 0.3) 3px solid;
 	box-shadow: 1px 1px 4px 1px rgba(59, 57, 57, 0.2);
-	
+	border-radius: 6px;
 }
 
 #nav_wrap a:hover {

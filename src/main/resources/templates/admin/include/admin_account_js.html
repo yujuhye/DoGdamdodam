@@ -18,7 +18,7 @@ function sendIdRequest(a_id) {
                 $("#idTestResult").text("이미 존재하는 아이디입니다, 다시 시도해주세요.");
             } else {
                 $("#hiddenValue").val("1");
-                $(".adminIdTest").text("완료");
+                $(".adminIdTest").text("가입가능");
                 $("#idTestResult").text("가입 가능한 아이디입니다!");
             }
 
@@ -35,10 +35,13 @@ function init() {
     $(".adminIdTest").click(function(e) {
         e.preventDefault(); // <a>의 기본 속성 저지
 
-        var hiddenValue = $("#hiddenValue").val();
-        var a_id = $("#a_id").val();
+        let hiddenValue = $("#hiddenValue").val();
+        let a_id = $("#a_id").val();
 
         if(hiddenValue === "1") {
+            return;
+        } else if(a_id === '') {
+            alert('아이디를 입력해주세요');
             return;
         }
 
@@ -54,6 +57,14 @@ function init() {
 $(document).ready(function() {
     console.log('document ready!');
     init();
+
+    $('#a_id').on('input', function() {
+
+        $("#hiddenValue").val("0");
+        $(".adminIdTest").text("중복검사");
+        $("#idTestResult").empty();
+
+    })
 
 })
 

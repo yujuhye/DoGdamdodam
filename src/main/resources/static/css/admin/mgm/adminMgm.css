@@ -10,8 +10,10 @@
 	height: 80px;
 	line-height: 80px;
 	text-align: center;
-	font-size: 1.5em;
+	font-size: 1.7em;
 	font-weight: 700;
+	margin-top: 10px;
+	margin-bottom: 30px;
 }
 
 .mgm_list {
@@ -30,7 +32,7 @@
 
 .admin_table {
 	width: 1300px;
-
+	border-radius: 5px;
 	margin: auto;
 
 }
@@ -39,6 +41,7 @@
 	height: 40px;
 	font-size: 18px;
 	font-weight: 600;
+	background-color: rgba(209, 201, 201, 0.3);
 
 }
 
@@ -78,5 +81,57 @@
 	background-color: rgba(160, 157, 157, 0.2);
 	border-radius: 8px;
 	
+}
+
+.admin_search {
+	margin-top: 50ox;
+	margin-bottom: 5px;
+	text-align: center;
+
+}
+
+.searchText {
+	padding: 3px 10px;
+	font-size: 1.1em;
+	border-radius: 3px;
+	width: 250px;
+	border: 1px solid #c5c2c2;
+	outline-color: rgba(197, 158, 158, 0.6);;
+	
+}
+
+
+.admin_search a {
+	padding: 5px 8px;
+	border: 1px solid rgba(197, 158, 158, 0.6);
+	border-radius: 6px;
+	font-weight: bold;
+}
+
+.admin_search a:hover {
+	background-color: rgba(214, 171, 171, 0.6);
+}
+
+.page_container {
+	text-align: center;
+	margin-top: 30px;
+}
+
+.page_no a {
+	padding: 4px 11px;
+	margin: 0 7px;
+	font-weight: 500;
+	font-size: 20px;
+	color: #242424;
+}
+
+.page_no a:hover {
+	background-color: rgba(197, 158, 158, 0.5);
+	border-radius: 15px;
+}
+
+.selectedPageNum {
+	background-color: rgba(197, 158, 158, 0.5);
+	border-radius: 15px;
 }
 

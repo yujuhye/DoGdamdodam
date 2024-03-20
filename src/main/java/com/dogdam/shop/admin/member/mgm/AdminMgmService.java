@@ -20,25 +20,6 @@ public class AdminMgmService {
 	
 	@Autowired
 	IAdminMgmDaoForMybatis adminMgmDao;
-
-	public List<AdminMemberDto> adminListup() {
-		log.info("adminListup()");
-		
-		return adminMgmDao.selectAllAdmins();
-	}
-	
-	public List<AdminMemberDto> adminNoArvList() {
-		log.info("adminNoArvList()");
-		
-		return adminMgmDao.selectNoArvAdmins();
-	}
-	
-	public List<AdminMemberDto> approvedList() {
-		log.info("approvedList()");
-		
-		return adminMgmDao.selectApprovedAdmins();
-	}
-	
 	
 
 	public void approvalUpdate(int a_no) {
@@ -98,13 +79,7 @@ public class AdminMgmService {
 		
 	}
 
-	public List<MemberDto> selectForAllUser() {
-		log.info("selectForAllUser()");
-		
-		
-		return adminMgmDao.selectForAllUser();
-	}
-
+	// 유저 목록 페이징처리 스타트
 	public Map<String, Object> getAllUserItme(int pageNum, int amount) {
 		log.info("getAllUserItme()");
 		
@@ -144,6 +119,118 @@ public class AdminMgmService {
 		
 		map.put("pageMakerDto", pageMakerDto);
 		
+		
+		return map;
+	}
+	// 유저 목록 페이징처리 엔드
+	
+	//어드민 페이징처리
+	public Map<String, Object> getAllAdminItme(int pageNum, int amount) {
+		log.info("getAllAdminItme()");
+		
+		Map<String, Object> map = new HashMap<>();
+		
+		CurrentSetPage currentSetPage = new CurrentSetPage(pageNum, amount);
+		
+		List<AdminMemberDto> adminDtos = adminMgmDao.getAllAdminItme(currentSetPage);
+		map.put("adminDtos", adminDtos);
+		
+		int totalPageNo = adminMgmDao.getTotalAdminPage();
+		PageMakerDto pageMakerDto = new PageMakerDto(currentSetPage, totalPageNo);
+		map.put("pageMakerDto", pageMakerDto);
+		
+		
+		return map;
+	}
+
+	public Map<String, Object> searchAdminItme(int pageNum, int amount, String searchText) {
+		log.info("searchAdminItme()");
+		
+		Map<String, Object> map = new HashMap<>();
+		
+		CurrentSetPage currentSetPage = new CurrentSetPage(pageNum, amount);
+		int skipPage = currentSetPage.getSkipPage();
+		
+		List<AdminMemberDto> adminDtos = adminMgmDao.searchAdminItem(skipPage, amount, searchText);
+		map.put("adminDtos", adminDtos);
+		
+		int totalPageNo = adminMgmDao.getTotalNoBySearchAdmin(searchText);
+		PageMakerDto pageMakerDto = new PageMakerDto(currentSetPage, totalPageNo);
+		map.put("pageMakerDto", pageMakerDto);
+		
+		return map;
+	}
+
+	public Map<String, Object> getApprovedAdminItme(int pageNum, int amount) {
+		log.info("getApprovedAdminItme()");
+		
+		Map<String, Object> map = new HashMap<>();
+		
+		CurrentSetPage currentSetPage = new CurrentSetPage(pageNum, amount);
+		
+		List<AdminMemberDto> adminDtos = adminMgmDao.getApprovedAdminItme(currentSetPage);
+		map.put("adminDtos", adminDtos);
+		
+		int totalPageNo = adminMgmDao.getTotalApprovedAdminPage();
+		PageMakerDto pageMakerDto = new PageMakerDto(currentSetPage, totalPageNo);
+		map.put("pageMakerDto", pageMakerDto);
+		
+		
+		return map;
+	}
+
+	public Map<String, Object> searchApprovedAdminItme(int pageNum, int amount, String searchText) {
+		log.info("searchApprovedAdminItme()");
+		
+		Map<String, Object> map = new HashMap<>();
+		
+		CurrentSetPage currentSetPage = new CurrentSetPage(pageNum, amount);
+		int skipPage = currentSetPage.getSkipPage();
+		
+		List<AdminMemberDto> adminDtos = adminMgmDao.searchApprovedAdminItem(skipPage, amount, searchText);
+		map.put("adminDtos", adminDtos);
+		
+		int totalPageNo = adminMgmDao.getTotalNoBySearchApprovedAdmin(searchText);
+		PageMakerDto pageMakerDto = new PageMakerDto(currentSetPage, totalPageNo);
+		map.put("pageMakerDto", pageMakerDto);
+		
+		return map;
+	}
+
+
+	public Map<String, Object> getWaitingAdminItme(int pageNum, int amount) {
+		log.info("getWaitingAdminItme()");
+		
+		Map<String, Object> map = new HashMap<>();
+		
+		CurrentSetPage currentSetPage = new CurrentSetPage(pageNum, amount);
+		
+		List<AdminMemberDto> adminDtos = adminMgmDao.getWaitingAdminItme(currentSetPage);
+		map.put("adminDtos", adminDtos);
+		
+		int totalPageNo = adminMgmDao.getTotalWaitingAdminPage();
+		PageMakerDto pageMakerDto = new PageMakerDto(currentSetPage, totalPageNo);
+		map.put("pageMakerDto", pageMakerDto);
+		
+		
+		return map;
+	}
+
+
+	public Map<String, Object> searchWaitingAdminItme(int pageNum, int amount, String searchText) {
+		log.info("searchWaitingAdminItme()");
+		
+		Map<String, Object> map = new HashMap<>();
+		
+		CurrentSetPage currentSetPage = new CurrentSetPage(pageNum, amount);
+		int skipPage = currentSetPage.getSkipPage();
+		
+		List<AdminMemberDto> adminDtos = adminMgmDao.searchWaitingAdminItme(skipPage, amount, searchText);
+		map.put("adminDtos", adminDtos);
+		
+		int totalPageNo = adminMgmDao.getTotalNoBySearchWaitingAdmin(searchText);
+		PageMakerDto pageMakerDto = new PageMakerDto(currentSetPage, totalPageNo);
+		map.put("pageMakerDto", pageMakerDto);
 		
 		return map;
 	}
