@@ -10,13 +10,14 @@
 	height: 80px;
 	line-height: 80px;
 	text-align: center;
-	font-size: 1.5em;
+	font-size: 1.8em;
 	font-weight: 700;
 }
 
 .mgm_list {
 	margin-top: 10px;
 	text-align: center;
+
 }
 
 .mgm_list table, th, td {
@@ -26,6 +27,7 @@
 
 .mgm_list table {
 	outline: 3px solid rgba(36, 36, 36, 0.6);
+	border-radius: 5px;
 }
 
 .user_table {
@@ -39,16 +41,65 @@
 	height: 40px;
 	font-size: 18px;
 	font-weight: 600;
-
+	background-color: rgba(209, 201, 201, 0.3);
 }
 
 .user_table .user_tbody td {
-	
-	height: 38px;
+	font-weight: 500;
+	height: 50px;
 	font-size: 15px;
 }
 
 .userListBody .id:hover {
-	background-color: #9b8c8c;
+	background-color: rgba(197, 158, 158, 0.6);
 	cursor: pointer;
+}
+
+.user_search {
+	margin-bottom: 30px;
+
+}
+
+.searchText {
+	padding: 3px 10px;
+	font-size: 1.1em;
+	border-radius: 3px;
+	width: 250px;
+	border: 1px solid #c5c2c2;
+	outline-color: rgba(197, 158, 158, 0.6);;
+}
+
+
+.user_search a {
+	padding: 5px 8px;
+	border: 1px solid rgba(197, 158, 158, 0.6);
+	border-radius: 6px;
+	font-weight: bold;
+}
+
+.user_search a:hover {
+	background-color: rgba(214, 171, 171, 0.6);
+}
+
+.page_container {
+	text-align: center;
+	margin-top: 30px;
+}
+
+.page_no a {
+	padding: 4px 11px;
+	margin: 0 7px;
+	font-weight: 500;
+	font-size: 20px;
+	color: #242424;
+}
+
+.page_no a:hover {
+	background-color: rgba(197, 158, 158, 0.5);
+	border-radius: 15px;
+}
+
+.selectedPageNum {
+	background-color: rgba(197, 158, 158, 0.5);
+	border-radius: 15px;
 }

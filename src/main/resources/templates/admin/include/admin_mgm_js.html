@@ -1,4 +1,78 @@
-<script th:fragment="js" type="text/javascript">
+<script th:fragment="js" th:inline="javascript" type="text/javascript">
+
+function adminSearch() {
+    $('.admin_search a').on('click', function(e) {
+    e.preventDefault();
+    
+    let searchText = $('.searchText').val();
+    location.href = '/admin/mgm/list_and_mgm?searchText=' + searchText;
+
+    
+  });
+}
+
+
+function pagingEvent() {
+    console.log('pagingEvent()');
+    // 페이지 번호 클릭시
+    $(document).on('click', '.page_no a', function() {
+        console.log('page number click');
+        
+        let searchText = $('.searchText').val();
+        let pageNum = $(this).data('pagenum');
+        
+        	
+        location.href = '/admin/mgm/list_and_mgm?pageNum=' + pageNum + '&searchText=' + searchText;
+        
+
+    });
+
+
+}
+
+function setPagination() {
+    console.log('setPagination()');
+    
+    let pageMakerDto = /*[[${pageMakerDto}]]*/'';
+    let searchedText = /*[[${searchText}]]*/'';
+    $('.page_no').children().remove();
+
+    //검색 기능을 이용 후 
+    if(searchedText != null) {
+    $('.searchText').val(searchedText);
+    }
+    
+    //처음 페이지
+    if(pageMakerDto.currentSetPage.pageNum > 5) {
+            $('.page_no').append('<a href="#none" data-pagenum="1">1</a><span>..</span>');
+    }
+    
+    //이전 페이지
+    if(pageMakerDto.prev) {
+        $('.page_no').append('<a href="#none" data-pagenum="' + (pageMakerDto.startPage - 1) + '">&#60;</a>')
+
+    }
+    
+    //페이지 넘버링
+    for (let p = parseInt(pageMakerDto.startPage); p <= parseInt(pageMakerDto.endPage); p++) {
+        $('.page_no').append('<a href="#none" data-pagenum="' + p + '">' + p + '</a>');
+    }
+
+    // 페이지 하이라이트
+    $('.page_no a[data-pagenum=' + pageMakerDto.currentSetPage.pageNum + ']').addClass('selectedPageNum');
+
+    // 다음 페이지
+    if(pageMakerDto.next) {
+        $('.page_no').append('<a href="#none" data-pagenum="' + (pageMakerDto.endPage + 1) + '">&#62;</a>');
+    }
+
+    //전체 페이지 숫자와 클릭시 해당 마지막페이지 이동
+    if(pageMakerDto.currentSetPage.pageNum > 5) {
+    $('.page_no').append('<a href="#none" data-pagenum="' + pageMakerDto.totalPage + '">..' + pageMakerDto.totalPage + '</a>');
+    }
+
+}
+
 
 function updateApproval(aNo, approval, btn) {
 	
@@ -52,6 +126,12 @@ $(document).ready(function() {
 	console.log('document ready!');
 	
 	init();
+	
+	setPagination();
+
+    pagingEvent();
+
+    adminSearch();
 	  
 
 });

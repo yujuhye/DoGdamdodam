@@ -12,14 +12,27 @@ import com.dogdam.shop.user.member.MemberDto;
 @Mapper
 public interface IAdminMgmDaoForMybatis {
 
-	public List<AdminMemberDto> selectAllAdmins();
+	
 	public int updateForApproval(int a_no);
-	public List<AdminMemberDto> selectNoArvAdmins();
-	public List<AdminMemberDto> selectApprovedAdmins();
-	public List<MemberDto> selectForAllUser();
+	
 	public List<MemberDto> getAllUserItme(CurrentSetPage currentPaging);
 	public int getTotalPageNo();
 	public int getTotalNoBySearch(@Param("searchText") String searchText);
 	public List<MemberDto> searchUserItem(@Param("skipPage") int skipPage, @Param("amount") int amount, @Param("searchText") String searchText);
+	
+	public List<AdminMemberDto> getAllAdminItme(CurrentSetPage currentSetPage);
+	public int getTotalAdminPage();
+	public List<AdminMemberDto> searchAdminItem(@Param("skipPage") int skipPage, @Param("amount") int amount, @Param("searchText") String searchText);
+	public int getTotalNoBySearchAdmin(String searchText);
+	
+	public List<AdminMemberDto> getApprovedAdminItme(CurrentSetPage currentSetPage);
+	public int getTotalApprovedAdminPage();
+	public List<AdminMemberDto> searchApprovedAdminItem(@Param("skipPage") int skipPage, @Param("amount") int amount, @Param("searchText") String searchText);
+	public int getTotalNoBySearchApprovedAdmin(String searchText);
+
+	public List<AdminMemberDto> getWaitingAdminItme(CurrentSetPage currentSetPage);
+	public int getTotalWaitingAdminPage();
+	public List<AdminMemberDto> searchWaitingAdminItme(@Param("skipPage") int skipPage, @Param("amount") int amount, @Param("searchText") String searchText);
+	public int getTotalNoBySearchWaitingAdmin(String searchText);
 	
 }

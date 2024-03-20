@@ -6,6 +6,7 @@
 
 
 <link rel="stylesheet" th:href="@{/css/admin/common.css}">
+<link rel="stylesheet" th:href="@{/css/admin/tools.css}">
 
 
 
@@ -25,12 +26,13 @@
 		</div>
 		
 		<div class="menu_container">
+			
 			<a th:href="@{${adminConfig.requestMgmControllerPath(adminConfig.USER_LIST_MGM)}}">유저관리</a>
-			<a th:href="@{/admin/goods/goodsList}">관리자 상품 리스트</a>
-<!-- 		<a href="#none">상품 등록/관리</a>
-			<a href="#none">상품문의</a>
-			<a href="#none">1:1문의</a>
-			<a href="#none">기부상세</a> -->
+			<a th:href="@{/admin/goods/goodsList}">상품 목록/관리</a>
+			<a th:href="@{/admin/goods/goodsList}">상품 리스트(상품 Q&A, 북마크 용)</a>
+			<a th:href="@{/admin/privateqa/adminPrivateqnaList}">1:1 문의</a>
+			<a th:href="@{/admin/qa/adminQnaList}">상품 문의</a>
+
 		</div>
 		
 		
