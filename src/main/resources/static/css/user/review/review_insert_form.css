@@ -1,35 +1,103 @@
+/* 별 크기 조정 */
 .rating {
-	font-size: 2em;
+    font-size: 1.5em; /* 별 크기를 조정합니다. */
+    margin-bottom: 20px;
 }
 
+/* 버튼 색상 변경 */
+input[type="button"] {
+    padding: 10px 20px;
+    margin-right: 10px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    background-color: #FFCD4A; /* 버튼 색상을 변경합니다. */
+    color: #fff;
+    font-size: 16px;
+}
+/* 리셋 버튼 스타일 */
+input[type="reset"] {
+    padding: 10px 20px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    background-color: #FFCD4A; /* 버튼 색상을 변경합니다. */
+    color: #fff;
+    font-size: 16px;
+}
+
+/* 리셋 버튼 호버 효과 */
+input[type="reset"]:hover {
+    background-color: #f3bb00; /* 호버 시 색상을 변경합니다. */
+}
+
+/* 버튼 호버 효과 */
+input[type="button"]:hover {
+    background-color: #f3bb00; /* 호버 시 색상을 변경합니다. */
+}
+
+/* 리뷰 작성 폼 스타일 */
+.review_insert_form {
+    width: 60%; /* 폼의 너비를 조정합니다. */
+    margin: 50px auto; /* 화면 중앙에 위치하도록 설정합니다. */
+    text-align: left;
+    padding: 30px; /* 내부 여백을 추가합니다. */
+    border: 1px solid #ddd; /* 테두리를 추가합니다. */
+    border-radius: 10px; /* 테두리의 모서리를 둥글게 만듭니다. */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* 그림자 효과를 추가합니다. */
+    background-color: #f9f9f9; /* 배경색을 지정합니다. */
+}
+
+/* 입력 요소 간격 조정 */
+.review_insert_form input[type="text"],
+.review_insert_form textarea,
+.review_insert_form input[type="file"] {
+    margin-bottom: 10px; /* 입력 요소 사이의 간격을 조정합니다. */
+}
+
+/* 별점 선택 영역 스타일 */
 .rating .star {
-	cursor: pointer;
-	display: inline-block;
+    cursor: pointer;
+    display: inline-block;
 }
 
 .rating .star::before {
-	content: '\2605'; /* 별 모양 */
-	color: #ddd;
-	display: block;
-	font-size: 2em;
-	width: 1em;
-	overflow: hidden;
-	transition: color 0.3s ease;
+    content: '\2605'; /* 별 모양 */
+    color: #ddd;
+    display: block;
+    font-size: 2em;
+    width: 1em;
+    overflow: hidden;
+    transition: color 0.3s ease;
 }
 
-.rating .star.selected::before, .rating .star.half::before {
-	color: gold;
+.rating .star.selected::before,
+.rating .star.half::before {
+    color: gold;
 }
 
-/* 추가 CSS */
 .review_insert_form {
-	margin: 0 auto; /* 폼을 수평으로 가운데 정렬합니다. */
-	max-width: 600px; /* 폼의 최대 너비를 설정합니다. */
-	padding: 20px; /* 폼 주위에 여백을 추가합니다. */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* 화면의 세로 중앙 정렬을 위해 필요합니다. */
 }
 
+/* 수정 폼 내부 요소들의 가운데 정렬 */
 .review_insert_form form {
-	display: flex;
-	flex-direction: column;
+    width: 80%; /* 수정 폼의 너비를 조정합니다. */
+    max-width: 500px; /* 최대 너비를 설정합니다. */
 }
 
+.review_insert_form form textarea {
+    width: 100%; /* 폼의 너비에 맞게 textarea의 너비를 조정합니다. */
+    resize: none; /* 사용자가 크기를 조절할 수 없도록 설정합니다. */
+    margin: 10px auto; /* 위아래 여백을 설정하여 가운데 정렬합니다. */
+    display: block; /* 블록 요소로 설정하여 가운데 정렬합니다. */
+}
+
+.review_insert_form form label {
+    display: block; /* 블록 요소로 설정하여 한 줄에 하나씩 표시합니다. */
+    margin-bottom: 15px; /* 아래쪽 여백을 설정하여 요소 사이의 간격을 조절합니다. */
+    font-size: 1.3em;
+}

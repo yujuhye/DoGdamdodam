@@ -48,11 +48,13 @@
 
 </head>
 <body>
-	<header>
-		<a href="/">
-			<img src="/img/logo/001.png" alt="로고">
-		</a>
+
+	<header	th:replace="~{include/title_header_nav_footer.html::user_header}">
 	</header>
+    
+    <nav th:replace="~{include/title_header_nav_footer.html::user_nav}">
+	</nav>
+	
 	<section>
 		<div class="goods_detail">
 			<div class="goods_top">
@@ -100,17 +102,22 @@
 					    <p>
 					        <th:block th:if="${goodsDto.g_price != 0}">
 					            <span >배송비 3,000원</span>
-					            
 					            <span class="price" th:text="|${#numbers.formatInteger(goodsDto.g_price, 0, 'COMMA')}원|"></span>
 					        </th:block>
 					    </p>
+					    
+					    <!-- 상품 디테일 정보 -->
+						<div class="goods_description">
+							<p th:text="${goodsDto.g_explanation}"></p>
+						</div>
+					    
 					    <div>
 					        <form th:action="@{/basket/basketMap}"  th:name="goods_details_form" th:method="post" id="goods_details_form">
                 
 			                	<input type="number" name="s_quantity" min="1" th:value="1">
 				                <input type="hidden" name="g_no"  th:value="${goodsDto.g_no}">
-				                <input type="button" value="주문하기" onclick="goodsDetailsForm();">
-				                <input type="button" value="장바구니" onclick="addBasket();">
+				                <input type="button" value="장바구니" onclick="addBasket();" class="cartBtn">
+				                <input type="button" value="주문하기" onclick="goodsDetailsForm();" class="orderBtn">
 			                
 			                </form>
 			                
@@ -126,11 +133,7 @@
 					</div>
 				</div>
 			</div>
-			<!-- 상품 디테일 정보 -->
-			<!-- <div class="goods_description">
-				<p>설명: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-					Maecenas sit amet pretium urna. Nunc vel neque velit.</p>
-			</div> -->
+			
 			</div>
 		</div>
 	</section>
@@ -269,6 +272,9 @@
 	<div class="list_btn">
 		<a th:href="@{/user/goods/goodsList}">리스트</a>
 	</div>
-	<footer> </footer>
+	
+	<footer th:replace="~{include/title_header_nav_footer::user_footer}">
+	</footer>
+	
 </body>
 </html>

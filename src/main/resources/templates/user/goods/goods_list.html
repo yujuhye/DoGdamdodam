@@ -41,81 +41,62 @@ $(document).ready(function() {
 </head>
 <body>
 
-	<header>
-		<a href="/">
-	        <img src="/img/logo/001.png" alt="로고">
-	    </a>
+	<header	th:replace="~{include/title_header_nav_footer.html::user_header}">
 	</header>
-	<nav>
-		
+	
+	<nav th:replace="~{include/title_header_nav_footer.html::user_nav}">
 	</nav>
 	
 	<section>
-		<div id="section_wrap">
-			<div class="word">
-				USER GOODS LIST
-			</div>
-			
-			<div class="goods_list">
-			
-				<table id = "goods_list_table">
-					<thead>
-						<tr>
-							<th>상품 이미지</th>
-							<th>상품 이름</th>
-							<th>가격</th>
-							<th>평점</th>
-							<th>찜하기</th>
-						</tr>
-					</thead>
-
-					<tbody class="goods-list">
-						<tr th:each="goods : ${goodsDtos}">
-							<td>
-						        <a th:href="@{/user/goods/goodsDetailView(g_no=${goods.g_no})}">
-						            <img th:src="@{'http://14.42.124.95:8091/goodsUploadImg/' + ${goods.g_thumbnail_name}}" />
-						        </a>
-						    </td>
-							<td>
-    							<a th:text="${goods.g_name}" href="#none"></a>   					    		
-							</td>
+    <div id="section_wrap">
+        <div class="word">
+            USER GOODS LIST
+        </div>
+        
+        <div class="goods_list">
+            <div class="grid-container">
+                <!-- 반복되는 상품 아이템 -->
+                <div class="grid-item" th:each="goods : ${goodsDtos}">
+                    <a th:href="@{/user/goods/goodsDetailView(g_no=${goods.g_no})}">
+                        <img class="thumbnail" th:src="@{'http://14.42.124.95:8091/goodsUploadImg/' + ${goods.g_thumbnail_name}}" />
+                    </a>
+                    <div class="item-info">
+                        <a class="item-name" th:text="${goods.g_name}" href="#none"></a>
+                        <p class="item-price" th:text="|${#numbers.formatInteger(goods.g_price, 0, 'COMMA')}원|"></p>
+                        
+                        <p class="item-rating">
+                            <!-- <span th:if="${review == null or #lists.isEmpty(reviewDtos)}" class="reviewLine">
+								<img src="/img/review/staroutline.png" alt="별 이미지">
+								<span>0.0</span>
+							</span> -->
+                            
+                            <span th:each="review : ${reviewDtos}" th:if="${review.g_no == goods.g_no}" class="reviewLine">
+								<img src="/img/review/star.png" alt="별 이미지">
+								<span th:text="${#numbers.formatDecimal(review.r_rating, 1, 1)}"></span>
+							</span>
 							
-						
-							<!-- <td>
-    							<a th:text="${goods.g_price}" th:href="@{/user/goods/goodsDetailView(g_no=${goods.g_no})}"></a>
-							</td> -->
-							<td>
-								<a th:text="|${#numbers.formatInteger(goods.g_price, 0, 'COMMA')}원|" href=""></a>
-							</td>
-							
-							<td>
-					            <span th:each="review : ${reviewDtos}">
-					                <span th:if="${review.g_no == goods.g_no}" th:text="${#numbers.formatDecimal(review.r_rating, 1, 1)}"></span>
-					            </span>
-					        </td>
-					        <td>
-						        <div id="bm_heart_list" class="bm_heart" th:attr="data-g_no=${goods.g_no}">
-					                <div th:text="${goods.g_bm_count}" ></div>
-		                           
-		                            <a href="#none" class="bm_heart_off" th:if="${isBookmarked}" th:attr="data-g_no=${goods.g_no}" >
-		                           		<img class = "bm_heart_full" th:src="@{/img/bookmark/fullheart.png}"></a>                          		
-		                           
-		                           	<a href="#none" class="bm_heart_on" th:unless="${isBookmarked}" th:attr="data-g_no=${goods.g_no}">	
-		                           		<img class = "bm_heart_empty" th:src="@{/img/bookmark/emptyheart.png}"></a>	                                	                         
-	                            </div>					        					        
-					        </td>
-						</tr>
-					</tbody>
-				</table>
-
-				<div>
-					page
-				</div>			
-			</div>
-		</div>
-	</section>
+                        </p>
+                        
+                        <div class="bookmark">
+                            <div class="bm_heart" th:attr="data-g_no=${goods.g_no}">
+                                <div class="bm_count" th:text="${goods.g_bm_count}"></div>
+                                <a href="#none" class="bm_heart_off" th:if="${isBookmarked}" th:attr="data-g_no=${goods.g_no}">
+                                    <img class="bm_heart_full" th:src="@{/img/bookmark/fullheart.png}">
+                                </a>
+                                <a href="#none" class="bm_heart_on" th:unless="${isBookmarked}" th:attr="data-g_no=${goods.g_no}">
+                                    <img class="bm_heart_empty" th:src="@{/img/bookmark/emptyheart.png}">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 	
-	<footer></footer>
+	<footer th:replace="~{include/title_header_nav_footer::user_footer}">
+	</footer>
 
 </body>
 </html>

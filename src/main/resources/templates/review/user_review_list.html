@@ -41,14 +41,10 @@ $(document).ready(function() {
 </head>
 <body>
 
-	<header>
-		<a href="/">
-	        <img src="/img/logo/001.png" alt="로고">
-	    </a>
+	<header	th:replace="~{include/title_header_nav_footer.html::user_header}">
 	</header>
 	
-	<nav>
-		
+	<nav th:replace="~{include/title_header_nav_footer.html::user_nav}">
 	</nav>
 	
 	<section>

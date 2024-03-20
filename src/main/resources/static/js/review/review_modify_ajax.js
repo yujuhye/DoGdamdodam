@@ -15,14 +15,14 @@ $(document).ready(function(){
 			data: formData,
 			processData: false,
         	contentType: false,
-        	dataType: "json",
+        	/*dataType: "json",*/
         	success: function(response){
-			    if (response.success) {
-			        alert(response.message); // "리뷰 수정이 완료되었습니다."
+			    /*if (result === 1) {*/
+			        alert('리뷰 수정이 완료되었습니다.'); // "리뷰 수정이 완료되었습니다."
 			        location.href = '/review/userReviewList';
-			    } else {
+			    /*} else {
 			        alert('리뷰 수정에 실패했습니다.');
-			    }
+			    }*/
 			},
 			error: function(){
 				

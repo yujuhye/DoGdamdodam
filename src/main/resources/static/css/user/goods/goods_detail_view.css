@@ -22,6 +22,10 @@ header img {
 	margin-top: 10px;
 }
 
+section{
+	margin-top: 10px;
+}
+
 .slider-container, .goods_info, .product-thumbnails, .slider-nav,
 	.review-image, .modal, .modal-content, .close {
 	width: auto;
@@ -51,12 +55,12 @@ header img {
 }
 
 .slider-container {
-	width: 50%;
+	width: 60%;
 	float: left;
 }
 
 .goods_info {
-	width: 50%;
+	width: 40%;
 	float: left;
 	padding-left: 20px;
 	position: relative;
@@ -85,7 +89,8 @@ header img {
 }
 
 .goods_info h1 {
-    font-size: 24px;
+    font-size: 35px;
+    margin-top: 10px;
     margin-bottom: 10px;
     color: #333; /* 제목 색상 변경 */
 }
@@ -127,13 +132,16 @@ header img {
 
 /* 주문하기, 장바구니 버튼 스타일 */
 #goods_details_form {
-    margin-top: auto; /* 상품 정보 아래의 여백을 모두 사용합니다. */
+    margin-top: 300px; /* 상품 정보 아래의 여백을 모두 사용합니다. */
     display: flex;
     flex-wrap: wrap; /* 버튼들이 너비를 초과하면 다음 줄로 넘어갑니다. */
 }
 
 #goods_details_form input[type="number"],
 #goods_details_form input[type="button"] {
+	width: 250px;
+	height: 50px;
+	margin-left: 5px;	
     padding: 10px 20px;
     background-color: #ffcd4a;
     color: #0b2027;
@@ -147,7 +155,8 @@ header img {
 }
 
 #goods_details_form input[type="number"] {
-    width: 80px; /* 수량 입력 필드 너비 조정 */
+   width: 225px; /* 수량 입력 필드 너비 조정 */
+   height: 30px;
 }
 
 #goods_details_form input[type="number"]:focus,
@@ -157,6 +166,25 @@ header img {
 
 #goods_details_form input[type="button"]:hover {
     background-color: #ffcd0f;
+}
+
+/* #goods_details_form {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#goods_details_form input[type="number"] {
+    flex: 1; 수량 입력 필드를 동적으로 너비 조정합니다.
+    margin-right: 10px; 수량 입력 필드와 장바구니 버튼 사이의 여백을 추가합니다.
+}
+
+#goods_details_form input[type="button"] {
+    width: calc(50% - 5px); 장바구니 버튼의 너비를 조정합니다.
+    height: 50px;
+} */
+
+.orderBtn {
+    width: 530px !important;
 }
 
 .goods_num {
@@ -277,4 +305,37 @@ header img {
 	font-size: 30px; /* 닫기 버튼의 아이콘 크기를 설정합니다. */
 	color: #fff; /* 닫기 버튼 아이콘의 색상을 설정합니다. */
 	cursor: pointer; /* 마우스 커서를 포인터로 변경하여 클릭 가능함을 나타냅니다. */
+}
+
+/*list btn*/
+.list_btn{
+	width : 100px;
+	height: 35px;
+	
+	padding-top: 10px;
+	
+    text-align: center; /* 텍스트를 가운데 정렬합니다. */
+    line-height: 1.5; /* 텍스트 줄간격을 설정하여 세로 가운데 정렬을 수행합니다. */
+	
+	background-color: #ffcd4a;
+    color: #0b2027;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    margin: 10px 10px 10px 0px;
+    transition: background-color 0.3s ease;
+    
+}
+
+/*input number*/
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+	-webkit-appearance: inner-spin-button;
+    opacity: 1;
+}
+
+.goods_info p {
+	margin-top: 50px;
+	text-align: right;
 }
