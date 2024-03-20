@@ -124,10 +124,14 @@ public class UserGoodsController {
 		String nextPage = "user/goods/search_category_form";
 		
 		List<GoodsDto> goodsDtos = goodsService.searchCategory(c_no);
+		List<ReviewDto> reviewDtos = reviewService.seletStar();
+		
 		if (!goodsDtos.isEmpty()) {
 	        model.addAttribute("goodsDto", goodsDtos.get(0)); // 첫 번째 요소만 모델에 추가
 	    }
+		
 		model.addAttribute("goodsDtos", goodsDtos);
+		model.addAttribute("reviewDtos", reviewDtos);
 		
 		return nextPage;
 	}

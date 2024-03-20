@@ -356,7 +356,7 @@ public class ReviewController {
 	 * 리뷰 수정
 	 */
 	@PostMapping("/reviewModifyConfirm")
-	@ResponseBody
+	/* @ResponseBody */
 	public Object reviewModifyConfirm(ReviewDto reviewDto, HttpSession session,
 			@RequestParam("file1") MultipartFile file1, @RequestParam("file2") MultipartFile file2,
 			@RequestParam("file3") MultipartFile file3, @RequestParam("file4") MultipartFile file4,
@@ -364,7 +364,7 @@ public class ReviewController {
 
 		log.info("reviewModifyConfirm()");
 
-		int result = -1;
+		String nextPage = "redirect:/review/userReviewList";
 		
 		MemberDto loginedMemberDto = (MemberDto) session.getAttribute("loginedMemberDto");
 
@@ -430,14 +430,17 @@ public class ReviewController {
 			reviewDto.setU_id(loginedMemberDto.getU_id());
 			reviewDto.setG_no(g_no);
 
-			result = reviewService.modifyReview(reviewDto);
+			int result = reviewService.modifyReview(reviewDto);
+			
+			if(result <= 0)
+				nextPage = "redirect:/user/basket/myOrderList";
 
 			log.info(reviewDto.getR_thumbnail_name());
-
 			
 		}
 
-		return new ResponseEntity<>(Map.of("success", true, "message", "리뷰 수정이 완료되었습니다."), HttpStatus.OK);
+//		return new ResponseEntity<>(Map.of("success", true, "message", "리뷰 수정이 완료되었습니다."), HttpStatus.OK);
+		return nextPage;
 	}
 
 	/*

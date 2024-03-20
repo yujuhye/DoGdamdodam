@@ -33,37 +33,38 @@
 }
 
 /* 상품 목록 스타일 */
-.goods-list {
-    cursor: pointer;
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 한 줄에 상품이 4개씩 배치됩니다. */
+    grid-gap: 20px;
 }
 
-table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-table th,
-table td {
-    padding: 10px;
+.product-item {
     border: 1px solid #ddd;
+    padding: 10px;
     text-align: center;
 }
 
-table th {
-    background-color: #f2f2f2;
-}
-
-table td img {
-    width: 100px;
+.product-item img {
+    max-width: 100%;
     height: auto;
 }
 
-table td a {
+.product-grid a {
     text-decoration: none;
     color: #333;
 }
 
-table td span {
+.product-grid h3 {
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
+.product-grid p {
+    margin-bottom: 5px;
+}
+
+.product-grid span {
     font-weight: bold;
 }
 
@@ -84,4 +85,28 @@ div.page a {
 div.page a.active {
     background-color: #333;
     color: #fff;
+}
+
+/* 버튼 스타일 */
+.subcategory {
+    display: inline-block;
+    padding: 10px 20px;
+    margin-right: 10px;
+    margin-bottom: 10px; /* 버튼 아래 여백 추가 */
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    background-color: #FFCD0F; /* 배경색 설정 */
+    color: #fff;
+    font-size: 16px;
+    text-decoration: none;
+    transition: background-color 0.3s ease; /* 마우스 호버 효과 설정 */
+}
+
+.subcategory:hover {
+    background-color: #F3BB00; /* 마우스 호버 시 배경색 변경 */
+}
+
+.reviewLine img{
+	width: 15px;
 }
