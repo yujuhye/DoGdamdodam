@@ -46,23 +46,6 @@ header img {
 	vertical-align: middle;
 }
 
-.btn {
-	display: inline-block;
-	padding: 8px 12px;
-	background-color: #FFCD4A;
-	color: #0B2027;
-	border: none;
-	border-radius: 4px;
-	cursor: pointer;
-	text-decoration: none;
-	font-size: 14px;
-}
-
-.btn:hover {
-	background-color: #FFCD0F;
-	color: #fff;
-}
-
 .top-container {
 	display: flex;
 }
@@ -93,24 +76,87 @@ header img {
 }
 
 .goods_info {
-	border: 1px solid #ddd;
-	padding: 20px;
-	position: relative;
+    border: 1px solid #ddd;
+    padding: 20px;
+    position: relative;
+    background-color: #f9f9f9; /* 배경색 추가 */
+    border-radius: 5px; /* 모서리를 둥글게 만듭니다. */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* 그림자 효과 추가 */
 }
 
 .goods_info h1 {
-	font-size: 24px;
-	margin-bottom: 10px;
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #333; /* 제목 색상 변경 */
 }
 
 .goods_info p {
-	font-size: 18px;
-	margin-bottom: 10px;
-	text-align: right;
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #666; /* 텍스트 색상 변경 */
+}
+
+.goods_detail_content{
+	margin: 50px 0;
+	text-align: center;
+}
+
+.btn {
+	display: inline-block;
+	padding: 8px 12px;
+	background-color: #FFCD4A;
+	color: #0B2027;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+	text-decoration: none;
+	font-size: 14px;
+}
+
+.btn:hover {
+	background-color: #FFCD0F;
+	color: #fff;
 }
 
 .price {
-	font-size: 1.5em;
+    font-size: 1.5em;
+    font-weight: bold; /* 가격 텍스트를 굵게 표시합니다. */
+    color: #ff5733; /* 가격 색상 변경 */
+    align-self: flex-end; /* 가격을 오른쪽으로 정렬합니다. */
+}
+
+/* 주문하기, 장바구니 버튼 스타일 */
+#goods_details_form {
+    margin-top: auto; /* 상품 정보 아래의 여백을 모두 사용합니다. */
+    display: flex;
+    flex-wrap: wrap; /* 버튼들이 너비를 초과하면 다음 줄로 넘어갑니다. */
+}
+
+#goods_details_form input[type="number"],
+#goods_details_form input[type="button"] {
+    padding: 10px 20px;
+    background-color: #ffcd4a;
+    color: #0b2027;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-right: 10px;
+    margin-bottom: 10px; /* 버튼들 사이에 아래 여백을 추가합니다. */
+    transition: background-color 0.3s ease;
+}
+
+#goods_details_form input[type="number"] {
+    width: 80px; /* 수량 입력 필드 너비 조정 */
+}
+
+#goods_details_form input[type="number"]:focus,
+#goods_details_form input[type="button"]:focus {
+    outline: none;
+}
+
+#goods_details_form input[type="button"]:hover {
+    background-color: #ffcd0f;
 }
 
 .goods_num {
@@ -140,11 +186,14 @@ header img {
 }
 
 /* 리뷰 스타일 */
+.goods_review_body h2{
+	margin-bottom: 10px;
+}
 .review {
     display: flex;
     flex-direction: column; /* 컬럼 방향으로 변경 */
-    border-bottom: 1px solid #ddd;
-    padding: 15px 0;
+    border: 1px solid #ddd;
+    padding: 15px;
 }
 
 .review-header {

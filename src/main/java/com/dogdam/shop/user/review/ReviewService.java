@@ -1,6 +1,8 @@
 package com.dogdam.shop.user.review;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -81,6 +83,21 @@ public class ReviewService {
 		log.info("userReviewAllSelect()");
 		
 		return reviewDao.userReviewAllSelect(u_id);
+	}
+
+	public int checkReviewStatus(ReviewDto reviewDto, int s_no, int g_no) {
+		log.info("checkReviewStatus()");
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("reviewDto", reviewDto);
+		map.put("s_no", s_no);
+		map.put("g_no", g_no);
+		
+		log.info("reviewDto : " + reviewDto);
+		log.info("g_no : " + g_no);
+		log.info("s_no : " + s_no);
+		
+		return reviewDao.checkReviewStatus(map);
 	}
 
 

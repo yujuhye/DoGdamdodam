@@ -19,7 +19,7 @@ $(document).ready(function(){
         	success: function(response){
 				
 				alert('리뷰 등록이 완료되었습니다.');
-				location.href = '/review/userReviewList';/* 여기에 구매 가는 url*/
+				location.href = '/basket/myOrderList';
 				
 			},
 			error: function(){

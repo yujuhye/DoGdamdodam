@@ -8,8 +8,8 @@
 	</select>
 	
 	<insert id="insertReview" parameterType="com.dogdam.shop.user.review.ReviewDto">
-	    INSERT INTO REVIEW(U_ID, G_NO, R_TEXT, R_THUMBNAIL_NAME, R_SECOND_NAME, R_THIRD_NAME, R_LAST_NAME, R_RATING, R_REG_DATE, R_MOD_DATE)
-	    SELECT #{u_id}, #{g_no}, #{r_text}, #{r_thumbnail_name}, #{r_second_name}, #{r_third_name}, #{r_last_name}, #{r_rating}, NOW(), NOW()
+	    INSERT INTO REVIEW(U_ID, G_NO, S_NO, R_TEXT, R_THUMBNAIL_NAME, R_SECOND_NAME, R_THIRD_NAME, R_LAST_NAME, R_RATING, R_CONFIRM_RV, R_REG_DATE, R_MOD_DATE)
+	    SELECT #{u_id}, #{g_no}, #{s_no}, #{r_text}, #{r_thumbnail_name}, #{r_second_name}, #{r_third_name}, #{r_last_name}, #{r_rating}, 1, NOW(), NOW()
 	    FROM GOODS
 	    WHERE G_NO = #{g_no} AND EXISTS (SELECT 1 FROM `USER` WHERE U_ID = #{u_id})
 	</insert>
@@ -68,5 +68,10 @@
 	    WHERE R_NO = #{r_no}
 	</select>
 	
+	<select id="checkReviewStatus" parameterType="map" resultType="Integer">
+	    SELECT R_CONFIRM_RV
+	    FROM REVIEW
+	    WHERE U_ID = #{reviewDto.u_id} AND S_NO = #{s_no} AND G_NO = #{g_no}
+	</select>
 	
 </mapper>

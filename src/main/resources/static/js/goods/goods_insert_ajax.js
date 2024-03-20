@@ -52,7 +52,6 @@
      // 상품 등록 후 페이지 이동
 	 $('.goodsInsertBtn').click(function(){
 		
-		 /*var sendData = $('#insert_goods_form').serialize();*/
 		 var formData = new FormData($('form[name="insert_goods_form"]')[0]); 
 		 console.log('formData : ' + formData);
 		    

@@ -23,6 +23,18 @@ public class GoodsDto {
     
     private int g_bm_count;
     private int g_review_cnt;
-
+    
+    /*review*/
+    private int r_no;
+	private String u_id;
+	private String r_text;
+	private String r_thumbnail_name;
+	private String r_second_name;
+	private String r_third_name;
+	private String r_last_name;
+	private float r_rating;
+	private String r_reg_date;
+	private String r_mod_date;
+	private int r_confirm_rv;
 
 }

@@ -37,7 +37,7 @@
 	});
 	
 	
-	$(document).ready(function(){
+	/*$(document).ready(function(){*/
 	    /*$('.product-thumbnails').slick({
 	        slidesToShow: 1,
 	        slidesToScroll: 1,
@@ -64,48 +64,46 @@
 	        ]
 	    });*/
 	    
-	    $('.product-thumbnails').slick({
-		  slidesToShow: 1,
-		  slidesToScroll: 1,
-		  arrows: false,
-		  fade: true,
-		  asNavFor: '.slider-nav'
-		});
-		
-		$('.slider-nav').slick({
-			slidesToShow: 4,
-		  	slidesToScroll: 1,
-		  	asNavFor: '.product-thumbnails',
-		  	autoplay: true, // 자동 재생 활성화
-		  	autoplaySpeed: 1000, // 자동 재생 속도 설정
-		  	infinite: true,
-		  	centerMode: true,
-		  	focusOnSelect: true
-		});
-	    
-
-	    $('.review-image img').click(function(){
-	        var modal = document.getElementById("myModal");
-	        var modalImg = document.getElementById("img01");
-	        modal.style.display = "block";
-	        modalImg.src = this.src;
-
-	        // 모달 닫기 버튼 설정
-	        var span = document.getElementsByClassName("close")[0];
-	        span.onclick = function() { 
-	            modal.style.display = "none";
-	        }
-	        
-	     	// 배경 클릭하여 모달 닫기
-	        window.onclick = function(event) {
-	            if (event.target == modal) {
-	                modal.style.display = "none";
-	            }
-	        }
-	     	
-	    });
-	    
+    $('.product-thumbnails').slick({
+	  slidesToShow: 1,
+	  slidesToScroll: 1,
+	  arrows: false,
+	  fade: true,
+	  asNavFor: '.slider-nav'
 	});
+	
+	$('.slider-nav').slick({
+		slidesToShow: 4,
+	  	slidesToScroll: 1,
+	  	asNavFor: '.product-thumbnails',
+	  	autoplay: true, // 자동 재생 활성화
+	  	autoplaySpeed: 1000, // 자동 재생 속도 설정
+	  	infinite: true,
+	  	centerMode: true,
+	  	focusOnSelect: true
+	});
+    
+
+    $('.review-image img').click(function(){
+        var modal = document.getElementById("myModal");
+        var modalImg = document.getElementById("img01");
+        modal.style.display = "block";
+        modalImg.src = this.src;
+
+        // 모달 닫기 버튼 설정
+        var span = document.getElementsByClassName("close")[0];
+        span.onclick = function() { 
+            modal.style.display = "none";
+        }
+        
+     	// 배경 클릭하여 모달 닫기
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+     	
+    });
 	
 });
 	

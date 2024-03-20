@@ -6,7 +6,6 @@ import lombok.Data;
 public class ReviewDto {
 
 	private int r_no;
-//	private int g_no;
 	private String u_id;
 	private String r_text;
 	private String r_thumbnail_name;
@@ -16,7 +15,10 @@ public class ReviewDto {
 	private float r_rating;
 	private String r_reg_date;
 	private String r_mod_date;
+	private int r_confirm_rv;
+	private int s_no;
 	
+	/*goods dto*/
 	private int g_no;
     private String g_name;
     private String g_thumbnail_name;
@@ -30,4 +32,6 @@ public class ReviewDto {
     private int g_approval;
     private String g_reg_date;
     private String g_mod_date;
+    
+    /*SALES DTO*/
 }

@@ -15,12 +15,7 @@
 	href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css">
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
-
-
-<script th:replace="~{/include/common_js.html::jquery_cdn}"
-	type="text/javascript"></script>
-<script th:replace="~{/include/common_js.html::slick}"
-	type="text/javascript"></script>
+	
 <script type="text/javascript" th:src="@{/js/goods/goods_view_ajax.js}"></script>
 
 <link rel="stylesheet" th:href="@{/css/admin/goods/goods_detail_view.css}">
@@ -29,7 +24,7 @@
 
 <!-- 상품 문의 리스트 -->
 <script type="text/javascript" th:src="@{/js/admin_qna_list.js}"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script> -->
 <script th:replace="~{admin/include/admin_qna_list::js}" type="text/javascript"></script>
 
 </head>
@@ -43,44 +38,44 @@
 		<div class="goods_top">
 		 <div class="top-container">
 			<div class="slider-container">
-						<div class="product-thumbnails">
-							<div>
-								<img
-									th:src="@{'http://14.42.124.95:8091/goodsUploadImg/' + ${goodsDto.g_thumbnail_name}}" />
-							</div>
-							<div>
-								<img
-									th:src="@{'http://14.42.124.95:8091/goodsUploadImg/' + ${goodsDto.g_second_img_name}}" />
-							</div>
-							<div>
-								<img
-									th:src="@{'http://14.42.124.95:8091/goodsUploadImg/' + ${goodsDto.g_third_img_name}}" />
-							</div>
-						</div>
-						
-						<div class="slider-nav">
-							<div>
-								<img
-									th:src="@{'http://14.42.124.95:8091/goodsUploadImg/' + ${goodsDto.g_thumbnail_name}}" />
-							</div>
-							<div>
-								<img
-									th:src="@{'http://14.42.124.95:8091/goodsUploadImg/' + ${goodsDto.g_second_img_name}}" />
-							</div>
-							<div>
-								<img
-									th:src="@{'http://14.42.124.95:8091/goodsUploadImg/' + ${goodsDto.g_third_img_name}}" />
-							</div>
-						</div>
+				<div class="product-thumbnails">
+					<div>
+						<img
+							th:src="@{'http://14.42.124.95:8091/goodsUploadImg/' + ${goodsDto.g_thumbnail_name}}" />
 					</div>
+					<div>
+						<img
+							th:src="@{'http://14.42.124.95:8091/goodsUploadImg/' + ${goodsDto.g_second_img_name}}" />
+					</div>
+					<div>
+						<img
+							th:src="@{'http://14.42.124.95:8091/goodsUploadImg/' + ${goodsDto.g_third_img_name}}" />
+					</div>
+				</div>
+				
+				<div class="slider-nav">
+					<div>
+						<img
+							th:src="@{'http://14.42.124.95:8091/goodsUploadImg/' + ${goodsDto.g_thumbnail_name}}" />
+					</div>
+					<div>
+						<img
+							th:src="@{'http://14.42.124.95:8091/goodsUploadImg/' + ${goodsDto.g_second_img_name}}" />
+					</div>
+					<div>
+						<img
+							th:src="@{'http://14.42.124.95:8091/goodsUploadImg/' + ${goodsDto.g_third_img_name}}" />
+					</div>
+				</div>
+			</div>
 			
 			
 
 			<!-- 상품 정보 -->
 			<div class="goods_info">
 			<input type="hidden" name="g_name" id="g_name" th:value="${goodsDto.g_name}">
-			<input type="text" name="c_no" id="c_no" th:value="${goodsDto.c_no}">
-			<input type="text" name="c_parents_no" id="c_parents_no" th:value="${goodsDto.c_parents_no}">
+			<input type="hidden" name="c_no" id="c_no" th:value="${goodsDto.c_no}">
+			<input type="hidden" name="c_parents_no" id="c_parents_no" th:value="${goodsDto.c_parents_no}">
 				<h1 th:text="${goodsDto.g_name}"></h1>
 				<p>
 	                <th:block th:if="${goodsDto.g_price != 0}">

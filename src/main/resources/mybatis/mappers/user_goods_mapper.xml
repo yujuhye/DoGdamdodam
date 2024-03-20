@@ -52,11 +52,18 @@
 	</select> -->
 	
 	<select id="orderByBuy" parameterType="com.dogdam.shop.admin.goods.GoodsDto" resultType="com.dogdam.shop.admin.goods.GoodsDto">
-	    SELECT * FROM GOODS 
+	   <!--  SELECT * FROM GOODS 
 	    WHERE G_APPROVAL = 1 
 	    ORDER BY G_REG_DATE DESC
-	    LIMIT 10
-	    <!-- 나중에 review랑 join  -->
+	    LIMIT 10 나중에 확인-->
+	    
+	    SELECT G.*, R.R_RATING
+		FROM GOODS G
+		INNER JOIN REVIEW R ON G.G_NO = R.G_NO
+		WHERE G_APPROVAL = 1 
+		ORDER BY R.R_RATING DESC
+		LIMIT 10
+	    
 	</select>
 		
 	<!-- 사료 검색 -->

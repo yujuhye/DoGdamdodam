@@ -86,6 +86,5 @@
 	    SELECT * FROM GOODS WHERE G_NAME LIKE CONCAT('%', #{g_name}, '%') ORDER BY G_NO DESC
 	</select>
 	
-	
 
 </mapper>

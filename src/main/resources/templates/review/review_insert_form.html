@@ -32,7 +32,8 @@
 
             <form th:action="@{/review/insertReviewConfirm}" name="review_insert_form" method="post" enctype="multipart/form-data">
                 <input type="hidden" name="u_id" th:value="${u_id}">
-                <input type="hidden" name="g_no" th:value="${g_no}">
+                <input type="text" name="g_no" th:value="${g_no}">
+                <input type="text" name="s_no" th:value="${s_no}">
                 
                 <textarea rows="10" cols="50" name="r_text"></textarea>
                 <br>

@@ -95,7 +95,6 @@
 	
 	
 					<!-- 상품 정보 -->
-					<!-- 상품 정보 -->
 					<div class="goods_info">
 					    <h1 th:text="${goodsDto.g_name}"></h1>
 					    <p>
@@ -103,7 +102,6 @@
 					            <span >배송비 3,000원</span>
 					            
 					            <span class="price" th:text="|${#numbers.formatInteger(goodsDto.g_price, 0, 'COMMA')}원|"></span>
-					           <!--  <span class="price" th:text="${goodsDto.g_price}"></span> -->
 					        </th:block>
 					    </p>
 					    <div>
@@ -133,6 +131,7 @@
 				<p>설명: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 					Maecenas sit amet pretium urna. Nunc vel neque velit.</p>
 			</div> -->
+			</div>
 		</div>
 	</section>
 	
@@ -152,7 +151,7 @@
 					
 					<div th:each="reviewDto : ${reviewDtos}" class="review">
 						<div class="review-header">
-						    <div class="user" th:text="${reviewDto.u_id}"></div>
+						    <div class="user" th:text="${#strings.substring(reviewDto.u_id, 0, 2)} + '***'"></div>
 						    <div class="date" th:text="${reviewDto.r_reg_date}"></div>
 						</div>
 						<div class="rating-container">

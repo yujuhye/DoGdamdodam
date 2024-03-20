@@ -3,6 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<link rel="stylesheet" th:href="@{/css/user/order/my_order_list.css}">
+	
 </head>
 <body>
 
@@ -19,19 +23,29 @@
 	                <td>
 	                    <div th:each="salesDto : ${entry.value}">
 	                        <a th:href="@{/admin/goods/goodsDetailView(g_no=${salesDto.g_no})}">
-	                            <img th:src="@{${salesDto.g_thumbnail_name}}">
+	                            <img th:src="@{'http://14.42.124.95:8091/goodsUploadImg/' + ${salesDto.g_thumbnail_name}}">
 	                        </a><br>
 	                        <a th:text="${salesDto.g_name}" th:href="@{/admin/goods/goodsDetailView(g_no=${salesDto.g_no})}"></a><br>
-	                        <a th:href="@{/admin/goods/goodsDetailView(g_no=${salesDto.g_no})}">리뷰남기기</a><br>
 	                        <span th:text="${salesDto.g_price}"></span><span>원</span><br>
 	                        <span>주문수량:</span> <span th:text="${salesDto.s_quantity}"></span><br>
+	                        
+	                        <input type="hidden" th:value="${salesDto.g_no}" name="g_no" class="g_no">
+	                        <input type="hidden" th:value="${salesDto.s_no}" name="s_no" class="s_no">
+	                        
+							<a th:href="@{/review/reviewInsertForm(g_no=${salesDto.g_no}, s_no=${salesDto.s_no})}"
+							   th:if="${salesDto.r_confirm_rv == 1}" class="review-button" style="display: none;">리뷰남기기
+							</a><br>
+							                            
+							<a th:href="@{/review/reviewInsertForm(g_no=${salesDto.g_no}, s_no=${salesDto.s_no})}"
+							   th:unless="${salesDto.r_confirm_rv == 1}" class="review-button">리뷰남기기
+							</a><br>
 	                    </div>
 	                </td>
 	            </tr>
 	        </tbody>
 	    </table>
 	</div>
-	
+
 
 </body>
 </html>

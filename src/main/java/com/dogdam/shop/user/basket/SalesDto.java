@@ -37,6 +37,17 @@ public class SalesDto {
 	private int da_default;
 	private String da_reg_date;
 	private String da_mod_date;
-
+	
+	/*review*/
+	private int r_no;
+	private String r_text;
+	private String r_thumbnail_name;
+	private String r_second_name;
+	private String r_third_name;
+	private String r_last_name;
+	private float r_rating;
+	private String r_reg_date;
+	private String r_mod_date;
+	private int r_confirm_rv;
 	
 }

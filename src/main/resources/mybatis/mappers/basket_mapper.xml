@@ -120,11 +120,18 @@
 	parameterType="String" 
 	resultType="com.dogdam.shop.user.basket.SalesDto">
 	
-		SELECT G.G_NAME, G.G_PRICE, G.G_THUMBNAIL_NAME, G.G_NO, S.*
+<!-- 		SELECT G.G_NAME, G.G_PRICE, G.G_THUMBNAIL_NAME, G.G_NO, S.*
 	            FROM SALES AS S 
 	            JOIN GOODS AS G ON S.G_NO = G.G_NO
 	            WHERE 
-	            U_ID = #{u_id}
+	            U_ID = #{u_id} -->
+	            
+        SELECT R.R_CONFIRM_RV, G.G_NAME, G.G_PRICE, G.G_THUMBNAIL_NAME, G.G_NO, S.*
+		FROM SALES AS S 
+		JOIN GOODS AS G ON S.G_NO = G.G_NO
+		LEFT OUTER JOIN REVIEW AS R
+		ON S.S_NO = R.S_NO
+		WHERE  S.U_ID = #{u_id}    
 	
 	</select>
 	

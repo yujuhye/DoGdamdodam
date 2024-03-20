@@ -1,6 +1,7 @@
 package com.dogdam.shop.user.review;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 
@@ -27,6 +28,9 @@ public interface IReviewDaoMybatis {
 	public List<ReviewDto> userReviewAllSelect(String u_id);
 	// 수정 정보 불러오기
 	public ReviewDto selectModifyReview(int r_no);
+
+	public int checkReviewStatus(Map<String, Object> map);
+
 
 
 }

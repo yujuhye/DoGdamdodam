@@ -131,7 +131,7 @@ public class ReviewController {
 	 * 리뷰 등록 폼 이동
 	 */
 	@GetMapping("/reviewInsertForm")
-	public String reviewInsertForm(@RequestParam("g_no") int g_no, Model model, HttpSession session) {
+	public String reviewInsertForm(@RequestParam("g_no") int g_no, @RequestParam("s_no") int s_no, Model model, HttpSession session) {
 		log.info("reviewInsertForm()");
 
 		String nextPage = "review/review_insert_form";
@@ -143,7 +143,9 @@ public class ReviewController {
 		}
 
 		log.info("리뷰 남기기 g_no >>>>>>>>>> " + g_no);
+		log.info("리뷰 남기기 s_no >>>>>>>>>> " + s_no);
 		model.addAttribute("g_no", g_no);
+		model.addAttribute("s_no", s_no);
 		
 		return nextPage;
 	}
@@ -174,7 +176,7 @@ public class ReviewController {
 	public Object insertReviewConfirm(ReviewDto reviewDto, HttpSession session,
 			@RequestParam("file1") MultipartFile file1, @RequestParam("file2") MultipartFile file2,
 			@RequestParam("file3") MultipartFile file3, @RequestParam("file4") MultipartFile file4,
-			@RequestParam("u_id") String u_id, @RequestParam("g_no") int g_no) throws Exception {
+			@RequestParam("u_id") String u_id, @RequestParam("g_no") int g_no, @RequestParam("s_no") int s_no) throws Exception {
 
 		log.info("insertReviewConfirm()");
 
@@ -226,6 +228,8 @@ public class ReviewController {
 
 			reviewDto.setU_id(loginedMemberDto.getU_id());
 			reviewDto.setG_no(g_no);
+			reviewDto.setS_no(s_no);
+			
 
 			int result = reviewService.insertReview(reviewDto);
 
@@ -457,6 +461,28 @@ public class ReviewController {
 	    }
 
 	    return "redirect:/review/userReviewList";
+	}
+	
+	/*리뷰 여부 확인*/
+	@GetMapping("/checkReviewStatus")
+	@ResponseBody
+	public int checkReviewStatus(HttpSession session,
+	                                @RequestParam("s_no") int s_no,
+	                                @RequestParam("g_no") int g_no) {
+	    log.info("checkReviewStatus()");
+
+	    MemberDto loginedMemberDto = (MemberDto) session.getAttribute("loginedMemberDto");
+	    ReviewDto reviewDto = new ReviewDto();
+	    reviewDto.setU_id(loginedMemberDto.getU_id());
+
+	    int result = reviewService.checkReviewStatus(reviewDto, s_no, g_no);
+	    
+	    log.info("s_no() >>>>>>>>>> " + s_no);
+	    log.info("g_no() >>>>>>>>>> " + g_no);
+	    
+	    log.info("result " + result);
+
+	    return result;
 	}
 	
 

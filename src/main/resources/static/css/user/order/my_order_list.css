@@ -1,0 +1,49 @@
+#order_list {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+#order_list table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+#order_list th, #order_list td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+#order_list th {
+    background-color: #f2f2f2;
+}
+
+#order_list tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+#order_list tbody tr:hover {
+    background-color: #ddd;
+}
+
+#order_list img {
+    max-width: 100px;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+#order_list .review-button {
+    display: block;
+    margin-top: 10px;
+    text-decoration: none;
+    background-color: #007bff;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+#order_list .review-button:hover {
+    background-color: #0056b3;
+}

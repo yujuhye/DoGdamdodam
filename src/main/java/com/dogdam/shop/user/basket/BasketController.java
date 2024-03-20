@@ -18,6 +18,8 @@ import com.dogdam.shop.admin.goods.GoodsDto;
 import com.dogdam.shop.admin.goods.GoodsService;
 import com.dogdam.shop.user.member.MemberDto;
 import com.dogdam.shop.user.order.AddressDto;
+import com.dogdam.shop.user.review.ReviewDto;
+import com.dogdam.shop.user.review.ReviewService;
 
 import jakarta.security.auth.message.callback.PrivateKeyCallback.Request;
 import jakarta.servlet.http.HttpSession;
@@ -33,6 +35,10 @@ public class BasketController {
 	BasketService basketService;
 	@Autowired
 	GoodsService goodsService;
+	
+	/*0319 add : review*/
+	@Autowired
+	ReviewService reviewService;
 
 	
 	   @PostMapping("/basketConfirm")
