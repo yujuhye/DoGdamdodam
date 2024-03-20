@@ -1,3 +1,4 @@
+
 #section_wrap {
     text-align: center;
 }
@@ -19,7 +20,7 @@
 }
 
 .section_header {
-    margin: 30px 0;
+    margin: 50px 0 40px 0;
     font-size: 25px;
     font-weight: bold;
 }
@@ -48,7 +49,15 @@ form input[type=button]:hover {
 }
 
 .go_to_login {
-    margin: 30px 0;
+    font-size: 18px;
+    height: 28px;
+    margin: 40px 0;
+}
+
+.go_to_login a:hover {
+    padding: 0 10px;
+    background-color: rgba(207, 193, 193, 0.5);
+    border-radius: 6px;
     font-size: 20px;
 }
 

@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.dogdam.shop.admin.AdminConfig;
+import com.dogdam.shop.admin.PasswordEncoderForAdmin;
 
 import lombok.extern.log4j.Log4j2;
 
@@ -40,7 +41,23 @@ public class AdminMemberService {
 		log.info("create_account_confirm()");
 			
 		int result = -1;
-//				로그인 암호화 작업 (차후예정)
+		String a_id = memberDto.getA_id();
+		
+		result = memberDao.searchForDeleteMember(a_id);
+		if(result > 0) {
+			return result = AdminConfig.CREATE_ACCOUNT_ERROR;
+		} else {
+			result = memberDao.searchForHasMember(a_id);
+			if(result > 0) {
+				return result = AdminConfig.CREATE_ACCOUNT_ERROR;
+			} else {
+				result = -1;
+			}
+		}
+		
+		String encryptedPassword = PasswordEncoderForAdmin.encodePassword(memberDto.getA_pw());
+		memberDto.setA_pw(encryptedPassword);
+		
 		if(memberDto.getA_id().equals("superAdmin")) {
 			result = memberDao.insertSuperAdmin(memberDto);
 		} else {
@@ -63,8 +80,15 @@ public class AdminMemberService {
 
 	public AdminMemberDto login_confirm(AdminMemberDto memberDto) {
 		log.info("login_confirm()");
-//		비밀번호 암호화 대조 (차후추가)
-		return memberDao.selectAdminForLogin(memberDto);
+		
+		AdminMemberDto loginAdminDto = memberDao.selectAdminForLogin(memberDto);
+		
+		if(loginAdminDto != null && PasswordEncoderForAdmin.maches(memberDto.getA_pw(), loginAdminDto.getA_pw())) {
+			return loginAdminDto;
+		}
+		
+		return null;
+		
 	}
 
 	

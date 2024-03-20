@@ -55,7 +55,7 @@
 		FROM 
 			ADMIN 
 		WHERE 
-			A_ID = #{a_id} AND A_PW = #{a_pw} AND A_APPROVAL = 1
+			A_ID = #{a_id} AND A_APPROVAL = 1
 	
 	</select>
 	

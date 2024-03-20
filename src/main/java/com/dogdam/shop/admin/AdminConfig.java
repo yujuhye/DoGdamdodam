@@ -37,6 +37,7 @@ public class AdminConfig {
 
 	final static public int CREATE_ACCOUNT_SUCCESS = 3;
 	final static public int CREATE_ACCOUNT_FAIL = -3;
+	final static public int CREATE_ACCOUNT_ERROR = -88;
 	
 	final static public int LOGIN_SUCCESS = 2;
 	final static public int LOGIN_FAIL = 4;

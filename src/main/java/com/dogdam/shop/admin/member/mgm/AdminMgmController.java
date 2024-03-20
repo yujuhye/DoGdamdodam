@@ -20,6 +20,7 @@ import com.dogdam.shop.admin.PageMakerDto;
 import com.dogdam.shop.admin.member.AdminMemberDto;
 import com.dogdam.shop.user.member.MemberDto;
 
+import jakarta.servlet.http.HttpSession;
 import lombok.extern.log4j.Log4j2;
 
 
@@ -36,7 +37,8 @@ public class AdminMgmController {
 	AdminMgmService adminMgmService;
 	
 	@GetMapping(AdminConfig.LIST_AND_MGM)
-	public Object listAndMgm(Model model, 
+	public Object listAndMgm(Model model,
+							HttpSession session,
 							@RequestParam(value = "pageNum", required = false, defaultValue = PageDefaultConfig.DEFAULT_PAGE_NUMBER) int pageNum, 
 							@RequestParam(value = "amonut", required = false, defaultValue = PageDefaultConfig.DEFAULT_AMOUNT) int amount, 
 							@RequestParam(value = "searchText", required = false, defaultValue = "") String searchText) {

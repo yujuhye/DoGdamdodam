@@ -9,6 +9,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
+import com.dogdam.shop.admin.member.AdminMemberDto;
+import com.dogdam.shop.admin.member.IAdminDaoForMybatis;
 import com.dogdam.shop.user.member.IUserMemberDaoForMybatis;
 import com.dogdam.shop.user.member.MemberDto;
 
@@ -22,6 +24,9 @@ public class SpringSecurityConfig {
 	
 	@Autowired
 	IUserMemberDaoForMybatis iUserMemberDaoForMybatis;
+	
+	@Autowired
+	IAdminDaoForMybatis iAdminDaoForMybatis;
 	
 	@Bean
 	public PasswordEncoder passwordEncoder() {
@@ -53,7 +58,6 @@ public class SpringSecurityConfig {
 						"/review/reviewDelete",
 						"/user/qa/**",
 						"/user/bookmark/**"
-						
 						).authenticated()
 				.requestMatchers(
 						"/",
@@ -61,15 +65,16 @@ public class SpringSecurityConfig {
 						"/img/**",
 						"/js/**",
 						"/user/member/**",
-						"/admin/**",
                         "/user/goods/goodsDetailView",
                         "/user/goods/searchGoodsConfirm",
                         "/user/goods/searchCategory",
                         "/user/goods/searchProductsByCategory",
                         "/review/reviewList",
                         "/user/bookmark/bookmarkList",
-                        "/user/goods/goodsList"
-						).permitAll());
+                        "/user/goods/goodsList",
+                        "/admin/**"
+						)
+				.permitAll());
 		
 		
 		http
@@ -124,6 +129,9 @@ public class SpringSecurityConfig {
 				.maxSessionsPreventsLogin(false))
 		.sessionManagement(sess -> sess
 				.sessionFixation().newSession());
+		
+		
+		
 		
 		return http.build();
 		

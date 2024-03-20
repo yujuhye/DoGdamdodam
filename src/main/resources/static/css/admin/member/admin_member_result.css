@@ -1,0 +1,25 @@
+#section_wrap {
+    text-align: center;
+}
+
+.section_switch {
+    margin: 100px 0 300px 0;
+}
+
+.section_text p {
+    font-size: 25px;
+    font-weight: bold;
+    margin-bottom: 80px;
+}
+
+.go_to_login {
+    font-size: 18px;
+    height: 28px;
+}
+
+.go_to_login a:hover {
+    padding: 0 10px;
+    background-color: rgba(207, 193, 193, 0.5);
+    border-radius: 6px;
+    font-size: 20px;
+}

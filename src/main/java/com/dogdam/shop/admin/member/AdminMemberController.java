@@ -53,7 +53,6 @@ public class AdminMemberController {
 		int result = adminMemberService.create_account_confirm(memberDto);
 		
 		model.addAttribute(AdminConfig.ATTRIBUTE_NAME, adminConfig);
-		
 		model.addAttribute(AdminConfig.SIGN_UP_RESULT, result);
 		
 		return nextPage;
