@@ -3,10 +3,15 @@
 
 }
 
-.bm_heart{
-	text-align: right;
+.bm_heart > span > img {
+	width: 30px;
 }
 
 .bm_heart div {
 	margin-right: 10px;
 }
+
+.bm_heart{
+	text-align: right;
+}
+

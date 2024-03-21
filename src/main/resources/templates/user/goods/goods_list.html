@@ -17,10 +17,8 @@
 <link rel="stylesheet" th:href="@{/css/header_nav_footer.css}">
 <link rel="stylesheet" th:href="@{/css/user/goods/goods_list.css}">
 
-<!-- 북마크, qa -->
+<!-- 북마크 -->
 <link rel="stylesheet" th:href="@{/css/user/bookmark/bookmark_goods_detail_view.css}">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-<script th:replace="~{user/include/bookmark_goods_list::js}" type="text/javascript"></script>
 
 <script type="text/javascript">
 
@@ -73,19 +71,18 @@ $(document).ready(function() {
                             <span th:each="review : ${reviewDtos}" th:if="${review.g_no == goods.g_no}" class="reviewLine">
 								<img src="/img/review/star.png" alt="별 이미지">
 								<span th:text="${#numbers.formatDecimal(review.r_rating, 1, 1)}"></span>
-							</span>
-							
+							</span>							
                         </p>
                         
                         <div class="bookmark">
                             <div class="bm_heart" th:attr="data-g_no=${goods.g_no}">
                                 <div class="bm_count" th:text="${goods.g_bm_count}"></div>
-                                <a href="#none" class="bm_heart_off" th:if="${isBookmarked}" th:attr="data-g_no=${goods.g_no}">
+                                <span class="bm_heart_off" th:if="${isBookmarked}" th:attr="data-g_no=${goods.g_no}">
                                     <img class="bm_heart_full" th:src="@{/img/bookmark/fullheart.png}">
-                                </a>
-                                <a href="#none" class="bm_heart_on" th:unless="${isBookmarked}" th:attr="data-g_no=${goods.g_no}">
+                                </span>
+                                <span class="bm_heart_on" th:unless="${isBookmarked}" th:attr="data-g_no=${goods.g_no}">
                                     <img class="bm_heart_empty" th:src="@{/img/bookmark/emptyheart.png}">
-                                </a>
+                                </span>
                             </div>
                         </div>
                     </div>

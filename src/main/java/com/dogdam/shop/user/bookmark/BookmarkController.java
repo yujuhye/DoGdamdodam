@@ -38,8 +38,12 @@ public class BookmarkController {
 		MemberDto loginedMemberDto = 
 				(MemberDto) session.getAttribute("loginedMemberDto");
 		
-		bookmarkDto.setU_id(loginedMemberDto.getU_id());
-
+		boolean isLogined = (loginedMemberDto != null); // Check if user is logged in
+	    
+	    if (isLogined) {
+	        bookmarkDto.setU_id(loginedMemberDto.getU_id());
+	    }
+		
 		int g_no = Integer.parseInt(msgMap.get("g_no"));
 		bookmarkDto.setG_no(g_no);
 		
@@ -52,6 +56,7 @@ public class BookmarkController {
 
 	    Map<String, Object> resultMap = new HashMap<>();
 	    resultMap.put("notbookmarked", notbookmarked);
+	    resultMap.put("isLogined", isLogined);
 
 	    return resultMap;
 	}
