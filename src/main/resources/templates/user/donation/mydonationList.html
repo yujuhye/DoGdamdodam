@@ -3,37 +3,40 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
+<link rel="stylesheet" th:href="@{/css/user/order/mydonationList.css}">
+
 </head>
 <body>
 
 
 	<div class="myDonation_list">
-			
-				<table>
-					<thead>
-						<tr>
-							<th>기부날짜</th>
-							<th>기부내역</th>
-						</tr>
-					</thead>
+         
+            <table class="donation">
+               <thead>
+                  <tr>
+                     <th>기부날짜</th>
+                     <th>기부내역</th>
+                  </tr>
+               </thead>
 
-					<tbody>
-						<tr th:each="donation : ${donationDtos}">
-							<td>
-								<span th:text="${#strings.substring(donation.d_reg_date, 0, 10)}"></span>
-							</td>
-							<td>
-    							<span th:text="${donation.d_donation}"></span><span>원</span>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-				
-				<div class="donation_totalAmount">
-					<span>총 기부금액:</span> <span th:text="${donationTotalAmount}"></span><span>원</span>
-				</div>
-
-	</div>
+               <tbody>
+                  <tr th:each="donation : ${donationDtos}">
+                     <td>
+                        <span th:text="${#strings.substring(donation.d_reg_date, 0, 10)}"></span>
+                     </td>
+                     <td>
+                         <span th:text="${donation.d_donation}"></span><span>원</span>
+                     </td>
+                  </tr>
+               </tbody>
+            </table>
+            
+            <div class="donation_totalAmount">
+               <span>총 기부금액:</span> <span th:text="${donationTotalAmount}"></span><span>원</span>
+            </div>
+            
+   </div>
 
 	
 </body>

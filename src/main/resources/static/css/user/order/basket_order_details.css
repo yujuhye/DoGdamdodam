@@ -1,59 +1,128 @@
-/* 주문자, 배송지 정보, 주문상품, 주문금액, 기부금액에 대한 스타일 */
-#order_person,
-#delivery_address,
-#order_goods,
-#order_amount,
-#donation_amount {
-    margin-bottom: 20px; /* 각 요소 사이에 여백 추가 */
+.basket_order_wrap {
+    margin: 30px auto;
+    text-align: center;
+    font-family: Arial, sans-serif;
+    width: 1000px;
 }
 
-/* 주문자, 배송지 정보, 주문상품, 주문금액, 기부금액 제목에 대한 스타일 */
-#order_person h3,
-#delivery_address h3,
-#order_goods h3,
-#order_amount h3,
-#donation_amount h3 {
-    font-size: 18px; /* 제목 글자 크기 */
-    font-weight: bold; /* 제목 글자 굵게 */
-    margin-bottom: 10px; /* 제목 아래 여백 */
+.basket_order_wrap table th {
+    background-color: #e0e0e0;
+    font-size: 21px;
 }
 
-/* 배송지 정보 입력 폼에 대한 스타일 */
-.new_address {
-    margin-bottom: 20px; /* 여백 추가 */
+.basket_order_wrap table td {
+    font-size: 18px;
 }
 
-.new_address input[type="text"] {
-    width: 100%; /* 입력 필드 너비를 100%로 설정하여 폭 너비에 맞게 확장 */
-    padding: 10px; /* 내부 여백 설정 */
-    margin-bottom: 10px; /* 아래 여백 설정 */
-    border: 1px solid #ccc; /* 테두리 추가 */
-    border-radius: 5px; /* 둥근 테두리 설정 */
+table {
+    border-collapse: collapse;
+    width: 1000px;
+    margin: 0 auto;
+    margin-bottom: 10px;
 }
 
-/* 주문 상품 목록 테이블에 대한 스타일 */
-#order_goods table {
-    width: 100%; /* 테이블 너비를 100%로 설정하여 확장 */
-    border-collapse: collapse; /* 테이블 경계를 합침 */
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
 }
 
-#order_goods table td {
-    padding: 10px; /* 셀 내부 여백 설정 */
-    border-bottom: 1px solid #ddd; /* 아래쪽 테두리 추가 */
+th {
+    background-color: #f2f2f2;
 }
 
-#order_goods table td:first-child {
-    width: 100px; /* 첫 번째 열(상품 이미지)의 너비 설정 */
+.basket_order_wrap {
+    margin-bottom: 20px;
 }
 
-#order_goods table img {
-    max-width: 80px; /* 이미지 최대 너비 설정 */
-    max-height: 80px; /* 이미지 최대 높이 설정 */
+.new_address, .origin_address {
+    margin-bottom: 10px;
 }
 
-/* 주문금액, 기부금액에 대한 스타일 */
-#order_amount,
-#donation_amount {
-    font-size: 16px; /* 글자 크기 설정 */
-    font-weight: bold; /* 글자 굵게 설정 */
+.modify_addr_btn {
+    margin-top: 10px;
+}
+
+.order_amount, .donation_amount {
+    font-weight: bold;
+}
+
+.order_goods_wrap {
+    display: flex;
+    align-items: center;
+}
+
+.order_goods_wrap img {
+    margin-right: 10px;
+    max-width: 100px; 
+    max-height: 100px;
+}
+
+.order_goods_wrap div {
+    display: flex;
+    flex-direction: column;
+}
+
+.order_goods_wrap div a {
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.order_goods_wrap div span {
+    display: flex;
+    align-items: center;
+}
+
+.order_goods_wrap .price::after {
+    content: '원'; 
+    margin-left: 4px; 
+}
+
+.basket_order_wrap a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.basket_order_wrap a:hover {
+    text-decoration: underline;
+}
+
+.submit_btn input[type="submit"] {
+    display: block; 
+    margin: 20px auto; 
+    background-color: #007bff; 
+    color: white; 
+    padding: 10px 20px; 
+    border: none;
+    border-radius: 5px;
+    font-size: 21px; 
+    cursor: pointer;
+}
+
+.submit_btn input[type="submit"]:hover {
+    background-color: #0056b3; 
+}
+
+.modify_addr_btn {
+    display: inline-block;
+    margin-top: 15px; 
+    margin-right: 0; 
+    background-color: #007bff;
+    color: white;
+    padding: 7px 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 13px;
+    cursor: pointer;
+} 
+
+.modify_addr_btn:hover {
+    background-color: #0056b3; 
+}
+
+.address {
+	color: #666;
+	font-size: 16px; 
 }

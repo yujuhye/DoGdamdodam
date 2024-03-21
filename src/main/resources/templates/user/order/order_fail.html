@@ -3,10 +3,19 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
+<link rel="stylesheet" th:href="@{/css/user/order/order_success.css}">
+
 </head>
 <body>
 
-	주문 실패
+	<div id="order_wrap">
+
+	    <div class="success_letter">주문이 실패햐였습니다.</div>
+		
+		<a class="go_orderList" th:href="@{/user/goods/goodsDetailView}">상품 보러가기 ></a>
+	
+	</div>
 	
 </body>
 </html>

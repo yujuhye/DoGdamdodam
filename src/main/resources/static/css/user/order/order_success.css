@@ -1,0 +1,33 @@
+#order_wrap {
+   margin: 400px auto;
+   text-align: center;
+}
+
+.success_letter {
+   font-size: 30px;
+   font-weight: bold; 
+}
+.order_letter {
+	 font-size:  16px;
+    font-weight: bold; 
+     color: #777777;
+}
+
+.order_number {
+    font-size:  23px;
+}
+
+.go_orderList {
+    text-decoration: none; 
+    color: #007bff; 
+    font-size:  20px;
+}
+
+.go_orderList:hover {
+    text-decoration: underline;
+}
+
+.order_number_wrap {
+	padding-top: 8px;
+	padding-bottom: 15px;
+}
