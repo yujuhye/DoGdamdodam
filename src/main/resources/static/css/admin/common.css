@@ -83,6 +83,7 @@ body {
 	
 }
 
+
 footer {
    width: 100%;
    padding: 10px 0;
@@ -102,6 +103,11 @@ footer {
    text-align: center;
    font-size: .9em;
 }
-
-
-
+/* #footer_wrap {
+	background-color: rgba(242, 102, 102, 0.1);
+	height: 100px;
+	line-height: 100px;
+>>>>>>> 6493e61098645a62b5371429deffe5863e6ecd2c
+}
+ */
+ 

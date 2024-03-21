@@ -43,6 +43,7 @@ function updateProductList(products) {
 	    var productImg = $('<img>').attr('src', 'http://14.42.124.95:8091/goodsUploadImg/' + product.g_thumbnail_name).attr('alt', product.g_name);
 	    var productName = $('<h3>').text(product.g_name);
 	    var productPrice = $('<p>').text(product.g_price != 0 ? product.g_price.toLocaleString() + '원' : '');
+	    /*var productRatingImg = $('<img>').attr('src', '/img/review/star.png').attr('alt', '별 이미지');*/
 	    var productRating = $('<span>').text(product.g_rating); // 평점 추가
 	    
 	    // 상품 링크에 이미지, 상품명, 가격, 평점 추가
@@ -50,6 +51,7 @@ function updateProductList(products) {
 	    productItem.append(productLink);
 	    productItem.append(productName);
 	    productItem.append(productPrice);
+	    /*productItem.append(productRatingImg);*/
 	    productItem.append(productRating);
 	    
 	    // 상품 그리드에 상품 아이템 추가
