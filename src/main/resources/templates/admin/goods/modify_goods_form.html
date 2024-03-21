@@ -11,6 +11,8 @@
 <script type="text/javascript" th:src="@{/js/goods/modify_goods_form.js}"></script>
 
 <link rel="stylesheet" th:href="@{/css/admin/goods/modify_goods_form.css}">
+<link rel="stylesheet" th:href="@{/css/common.css}">
+<link rel="stylesheet" th:href="@{/css/admin/goods/modify_goods_form.css}">
 
 </head>
 <body>
@@ -23,7 +25,7 @@
 		<div id="section_wrap">
 			<div class="word">GOODS MODIFY FORM</div>
 
-			<div class="goods_insert_form">
+			<div class="goods_modify_form">
 
 				<form th:action="@{/admin/goods/modifyGoodsConfirm}" name="modify_goods_form" method="post" enctype="multipart/form-data">
 					<input type="hidden" name="g_no" th:value="${goodsDto.g_no}">

@@ -10,6 +10,10 @@
 <script type="text/javascript" th:src="@{/js/goods/insert_goods_form.js}"></script>
 <script type="text/javascript" th:src="@{/js/goods/goods_insert_ajax.js}"></script>
 
+<link rel="stylesheet" th:href="@{/css/common.css}">
+<link rel="stylesheet" th:href="@{/css/header_nav_footer.css}">
+<link rel="stylesheet" th:href="@{/css/admin/goods/insert_goods_form.css}">
+
 </head>
 <body>
 
@@ -24,33 +28,38 @@
         <div class="goods_insert_form">
 
             <form th:action="@{/admin/goods/insertGoodsConfirm}" name="insert_goods_form" method="post" enctype="multipart/form-data">
+                <label class="goodsName">상품명</label>
                 <input type="text" name="g_name" placeholder="Input goods name"><br>
 
-                <label>대표 이미지</label>
+                <label class="thumImg">대표 이미지</label>
                 <input type="file" name="file1"><br>
 
-                <label>이미지</label>
+                <label class="secondImg">이미지</label>
                 <input type="file" name="file2"><br>
 
-                <label>이미지</label>
+                <label class="thirdImg">이미지</label>
                 <input type="file" name="file3"><br>
 
-                <label>상세 설명 이미지</label>
+                <label class="detailImg">상세 설명 이미지</label>
                 <input type="file" name="file4"><br>
 
-                <label>Category</label>
+                <label class="category">Category</label>
                 <select name="c_no" id="primaryCategory">
                     <option>Primary Category</option>
                 </select>
 
-                <label>Subcategory</label>
+				<br>
+				
+                <label class="subCategory">Subcategory</label>
                 <select id="secondaryCategory" name="c_no2">
                     <option>Secondary Category</option>
                 </select>
                 <br>
 
+				<label class="goodsExplanation">상품 설명</label>
                 <input type="text" name="g_explanation" placeholder="Input goods explanation"><br>
 
+				<label class="goodsPrice">상품 가격</label>
                 <input type="text" name="g_price" placeholder="Input goods price"><br>
 
                 <input type="button" value="INSERT" class="goodsInsertBtn" onclick="insertGoods();">

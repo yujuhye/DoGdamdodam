@@ -13,14 +13,14 @@
     color: #333;
 }
 
-.goods_insert_form {
+.goods_modify_form {
     display: flex;
     flex-direction: column;
 }
 
-.goods_insert_form input[name='g_name'],
-.goods_insert_form input[name='g_explanation'],
-.goods_insert_form input[name='g_price']{
+.goods_modify_form input[name='g_name'],
+.goods_modify_form input[name='g_explanation'],
+.goods_modify_form input[name='g_price']{
 	width: 252px;
 	height: 25px;
 }
@@ -49,16 +49,16 @@
 	margin-right: 100px;
 }
 
-.goods_insert_form input[type=text],
-.goods_insert_form input[type=file],
-.goods_insert_form select {
+.goods_modify_form input[type=text],
+.goods_modify_form input[type=file],
+.goods_modify_form select {
     padding: 10px;
     margin: 10px 0;
     border: 1px solid #ccc;
     border-radius: 5px; /* 입력 필드 모서리 둥글게 */
 }
 
-.goods_insert_form img {
+.goods_modify_form img {
     max-width: 100px; /* 이미지 최대 너비를 100px로 설정 */
     max-height: 100px; /* 이미지 최대 높이를 100px로 설정 */
     height: auto; /* 이미지 높이 자동 조정 */
@@ -66,27 +66,27 @@
     object-fit: cover; /* 이미지 비율을 유지하면서, 지정한 높이와 너비에 맞게 조절 */
 }
 
-.goods_insert_form label {
+.goods_modify_form label {
     margin-top: 20px;
     font-weight: bold; /* 라벨 볼드 처리 */
 }
 
-.goods_insert_form input[type=button], 
-.goods_insert_form input[type=reset] {
+.goods_modify_form input[type=button], 
+.goods_modify_form input[type=reset] {
     cursor: pointer;
     padding: 10px 20px;
     margin-top: 20px;
     border: none;
     border-radius: 5px; /* 버튼 모서리 둥글게 */
-    background-color: #5cb85c; /* 수정 버튼 색 */
+    background-color: #FFCD4A; /* 수정 버튼 색 */
     color: white;
     margin-right: 10px; /* 버튼 사이 간격 */
 }
 
-.goods_insert_form input[type=button].goodsCancelBtn {
-    background-color: #d9534f; /* 취소 버튼 색 */
+.goods_modify_form input[type=button].goodsCancelBtn {
+    background-color: #FFCD4A; /* 취소 버튼 색 */
 }
 
-.goods_insert_form input[type=reset] {
-    background-color: #f0ad4e; /* 리셋 버튼 색 */
+.goods_modify_form input[type=reset] {
+    background-color: #FFCD4A; /* 리셋 버튼 색 */
 }

@@ -58,6 +58,16 @@ $(document).ready(function(){
 	<header	th:replace="~{include/title_header_nav_footer.html::user_header}">
 	</header>
 
+	<!-- 검색 -->
+	<div class="search">
+		<form th:action="@{/user/goods/searchGoodsConfirm}"
+			name="search_goods_form" method="get">
+			<input type="text" name="g_name"
+				placeholder="Enter the name of the goods you are looking for.">
+			<input type="button" value="search" onclick="searchGoodsForm();" />
+		</form>
+	</div>
+
 	<nav th:replace="~{include/title_header_nav_footer.html::user_nav}">
 	</nav>
 
@@ -69,15 +79,7 @@ $(document).ready(function(){
 				
 	<a th:href="@{/donation/donation_ranking}">기부 순위></a>
 
-	<!-- 검색 -->
-	<div class="search">
-		<form th:action="@{/user/goods/searchGoodsConfirm}"
-			name="search_goods_form" method="get">
-			<input type="text" name="g_name"
-				placeholder="Enter the name of the goods you are looking for.">
-			<input type="button" value="search" onclick="searchGoodsForm();" />
-		</form>
-	</div>
+	
 	
 	<section>
 		<div id="section_wrap">
