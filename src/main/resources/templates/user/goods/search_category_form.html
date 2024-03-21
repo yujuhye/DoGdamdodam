@@ -99,16 +99,13 @@ $(document).ready(function() {
 				<div class="product-grid">
 					<div class="product-item" th:each="goods : ${goodsDtos}">
 						<a th:href="@{/user/goods/goodsDetailView(g_no=${goods.g_no})}">
-							<img
-							th:src="@{'http://14.42.124.95:8091/goodsUploadImg/' + ${goods.g_thumbnail_name}}"
-							alt="상품 이미지">
+							<img th:src="@{'http://14.42.124.95:8091/goodsUploadImg/' + ${goods.g_thumbnail_name}}" alt="상품 이미지">
 							<h3 th:text="${goods.g_name}">상품 이름</h3>
 							<p th:if="${goods.g_price != 0}" th:text="|${#numbers.formatInteger(goods.g_price, 0, 'COMMA')}원|">가격</p>
 							<span th:each="review : ${reviewDtos}" th:if="${review.g_no == goods.g_no}" class="reviewLine">
 								<img src="/img/review/star.png" alt="별 이미지">
 								<span th:text="${#numbers.formatDecimal(review.r_rating, 1, 1)}"></span>
 							</span>
-
 						</a>
 					</div>
 				</div>

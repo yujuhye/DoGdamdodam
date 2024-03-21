@@ -84,9 +84,10 @@ footer {
 }
 
 #footer_wrap {
+	margin-top: 25px;
 	width: 100%; /* footer 너비를 전체 너비로 설정 */
 	height: 100px;
-	line-height: 100px;
+	/* line-height: 100px; */
 	color: #fafafa;
 	text-align: center;
 	font-size: .9em;
