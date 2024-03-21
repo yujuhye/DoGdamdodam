@@ -52,13 +52,16 @@ function ajax_bookmark_on(g_no) {
 		success: function(data) {
 			console.log('bookmark success!!');
 
-			if (data.notbookmarked > 0) {
-				alert("위시리스트에 저장되었습니다.");
-				$('#bm_heart').load(location.href+' #bm_heart');
-	            
-	            
+			if (data.isLogined) { 
+	            if (data.notbookmarked > 0) {
+	                alert("위시리스트에 저장되었습니다.");
+	                $('#bm_heart').load(location.href + ' #bm_heart');
+	                
+	            } else {
+	                alert("위시리스트 저장에 실패했습니다.");
+	            }
 	        } else {
-	        	alert("위시리스트 저장에 실패했습니다.");
+	            alert("위시리스트 저장에 실패했습니다.");
 	        }
 	    },
 	    error: function (xhr, status, error) {

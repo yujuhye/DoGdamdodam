@@ -46,8 +46,8 @@ public class UserGoodsController {
 		@GetMapping("/goodsList")
 		public String getMethodName(HttpSession session, Model model) {
 			log.info("userGoodsList");
-			
-			String nextPage = "user/goods/goods_list";
+						
+            String nextPage = "user/goods/goods_list";
 			
 			List<GoodsDto> goodsDtos = goodsService.userGoodsList();
 			List<ReviewDto> reviewDtos = reviewService.seletStar();
@@ -60,6 +60,7 @@ public class UserGoodsController {
 			
 			return nextPage;
 		}
+		
 	
 	
 	// 상품 상세 화면 & 리뷰
@@ -77,14 +78,16 @@ public class UserGoodsController {
 		
 		/* 북마크 부분 >>> */
 		MemberDto loginedMemberDto = 
-				(MemberDto) session.getAttribute("loginedMemberDto");	
+				(MemberDto) session.getAttribute("loginedMemberDto");
 		
-		if(loginedMemberDto == null) {
-			return "user/member/login_form";
-		}
-		
-		boolean isBookmarked = bookmarkService.bookmarkHeart(g_no, loginedMemberDto.getU_id());
-		/* <<< 북마크 부분 */
+		boolean isBookmarked = false;
+	    if (loginedMemberDto != null) {
+	
+	        isBookmarked = bookmarkService.bookmarkHeart(g_no, loginedMemberDto.getU_id());
+	        
+	    } else if (loginedMemberDto == null) {
+	    	isBookmarked = false;
+	    }
 		
 		model.addAttribute("goodsDto", goodsDto);
 		model.addAttribute("reviewDtos", reviewDtos);
