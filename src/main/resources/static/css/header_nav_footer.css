@@ -74,20 +74,21 @@ nav #nav_wrap a:hover{
 }
 
 footer {
-	width: 100%;
-	border-top: 1px solid #ccc;
-	padding: 10px 0;
-	background-color: #363636;
-	position: relative; /*footer를 화면 아래 고정 */
-	bottom: 0;
-	/* z-index: 1; 다른 요소 위에 표시되도록 설정 */
+   width: 100%;
+   border-top: 1px solid #ccc;
+   padding: 10px 0;
+   background-color: #363636;
+   position: relative; /*footer를 화면 아래 고정 */
+   bottom: 0;
+   /* z-index: 1; 다른 요소 위에 표시되도록 설정 */
 }
 
 #footer_wrap {
-	width: 100%; /* footer 너비를 전체 너비로 설정 */
-	height: 100px;
-	line-height: 100px;
-	color: #fafafa;
-	text-align: center;
-	font-size: .9em;
+   margin-top: 25px;
+   width: 100%; /* footer 너비를 전체 너비로 설정 */
+   height: 100px;
+   /* line-height: 100px; */
+   color: #fafafa;
+   text-align: center;
+   font-size: .9em;
 }

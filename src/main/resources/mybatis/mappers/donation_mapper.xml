@@ -34,7 +34,7 @@
       		U_ID
    		 ORDER BY
       		totalDonation DESC
-   		 LIMIT 10
+   		 LIMIT 5
 	
 	</select>	
 	
