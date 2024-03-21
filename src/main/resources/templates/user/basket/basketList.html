@@ -14,11 +14,10 @@
 <body>
 
 
-   <div id="basket_list">
    
    <form th:if="${basketDtos != null }" th:action="@{/basket/basketMap}" th:name="basket_list_form" th:method="post" id="basket_list_form"> 
    	
-      
+      <div id="basket_list">
       <span>전체선택</span> <input type="checkbox" name="all_check" onclick="allGoodsCheck()">
       
      <ul>
@@ -31,8 +30,8 @@
            <div class="goods_info">
              <h3><a th:text="${basketDto.g_name}" th:href="@{/user/goods/goodsDetailView(g_no=${basketDto.g_no})}"></a></h3>
             <span>주문수량:</span><span th:text="${basketDto.s_quantity}"></span>
-            <input type="hidden" name="quantity" th:value="${basketDto.s_quantity}">  
-            <span th:text="${basketDto.g_price}"></span> <span>원</span><br>
+            <input type="hidden" name="quantity" th:value="${basketDto.s_quantity}">
+            <span th:text="|${#numbers.formatInteger(basketDto.g_price, 0, 'COMMA')}원|"></span>  
             <input type="hidden" name="price" th:value="${basketDto.g_price}"> 
               <input type="button" value="삭제" onclick="deleteBasketItem(this)">
            </div>
@@ -47,13 +46,15 @@
       <div class="order_btn">
       	<input type="button" value="주문하기" onclick="checkbox()">
       </div>
+      
+     </div>
    </form>   
-   
+  
    	<div th:unless="${basketDtos != null}">
        <p>장바구니에 상품이 없습니다.</p>
-     </div>
+    </div>
      
-   </div>
+  
 
 </body>
 </html>

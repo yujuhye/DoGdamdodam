@@ -41,9 +41,9 @@
                         <tr th:if="${addressDto == null}">
                              <td>
                                 <div class="new_address">
-                                <input type="text" name="da_name" placeholder="수령인을 입력해주세요" required><br>
-                                <input type="text" name="da_addr_phone" placeholder="연락처를 입력해주세요" required><br>
-                                <input type="text" name="da_addr_text" placeholder="배송지를 입력해주세요" required><br>
+                                <span class="address">수령인:</span> &nbsp;<input type="text" name="da_name" placeholder="수령인을 입력해주세요" required><br>
+                                <span class="address">연락처:</span> &nbsp;<input type="text" name="da_addr_phone" placeholder="연락처를 입력해주세요" required><br>
+                                <span class="address">배송지:</span> &nbsp;<input type="text" name="da_addr_text" placeholder="배송지를 입력해주세요" required><br>
                                 </div>
                             </td>
                         </tr>
@@ -51,7 +51,7 @@
                             <td>
                             <div class="origin_address">
                                <input type="hidden" name="origin_da_no" th:value="${addressDto.da_no}">
-                           <input type="hidden" name="selected_da_no">
+                           	   <input type="hidden" name="selected_da_no">
                                <span class="address">수령인:</span> <span class="da_name" th:text="${addressDto.da_name}"></span><br>
                                <span class="address">연락처:</span> <span class="da_addr_phone" th:text="${addressDto.da_addr_phone}"></span><br>
                                <span class="address">배송지:</span> <span class="da_addr_text" th:text="${addressDto.da_addr_text}"></span><br>
@@ -90,7 +90,7 @@
                                 </a>
                                 <div>
 	                                 <a th:text="${entry.value.g_name}" th:href="@{/user/goods/goodsDetailView(g_no=${entry.key})}"></a>
-	                                <span class="price" th:text="${entry.value.g_price}"></span>
+	                                 <span class="price" th:text="|${#numbers.formatInteger(entry.value.g_price, 0, 'COMMA')}원|"></span> 
 	                                <span>주문수량: <span th:text="${entry.value.s_quantity}"></span></span>
                                 </div>
                              </div>
@@ -109,8 +109,8 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td >
-                                <span th:text="${baskettotalAmountExDel}"></span> <span>+ 배송비 3000원 = </span> <span th:text="${basketTotalAmount}"></span><span>원</span>
+                            <td> 
+                                <span th:text="|${#numbers.formatInteger(baskettotalAmountExDel, 0, 'COMMA')}|"></span> <span>+ 배송비 3,000원 = </span> <span th:text="|${#numbers.formatInteger(basketTotalAmount, 0, 'COMMA')}원|"></span> 
                             </td>
                         </tr>
                     </tbody>
@@ -127,7 +127,7 @@
                     <tbody>
                         <tr>
                             <td>
-                                <span th:text="${basketDonationAmount}"></span> <span>원</span>
+                               <span th:text="|${#numbers.formatInteger(basketDonationAmount, 0, 'COMMA')}원|"></span> 
                             </td>
                         </tr>
                     </tbody>

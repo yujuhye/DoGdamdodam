@@ -49,7 +49,7 @@
 	                            </a>
 	                            <div>
 	                                <a th:text="${goods.g_name}" th:href="@{/user/goods/goodsDetailView(g_no=${goods.g_no})}"></a>
-	                                <span class="price" th:text="${goods.g_price}"></span>
+	                                <span th:text="|${#numbers.formatInteger(goods.g_price, 0, 'COMMA')}원|"></span> 
 	                                <span>주문수량: <span th:text="${goods.s_quantity}"></span></span>
 	                            </div>
 	                        </div>
@@ -68,7 +68,7 @@
 					<tbody>
 						<tr>
 							<td>
-								 <span th:text="${totalPrice}"></span><span>원</span>
+								<span th:text="|${#numbers.formatInteger(totalPrice, 0, 'COMMA')}원|"></span> 
 							</td>
 						</tr>
 					</tbody>
@@ -86,7 +86,7 @@
 							<td>
 								<span class="address">수령인:</span> <span th:text="${myOrderInfo.da_name}"></span><br>
 								<span class="address">연락처:</span> <span th:text="${myOrderInfo.da_addr_phone}"></span><br>
-								<span class="address">주소:</span> <span th:text="${myOrderInfo.da_addr_text}"></span><br>
+								<span class="address">배송지:</span> <span th:text="${myOrderInfo.da_addr_text}"></span><br>
 							</td>
 						</tr>
 					</tbody>

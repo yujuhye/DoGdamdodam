@@ -74,10 +74,6 @@ th {
     align-items: center;
 }
 
-.order_goods_wrap .price::after {
-    content: '원'; 
-    margin-left: 4px; 
-}
 
 .basket_order_wrap a {
     color: #007bff;
@@ -125,4 +121,23 @@ th {
 .address {
 	color: #666;
 	font-size: 16px; 
+}
+
+.new_address {
+    margin-top: 10px; 
+    margin-bottom: 10px; 
+}
+
+.new_address input[type="text"] {
+    width: 50%; 
+    padding: 10px; 
+    margin-bottom: 10px; 
+    border: 1px solid #ccc; 
+    border-radius: 5px; 
+    box-sizing: border-box; 
+}
+
+.new_address input[type="text"]:focus {
+    outline: none; 
+    border-color: #007bff;
 }

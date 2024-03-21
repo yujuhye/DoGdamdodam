@@ -28,9 +28,9 @@ function init_events() {
          let recipient_phone    = addressInfo[1].trim();      // 연락처
          let recipient_addr       = addressInfo[2].trim();      // 배송지
          
-         $('div.origin_address div.da_name').text(recipient);
-         $('div.origin_address div.da_addr_phone').text(recipient_phone);
-         $('div.origin_address div.da_addr_text').text(recipient_addr);
+         $('div.origin_address span.da_name').text(recipient);
+         $('div.origin_address span.da_addr_phone').text(recipient_phone);
+         $('div.origin_address span.da_addr_text').text(recipient_addr);
          $('div.origin_address input[name="selected_da_no"]').val(selectedAddress.value);
          
         }
