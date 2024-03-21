@@ -40,16 +40,16 @@ public class DonationController {
 	}
 	
 	
-	@GetMapping("/donation_ranking")
-	public String donationRanking(Model model) {
-		log.info("donationRanking");
-		
-		String nextPage="user/donation/donation_ranking";
-		
-		List<DonationDto> rankingDonationDtos = donationService.donationRanking();
-		
-		model.addAttribute("rankingDonationDtos", rankingDonationDtos);
-		
-		return nextPage;
-	}
+//	@GetMapping("/donation_ranking")
+//	public String donationRanking(Model model) {
+//		log.info("donationRanking");
+//		
+//		String nextPage="/";
+//		
+//		List<DonationDto> rankingDonationDtos = donationService.donationRanking();
+//		
+//		model.addAttribute("rankingDonationDtos", rankingDonationDtos);
+//		
+//		return nextPage;
+//	}
 }

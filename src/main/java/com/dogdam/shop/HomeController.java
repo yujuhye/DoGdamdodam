@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import com.dogdam.shop.admin.AdminConfig;
 import com.dogdam.shop.admin.goods.GoodsDto;
+import com.dogdam.shop.user.donation.DonationDto;
 import com.dogdam.shop.user.donation.DonationService;
 import com.dogdam.shop.user.goods.UserGoodsService;
 
@@ -36,6 +37,9 @@ public class HomeController {
 		//도네이션 메인
 		int allDonationTotalAmount = donationService.allDonationAmount();
 		model.addAttribute("allDonationTotalAmount", allDonationTotalAmount);
+		
+		List<DonationDto> rankingDonationDtos = donationService.donationRanking();
+		model.addAttribute("rankingDonationDtos", rankingDonationDtos);
 		
 		
 		List<GoodsDto> goodsDetailView = userGoodsService.userGoodsList();
@@ -71,6 +75,8 @@ public class HomeController {
 		return nextPage;
 		
 	}
+	
+	
 }
 
 

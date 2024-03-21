@@ -74,13 +74,13 @@ nav #nav_wrap a:hover{
 }
 
 footer {
-	width: 100%;
-	border-top: 1px solid #ccc;
-	padding: 10px 0;
-	background-color: #363636;
-	position: relative; /*footer를 화면 아래 고정 */
-	bottom: 0;
-	/* z-index: 1; 다른 요소 위에 표시되도록 설정 */
+   width: 100%;
+   border-top: 1px solid #ccc;
+   padding: 10px 0;
+   background-color: #363636;
+   position: relative; /*footer를 화면 아래 고정 */
+   bottom: 0;
+   /* z-index: 1; 다른 요소 위에 표시되도록 설정 */
 }
 
 #footer_wrap {
