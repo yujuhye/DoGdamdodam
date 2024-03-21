@@ -2,6 +2,8 @@ package com.dogdam.shop.user.member;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import com.dogdam.shop.user.member.petinfo.UserPetInfoDto;
+
 @Mapper
 public interface IUserMemberDaoForMybatis {
 
@@ -23,5 +25,7 @@ public interface IUserMemberDaoForMybatis {
 	int insertDeleteMember(String u_id);
 
 	MemberDto selectMemberForLogin(MemberDto memberDto);
+
+	UserPetInfoDto selectUserPetInfo(String u_id);
 
 }

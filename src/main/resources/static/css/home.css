@@ -1,6 +1,5 @@
 /* home.css와 home2.css 통합 */
 section {
-    width: 100%;
     padding: 30px 0;
     
     height: 100%;
@@ -12,37 +11,26 @@ section #section_wrap {
     width: 1400px; /* 홈페이지 전체 너비 */
     margin: 0 auto; /* 가운데 정렬 */
     
-    
 }
 
-section #section_wrap .word {
-    text-align: center;
-    font-weight: bolder;
-}
-
-section #section_wrap .intro {
-    
-}
-
-section #section_wrap .intro img {
-    max-width: 100%; /* 이미지가 부모 요소 너비에 맞도록 설정 */
-}
 
 /* 슬릭 슬라이더 */
 .product-thumbnails {
     width: 100%; /* 슬라이드 전체 너비 */
     margin: 0 auto; /* 가운데 정렬 */
-    height: 400px; /* 슬라이더의 높이를 조정합니다. */
+    height: auto; /* 슬라이더의 높이를 조정합니다. */
+    align-content: center;
 }
 
 .product-thumbnails div {
-    text-align: center; /* 이미지 중앙 정렬 */
+    /* 이미지 중앙 정렬 */
+    width: 1400px;
 }
 
 .product-thumbnails img {
     width: 100%; /* 이미지가 컨테이너의 너비를 따르도록 설정 */
-    max-height: 500px; /* 이미지의 높이를 자동으로 조정하여 비율을 유지 */
-    object-fit: contain; /* 컨테이너 내에서 이미지의 비율을 유지하며 전체 이미지가 보이도록 조정 */
+    height: 300px; /* 이미지의 높이를 자동으로 조정하여 비율을 유지 */
+    /*컨테이너 내에서 이미지의 비율을 유지하며 전체 이미지가 보이도록 조정 */
 }
 
 /* 슬릭 슬라이더 컨테이너 */
@@ -52,12 +40,57 @@ section #section_wrap .intro img {
     
 }
 
+.slider_title {
+    margin: 20px 0 0 20px;
+    font-size: 20px;
+}
+
+.date_goods_thumbnails,
+.like_goods_thumbnails,
+.buy_goods_thumbnails {
+    margin: 10px 10px 10px 0;
+    height: 400px;
+    transition: transform 0.3s ease;
+}
+
+.date_goods_thumbnails:hover,
+.like_goods_thumbnails:hover,
+.buy_goods_thumbnails:hover {
+  transform: scale(1.1); /* 호버 시 크기 확대 */
+  z-index: 1;
+}
+
+.slider_container {
+    border: 2px solid rgba(242, 222, 172, 0.5);
+    border-radius: 9px;
+}
+
+.date_goods_thumbnails a > div > img,
+.like_goods_thumbnails a > div > img,
+.buy_goods_thumbnails a > div > img {
+    width: 250px;
+    height: 300px;
+    border-radius: 5px;
+}
+
+.date_goods_thumbnails a > div > p,
+.like_goods_thumbnails a > div > p,
+.buy_goods_thumbnails a > div > p {
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.date_goods_thumbnails a > div,
+.like_goods_thumbnails a > div,
+.buy_goods_thumbnails a > div {
+    margin: 50px;
+    width: 250px;
+}
+
 /* 카테고리 */
 #category_wrap {
     width: 100%;
-    margin-top: 150px;
-    margin-bottom: 50px;
-    
+    margin: 60px 0;    
     text-align: center;
 }
 
@@ -85,12 +118,24 @@ section #section_wrap .intro img {
     background-color: #f0f0f0;
 }
 
+.category a > div > img {
+    width: 100px;
+    height: 100px;
+}
+
+nav {
+    position: relative;
+}
+
 /* 검색 섹션 스타일링 */
 .search {
+    position: absolute;
+    left: 800px;
+    top: 155px;
     width: 100%; /* 전체 너비 */
     padding: 20px 0; /* 상하 패딩 */
-    text-align: right; /* 내용 가운데 정렬 */
-    margin-top: 10px; /* 아래쪽 마진 */
+
+    
 }
 
 .search form {
@@ -119,4 +164,25 @@ section #section_wrap .intro img {
 
 .search input[type="button"]:hover {
     background-color: #FFCD4A; /* 호버 상태에서 배경색 변경 */
+    color: #242424;
+}
+
+#donation_container {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 550px;
+    padding: 10px 25px;
+    margin-top: 10px;
+    border: 2px solid  rgba(244, 221, 164, 0.9);
+    border-radius: 15px;
+}
+
+.allDonation_amount {
+    text-align: center;
+}
+
+.donation_rating {
+    margin-left: 70px;
+    width: 110px;
 }

@@ -13,6 +13,7 @@ import com.dogdam.shop.admin.member.AdminMemberDto;
 import com.dogdam.shop.admin.member.IAdminDaoForMybatis;
 import com.dogdam.shop.user.member.IUserMemberDaoForMybatis;
 import com.dogdam.shop.user.member.MemberDto;
+import com.dogdam.shop.user.member.petinfo.UserPetInfoDto;
 
 import jakarta.servlet.http.HttpSession;
 import lombok.extern.log4j.Log4j2;
@@ -92,9 +93,11 @@ public class SpringSecurityConfig {
 					memberDto.setU_id(authentication.getName());
 					MemberDto loginedMemberDto = 
 							iUserMemberDaoForMybatis.selectMemberForLogin(memberDto);
-					
+					String u_id = loginedMemberDto.getU_id();
+					UserPetInfoDto petInfoDto = iUserMemberDaoForMybatis.selectUserPetInfo(u_id);
 					HttpSession session = request.getSession();
 					session.setAttribute("loginedMemberDto", loginedMemberDto);
+					session.setAttribute("petInfoDto", petInfoDto);
 					session.setMaxInactiveInterval(60 * 60);
 					
 					response.sendRedirect("/");
