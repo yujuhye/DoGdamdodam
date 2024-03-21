@@ -1,0 +1,38 @@
+#section_wrap {
+    margin-bottom: 200px;
+}
+
+.my_page_title {
+    font-size: 26px;
+    margin: 25px 0 80px 50px;
+    font-weight: bold;
+    
+  }
+  
+  .menu_container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    justify-items: center;
+  }
+  
+  .menu_container div {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    transition: background-color 0.3s ease;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  .menu_container div:hover {
+    background-color: #ffe39a;
+  }
+  
+  .menu_container a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    font-size: 18px;
+  }

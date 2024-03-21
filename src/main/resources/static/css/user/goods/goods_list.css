@@ -1,34 +1,15 @@
-body {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-    background-color: #ffffff; /* 배경을 흰색으로 설정 */
-}
+
 
 #section_wrap {
     width: 1300px; /* 페이지 너비를 1300px로 설정 */
-    margin: 0 auto;
+    margin: 0 0 0 25px;
     text-align: center;
-}
-
-header {
-    text-align: center; /* 로고를 가운데 정렬하기 위해 */
-    margin-bottom: 20px; /* 헤더와 섹션 사이에 약간의 여백 추가 */
-}
-
-header a {
-   display: inline-block; /* 링크를 블록 요소로 표시하여 이미지 주위에 여백을 만듭니다. */
-}
-
-header img {
-    width: 200px; /* 로고 이미지의 너비를 조정합니다. */
-    height: auto; /* 높이를 자동으로 조정하여 비율을 유지합니다. */
-    margin-top: 10px;
+    align-items: center;
 }
 
 .word {
-    margin-bottom: 20px;
-    font-size: 24px;
+    margin: 30px 0;
+    font-size: 26px;
 }
 
 /* 바둑판식으로 정렬하는 CSS */
@@ -49,6 +30,19 @@ header img {
 
 .item-info {
     padding: 10px; /* 아이템 정보 영역의 내부 여백 설정 */
+    margin-top: 5px;
+}
+
+.item-info a {
+    font-size: 18px;
+    font-weight: bold;
+    
+}
+
+.item-info p {
+    font-weight: bold;
+    margin-top: 10px;
+    font-size: 17px;
 }
 
 .item-name {

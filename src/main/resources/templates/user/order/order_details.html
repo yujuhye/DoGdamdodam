@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title th:replace="~{include/title_header_nav_footer.html::user_title}"></title>
 <script th:replace="~{/include/common_js.html::jquery_cdn}" type="text/javascript"></script>
 
  <script type="text/javascript" th:src="@{/js/goods/order_details_form.js}"></script>
@@ -10,6 +10,12 @@
 
 </head>
 <body>
+
+<header th:replace="~{include/title_header_nav_footer.html::user_header}">
+	</header>
+	
+	<nav th:replace="~{include/title_header_nav_footer.html::user_nav}">
+	</nav>
 
 		<form th:action="@{/order/order_confirm}" th:name="order_details" th:method="post">
 			<input type="hidden" name="g_no" th:value="${goodsDto.g_no}">
@@ -97,7 +103,8 @@
 			<input type="reset" value="취소">
 	
 		</form>
-
+<footer th:replace="~{include/title_header_nav_footer::user_footer}">
+	</footer>
 
 </body>
 </html>

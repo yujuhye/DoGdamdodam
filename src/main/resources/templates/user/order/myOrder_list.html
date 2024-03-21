@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title th:replace="~{include/title_header_nav_footer.html::user_title}"></title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 <link rel="stylesheet" th:href="@{/css/user/order/my_order_list.css}">
@@ -10,6 +10,12 @@
 	
 </head>
 <body>
+
+	<header	th:replace="~{include/title_header_nav_footer.html::user_header}">
+	</header>
+	
+	<nav th:replace="~{include/title_header_nav_footer.html::user_nav}">
+	</nav>
 
 
 	<div id="order_list">
@@ -64,7 +70,8 @@
         </tbody>
     </table>
 	</div>
-
+<footer th:replace="~{include/title_header_nav_footer::user_footer}">
+	</footer>
 
 </body>
 </html>

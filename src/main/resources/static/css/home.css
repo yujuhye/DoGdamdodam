@@ -110,7 +110,7 @@ section #section_wrap {
     color: black;
     font-weight: bold;
     padding: 10px 20px;
-    border: 1px solid #ccc;
+    border: 3px solid rgba(244, 221, 164, 0.9);
     border-radius: 5px;
 }
 
@@ -155,7 +155,7 @@ nav {
 .search input[type="button"] {
     padding: 10px 20px; /* 패딩 */
     background-color: #FFCD4A; /* 배경색 */
-    color: white; /* 글자색 */
+    color: black; /* 글자색 */
     border: none; /* 테두리 없음 */
     border-radius: 5px; /* 테두리 둥글게 */
     cursor: pointer; /* 마우스 커서 변경 */
@@ -164,7 +164,7 @@ nav {
 
 .search input[type="button"]:hover {
     background-color: #FFCD4A; /* 호버 상태에서 배경색 변경 */
-    color: #242424;
+    color: white;
 }
 
 #donation_container {

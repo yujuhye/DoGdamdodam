@@ -47,6 +47,10 @@ public class AdminMgmController {
 		
 		model.addAttribute(AdminConfig.ATTRIBUTE_NAME, adminConfig);
 		
+		AdminMemberDto adminMemberDto = (AdminMemberDto) session.getAttribute("adminMemberDto");
+		if(adminMemberDto == null)
+			return "redirect:/admin/member/login_form";
+		
 		String nextPage = AdminConfig.managementViewPath(AdminConfig.LIST_AND_MGM);
 		
 		Map<String, Object> map;
@@ -73,8 +77,12 @@ public class AdminMgmController {
 	
 	@PostMapping(AdminConfig.APPROVAL_UPDATE)
 	@ResponseBody
-	public Object updateApproval(@RequestBody Map<String, String> apvMap ) {
+	public Object updateApproval(@RequestBody Map<String, String> apvMap, HttpSession session) {
 		log.info("updateApproval()");
+		
+		AdminMemberDto adminMemberDto = (AdminMemberDto) session.getAttribute("adminMemberDto");
+		if(adminMemberDto == null)
+			return "redirect:/admin/member/login_form";
 		
 		try {
 			return adminMgmService.updateApproval(apvMap.get("a_approval"), apvMap.get("a_no"));
@@ -90,11 +98,15 @@ public class AdminMgmController {
 	}
 	
 	@GetMapping(AdminConfig.WAITING_FOR_ARV_LIST)
-	public String waitingForArvList(Model model, 
+	public String waitingForArvList(Model model, HttpSession session,
 									@RequestParam(value = "pageNum", required = false, defaultValue = PageDefaultConfig.DEFAULT_PAGE_NUMBER) int pageNum, 
 									@RequestParam(value = "amonut", required = false, defaultValue = PageDefaultConfig.DEFAULT_AMOUNT) int amount, 
 									@RequestParam(value = "searchText", required = false, defaultValue = "") String searchText) {
 		log.info("waitingForArvList()");
+		
+		AdminMemberDto adminMemberDto = (AdminMemberDto) session.getAttribute("adminMemberDto");
+		if(adminMemberDto == null)
+			return "redirect:/admin/member/login_form";
 		
 		model.addAttribute(AdminConfig.ATTRIBUTE_NAME, adminConfig);
 		
@@ -119,11 +131,15 @@ public class AdminMgmController {
 	}
 	
 	@GetMapping(AdminConfig.APPROVED_LIST)
-	public String approvedList(Model model, 
+	public String approvedList(Model model, HttpSession session,
 								@RequestParam(value = "pageNum", required = false, defaultValue = PageDefaultConfig.DEFAULT_PAGE_NUMBER) int pageNum, 
 								@RequestParam(value = "amonut", required = false, defaultValue = PageDefaultConfig.DEFAULT_AMOUNT) int amount, 
 								@RequestParam(value = "searchText", required = false, defaultValue = "") String searchText) {
 		log.info("approvedList()");
+		
+		AdminMemberDto adminMemberDto = (AdminMemberDto) session.getAttribute("adminMemberDto");
+		if(adminMemberDto == null)
+			return "redirect:/admin/member/login_form";
 		
 		model.addAttribute(AdminConfig.ATTRIBUTE_NAME, adminConfig);
 		
@@ -148,8 +164,12 @@ public class AdminMgmController {
 	}
 	
 	@GetMapping(AdminConfig.TOOLS)
-	public String mgmTools(Model model) {
+	public String mgmTools(Model model, HttpSession session) {
 		log.info("mgmTools()");
+		
+		AdminMemberDto adminMemberDto = (AdminMemberDto) session.getAttribute("adminMemberDto");
+		if(adminMemberDto == null)
+			return "redirect:/admin/member/login_form";
 		
 		model.addAttribute(AdminConfig.ATTRIBUTE_NAME, adminConfig);
 		
@@ -159,12 +179,16 @@ public class AdminMgmController {
 	}
 	
 	@GetMapping(AdminConfig.USER_LIST_MGM)
-	public Object userListMgm(Model model, 
+	public Object userListMgm(Model model, HttpSession session,
 							@RequestParam(value = "pageNum", required = false, defaultValue = PageDefaultConfig.DEFAULT_PAGE_NUMBER) int pageNum, 
 							@RequestParam(value = "amonut", required = false, defaultValue = PageDefaultConfig.DEFAULT_AMOUNT) int amount, 
 							@RequestParam(value = "searchText", required = false, defaultValue = "") String searchText) {
 		log.info("userListMgm()");
 		model.addAttribute(AdminConfig.ATTRIBUTE_NAME, adminConfig);
+		
+		AdminMemberDto adminMemberDto = (AdminMemberDto) session.getAttribute("adminMemberDto");
+		if(adminMemberDto == null)
+			return "redirect:/admin/member/login_form";
 		
 		String nextPage = AdminConfig.managementViewPath(AdminConfig.USER_LIST_MGM);
 		

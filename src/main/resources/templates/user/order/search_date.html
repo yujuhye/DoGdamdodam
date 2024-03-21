@@ -2,9 +2,15 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title th:replace="~{include/title_header_nav_footer.html::user_title}"></title>
 </head>
 <body>
+
+<header th:replace="~{include/title_header_nav_footer.html::user_header}">
+	</header>
+	
+	<nav th:replace="~{include/title_header_nav_footer.html::user_nav}">
+	</nav>
 
 	<div id="order_list">
 	
@@ -46,6 +52,8 @@
 	
 	</div>
 
+<footer th:replace="~{include/title_header_nav_footer::user_footer}">
+	</footer>
 
 </body>
 </html>

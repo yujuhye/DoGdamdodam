@@ -98,7 +98,7 @@ div.page a.active {
     border: none;
     border-radius: 5px;
     background-color: #FFCD0F; /* 배경색 설정 */
-    color: #fff;
+    color: black;
     font-size: 16px;
     text-decoration: none;
     transition: background-color 0.3s ease; /* 마우스 호버 효과 설정 */
@@ -106,7 +106,7 @@ div.page a.active {
 
 .subcategory:hover {
     background-color: #F3BB00; /* 마우스 호버 시 배경색 변경 */
-    color: #242424;
+    color: white;
 }
 
 .reviewLine img{

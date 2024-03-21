@@ -1,0 +1,67 @@
+#bm_wrap {
+    width: 1400px;
+    margin: 0 auto;
+    padding: 15px 0 20px 0;
+  }
+  
+  .section_title {
+    font-size: 25px;
+    margin-bottom: 40px;
+    text-align: center;
+  }
+  
+  .article {
+    margin: 0 50px;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  th {
+    font-size: 19px;
+    padding: 10px;
+    text-align: center;
+    border-bottom: 1px solid #ccc;
+  }
+  
+  th:last-child,
+  th:nth-last-child(2) {
+    text-align: right;
+  }
+  
+  td {
+    padding: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    border-bottom: 1px solid #eee;
+    vertical-align: middle;
+  }
+  
+  td:first-child {
+    width: 150px;
+    text-align: center;
+  }
+  
+  td:first-child img {
+    max-height: 150px;
+    vertical-align: middle;
+  }
+  
+  td:nth-child(2) {
+    padding-left: 20px;
+    text-align: center;
+  }
+  
+  td:last-child,
+  td:nth-last-child(2) {
+    text-align: right;
+  }
+  
+  .delete_bookmark {
+    color: red;
+  }
+  
+  /* common.css */
+  /* header_nav_footer.css */

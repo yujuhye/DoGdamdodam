@@ -3,8 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <title th:replace="~{include/title_header_nav_footer.html::user_title}"></title>
+
 <link rel="stylesheet" th:href="@{/css/common.css}">
 <link rel="stylesheet" th:href="@{/css/header_nav_footer.css}">
+<link rel="stylesheet" th:href="@{/css/user/bookmark/bookmark_list.css}">
 
 <script type="text/javascript" th:src="@{/js/bookmark_list.js}"></script>
 
@@ -23,7 +25,7 @@
     <section>
 
         <div id="bm_wrap">
-            <span>위시 리스트</span>
+            <div class="section_title">찜 목록</div>
 
             <div class="article">
                                
@@ -34,7 +36,7 @@
                            <th>상품이미지</th>
                            <th>상품이름</th> 
                            <th>가격</th>                      
-                           <th>삭제</th>                    
+                           <th></th>                    
                        </tr>                                      
                    </thead>
                     <tbody th:if="${#lists.isEmpty(bookmarkDtos)}">
@@ -42,7 +44,7 @@
                             <td colspan="4">위시리스트가 없습니다.</td>
                         </tr>
                     </tbody>
-                    <tbody>
+                    <tbody class="tbody">
 
                         <tr th:each="bookmarklist : ${bookmarkDtos}">
                             <td><a th:href="@{/user/goods/goodsDetailView(g_no=${bookmarklist.g_no})}">
@@ -56,7 +58,6 @@
 								<a th:text="|${#numbers.formatInteger(bookmarklist.g_price, 0, 'COMMA')}원|" href=""></a>
 							</td>							
                             <td>
-                            
                             <a href="#" class="delete_bookmark"
                              th:href="@{/user/bookmark/deleteBookmarkConfirm(bm_no=${bookmarklist.bm_no}, g_no=${bookmarklist.g_no})}">삭제</a>
                             </td>

@@ -50,7 +50,7 @@ $(document).ready(function() {
 	<section>
 		<div id="section_wrap">
 			<div class="word">
-				ALL MY REVIEW
+				나의 리뷰
 			</div>
 			
 			<div class="goods_list">
@@ -58,7 +58,6 @@ $(document).ready(function() {
 				<table>
 					<thead>
 						<tr>
-							<th>NO</th>
 							<th>사진</th>
 							<th>상품명</th>
 							<th>리뷰</th>
@@ -69,14 +68,12 @@ $(document).ready(function() {
 					<tbody class="review-list">
 					    <tr th:each="reviewDto : ${reviewDtos}">
 					    	
-						   <td>
-						   		<a th:href="@{/user/goods/goodsDetailView(g_no=${reviewDto.g_no})}">
-									<span th:text="${reviewDto.r_no}"></span>
-								</a>
-							</td>
+			
 							<td>
 								<div class="review_list_img" th:if="${not #strings.isEmpty(reviewDto.r_thumbnail_name)}">
-									<img th:src="@{http://14.42.124.95:8091/goodsUploadImg/__${reviewDto.r_thumbnail_name}__}">
+									<a th:href="@{/user/goods/goodsDetailView(g_no=${reviewDto.g_no})}">
+										<img th:src="@{http://14.42.124.95:8091/goodsUploadImg/__${reviewDto.r_thumbnail_name}__}">
+									</a>
 								</div>
 								<div class="review_list_img" th:unless="${not #strings.isEmpty(reviewDto.r_thumbnail_name)}">
 									<img src="/img/logo/emptyImg.png" alt="로고">
