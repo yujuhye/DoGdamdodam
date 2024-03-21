@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title th:replace="~{admin/include/title_header_nav_footer.html::admin_title}"></title>
 
 <!-- ajax 라이브러리 -->
 <script th:fragment="jquery_cdn" src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
@@ -13,9 +13,11 @@
 <script th:replace="~{/include/common_js.html::jquery_cdn}" type="text/javascript"></script>
 <script th:replace="~{/include/common_js.html::slick}" type="text/javascript"></script>
 
-<link rel="stylesheet" th:href="@{/css/common.css}">
+<!-- <link rel="stylesheet" th:href="@{/css/common.css}"> -->
 <link rel="stylesheet" th:href="@{/css/header_nav_footer.css}">
 <link rel="stylesheet" th:href="@{/css/admin/goods/goods_list.css}">
+
+<link rel="stylesheet" th:href="@{/css/admin/common.css}">
 
 <script type="text/javascript">
 $(document).ready(function() {
@@ -73,7 +75,7 @@ $(document).ready(function() {
 					</tbody>
 				</table>
 
-				<a th:href="@{/admin/goods/insertGoodsForm}">상품 등록</a>
+				<a th:href="@{/admin/goods/insertGoodsForm}" class="insertBtn">상품 등록</a>
 			
 			</div>
 		</div>

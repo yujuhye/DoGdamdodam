@@ -26,9 +26,7 @@
 }
 
 .goodsName, .secondImg, .thirdImg{
-	
 	margin-right: 120px;
-	
 }
 
 .detailImg{
@@ -36,9 +34,7 @@
 }
 
 .thumImg{
-	
 	margin-right: 82px;
-	
 }
 
 .category{
@@ -46,13 +42,11 @@
 }
 
 .subCategory{
-	margin-right: 66px;
+	margin-right: 72px;
 }
 
 .goodsExplanation, .goodsPrice{
-	
 	margin-right: 100px;
-	
 }
 
 .goods_insert_form input[type=text],
@@ -76,27 +70,27 @@
     margin-top: 20px;
     border: none;
     border-radius: 5px; /* 버튼 모서리 둥글게 */
-    background-color: #5cb85c; /* 삽입 버튼 색 */
+    background-color: #FFCD4A; /* 삽입 버튼 색 */
     color: white;
     margin-right: 10px; /* 버튼 사이 간격 */
 }
 
 .goods_insert_form input[type=button].goodsCancelBtn {
-    background-color: #d9534f; /* 취소 버튼 색 */
+    background-color: #FFCD4A; /* 취소 버튼 색 */
 }
 
 .goods_insert_form input[type=reset] {
-    background-color: #f0ad4e; /* 리셋 버튼 색 */
+    background-color: #FFCD4A; /* 리셋 버튼 색 */
 }
 
 .goods_insert_form input[value='INSERT']:hover {
-	background-color: #5fc251;/*등록*/
+	background-color: #FFCD4A;/*등록*/
 }
 
 .goods_insert_form input[value='RESET']:hover {
-	background-color: #f2a941; /*리셋*/
+	background-color: #FFCD4A; /*리셋*/
 }
 
 .goods_insert_form input[value='CANCEL']:hover {
-	background-color: #eb524d; /*취소*/
+	background-color: #FFCD4A; /*취소*/
 }
