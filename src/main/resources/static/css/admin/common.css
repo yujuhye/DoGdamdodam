@@ -83,11 +83,29 @@ body {
 	
 }
 
-#footer_wrap {
+/* #footer_wrap {
 	background-color: rgba(242, 102, 102, 0.1);
 	height: 100px;
 	line-height: 100px;
 }
+ */
+ 
+footer {
+	width: 100%;
+	padding: 10px 0;
+	background-color: rgba(242, 102, 102, 0.1);
+	position: relative; /*footer를 화면 아래 고정 */
+	bottom: 0;
+	border-radius: 15px 15px 0 0;
+}
 
-
-
+#footer_wrap {
+	
+	margin-top: 25px;
+	width: 100%; /* footer 너비를 전체 너비로 설정 */
+	height: 100px;
+	/* line-height: 100px; */
+	color: #000;
+	text-align: center;
+	font-size: .9em;
+}

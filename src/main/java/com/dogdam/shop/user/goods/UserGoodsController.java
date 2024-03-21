@@ -142,7 +142,7 @@ public class UserGoodsController {
 	@PostMapping("/searchProductsByCategory")
 	@ResponseBody
 	public List<GoodsDto> searchProductsByCategory(@RequestParam("c_no") int c_no) {
-	    // c_no를 기반으로 상품을 검색하고 리스트를 반환하는 로직을 구현해야 합니다.
+	    // c_no를 기반으로 상품을 검색하고 리스트를 반환하는 로직을 구현
 	    List<GoodsDto> GoodsDto = goodsService.searchProductsByCategory(c_no);
 	    
 	    return GoodsDto;

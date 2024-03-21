@@ -1,0 +1,40 @@
+
+<title th:fragment="admin_title">DoGdam_admin</title>
+
+<header th:fragment="admin_header">
+
+	<div id="header_wrap">
+	<a href="/">
+        <img src="/img/logo/001.png" alt="로고">
+    </a>
+	<p>Management</p>
+		
+	</div>
+	
+</header>
+
+<nav th:fragment="admin_nav">
+	<div id="nav_wrap" th:if="${session.adminMemberDto != null}">
+		
+		<div th:if="${session.adminMemberDto.getA_grade == 1}">
+			<a th:href="@{${adminConfig.requestMgmControllerPath(adminConfig.LIST_AND_MGM)}}">관리자 목록</a>
+			|
+			<a th:href="@{/admin/goods/goodsList}">상품 목록</a>
+			|
+		</div>
+	<a th:href="@{${adminConfig.requestMgmControllerPath(adminConfig.TOOLS)}}">관리도구</a>
+		|
+	<a th:href="@{${adminConfig.requestToControllerPath(adminConfig.LOGOUT_CONFIRM)}}">로그아웃</a>
+		
+	</div> 
+</nav>
+
+<footer th:fragment="admin_footer">
+	<div id="footer_wrap">
+		<p>Copyright OFFICE Corp. All rights reserved.</p>
+		<br>
+		<p><b>대표자</b> : 김승하 | <b>사업자등록번호</b> 612-99-48651 | <b>주소</b> 경기도 의정부시 시민로 80 센트럴타워 6층</p>
+		<p><b>tel</b> 031-837-4111 | <b>팩스</b> 031-8875-9985 | <b>e-mail</b> dogdam@gmail.com</p>
+	</div>
+</footer>
+
