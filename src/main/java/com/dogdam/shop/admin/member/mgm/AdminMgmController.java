@@ -186,33 +186,6 @@ public class AdminMgmController {
 		return nextPage;
 	}
 	
-	@GetMapping(AdminConfig.SELECT_USER_INFO)
-	public Object selectUserInfo(Model model, 
-								@RequestParam(value = "uNo") String uNo) {
-		log.info("selectUserInfo()");
-		
-		model.addAttribute(AdminConfig.ATTRIBUTE_NAME, adminConfig);
-		int u_no = Integer.parseInt(uNo);
-		
-		MemberDto memberDto = adminMgmService.selectUserDto(u_no);
-		
-		String u_id = memberDto.getU_id();
-		
-		UserPetInfoDto userPetInfoDto = adminMgmService.selectUserPetInfo(u_id);
-		
-		if(userPetInfoDto == null) {
-			model.addAttribute("userPetInfoDto", null);
-			
-		} else {
-			model.addAttribute("userPetInfoDto", userPetInfoDto);			
-		}
-		
-		model.addAttribute("selectUserDto", memberDto);
-		String nextPage = AdminConfig.managementViewPath(AdminConfig.SELECT_USER_INFO);
-		
-		return nextPage;
-		
-	}
 	
 
 	

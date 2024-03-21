@@ -26,7 +26,7 @@
 <link rel="stylesheet" th:href="@{/css/common.css}">
 <link rel="stylesheet" th:href="@{/css/home.css}">
 <link rel="stylesheet" th:href="@{/css/header_nav_footer.css}">
-<link rel="stylesheet" th:href="@{/css/hom_slick2.css}">
+<link rel="stylesheet" th:href="@{/css/home_slick2.css}">
 
 <script type="text/javascript">
 $(document).ready(function(){
@@ -52,129 +52,146 @@ $(document).ready(function(){
     
 });
 </script>
+
+<script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
 </head>
 <body>
 
 	<header	th:replace="~{include/title_header_nav_footer.html::user_header}">
 	</header>
 
+
+	<nav th:replace="~{include/title_header_nav_footer.html::user_nav}">
+	</nav>
+	
 	<!-- 검색 -->
 	<div class="search">
 		<form th:action="@{/user/goods/searchGoodsConfirm}"
 			name="search_goods_form" method="get">
 			<input type="text" name="g_name"
-				placeholder="Enter the name of the goods you are looking for.">
+					placeholder="상품 검색">
 			<input type="button" value="search" onclick="searchGoodsForm();" />
 		</form>
 	</div>
-
-	<nav th:replace="~{include/title_header_nav_footer.html::user_nav}">
-	</nav>
-
-
-	<div class="allDonation_amount">
-					<span>기부 누적금액</span>
-					<span th:text="${allDonationTotalAmount}"></span><span>원</span>	
+		
+	<div id="donation_container">
+		<div class="allDonation_amount">
+		
+						<p>기부 누적금액</p>
+						<span th:text="${allDonationTotalAmount}"></span><span>원</span>
+		</div>
+		<div class="donation_rating">
+			<ul>
+				<li><span>기부랭킹</span></li>
+				<li>1 ㅁㄴㅇㄹ</li>
+				<li>2 ㄴㅇㅇㅀ</li>
+				<li>3 ㅂㅈㄷㄱ</li>
+				<li>4 ㅋㅌㅊㅍ</li>
+				<li>5 ㅛㅕㅑㅐ</li>
+			</ul>
+		</div>	
 	</div>
 				
-	<a th:href="@{/donation/donation_ranking}">기부 순위></a>
+	<!-- <a th:href="@{/donation/donation_ranking}">기부 순위></a> -->
 
-	
-	
 	<section>
 		<div id="section_wrap">
-		
-			<div class="word">
-				<span>DoGdam</span>
-			</div>
 			
 			<div class="slider-container">
 				<div class="product-thumbnails">
 					<div>
-						<img src="/img/home/afra-ramio-cp2HCVzguw4-unsplash.jpg" />
+						<img src="/img/home/main1.jpg" />
 					</div>
 					<div>
-						<img src="/img/home/cute-little-dog-isolated-on-yellow.jpg" />
+						<img src="/img/home/main3.jpg" />
 					</div>
 					<div>
-						<img src="/img/home/david-clarke-0h3Emf2YLKg-unsplash.jpg" />
+						<img src="/img/home/main4.jpg" />
 					</div>
 					<div>
-						<img src="/img/home/group-portrait-adorable-puppies.jpg" />
+						<img src="/img/home/main5.jpg" />
 					</div>
 					<div>
-						<img src="/img/home/honest-paws-ua3Jr7g6KJA-unsplash.jpg" />
+						<img src="/img/home/main6.jpg" />
 					</div>
 					<div>
-						<img src="/img/home/white-golden-retriever-posing-studio-with-street-clothes-glasses-musical-artist-look.jpg" />
+						<img src="/img/home/main2.jpg" />
 					</div>
 				</div>
 			</div>
 			
+			
+			
 			<div id="category_wrap">
 			    <div class="category">
-			        <a th:href="@{/user/goods/searchCategory(c_no=${feedCNo})}" >사료</a>
-			        <a th:href="@{/user/goods/searchCategory(c_no=${snackCNo})}" >간식</a>
-			        <a th:href="@{/user/goods/searchCategory(c_no=${beautyCNo})}" >미용용품</a>
-			        <a th:href="@{/user/goods/searchCategory(c_no=${clothesCNo})}" >의류/액세사리</a>
-			        <a th:href="@{/user/goods/searchCategory(c_no=${toyCNo})}" >장난감</a>				
+			        <a th:href="@{/user/goods/searchCategory(c_no=${feedCNo})}" ><div> <img src="/img/icon/1.png"></div>사료</a>
+			        <a th:href="@{/user/goods/searchCategory(c_no=${snackCNo})}" ><div> <img src="/img/icon/2.png"></div>간식</a>
+			        <a th:href="@{/user/goods/searchCategory(c_no=${beautyCNo})}" ><div> <img src="/img/icon/3.png"></div>미용용품</a>
+			        <a th:href="@{/user/goods/searchCategory(c_no=${clothesCNo})}" ><div> <img src="/img/icon/4.png"></div>의류/액세사리</a>
+			        <a th:href="@{/user/goods/searchCategory(c_no=${toyCNo})}" ><div> <img src="/img/icon/5.png"></div>장난감</a>				
 			    </div>
 			</div>
-
-			<div class="dateGoodsList">
-			    <div>
-			        <h3>신상품</h3>
-			        <!-- <a href="#none">더 보기</a> -->
-			    </div>
-			    <div class="slider">
-			        <div th:each="date : ${orderByRegDate}">
-			            <div class="date_goods_thumbnails">
-			                <a th:href="@{/user/goods/goodsDetailView(g_no=${date.g_no})}">
-			                    <div>
-			                        <img th:src="@{'http://14.42.124.95:8091/goodsUploadImg/' + ${date.g_thumbnail_name}}" />
-			                    </div>
-			                </a>
-			            </div>
-			        </div>
-			    </div>
+			<div class="slider_container"> 
+				<div class="dateGoodsList">
+				    <div class="slider_title">
+				        <h3>신상품</h3>
+				        <!-- <a href="#none">더 보기</a> -->
+				    </div>
+				    <div class="slider">
+				        <div th:each="date : ${orderByRegDate}">
+				            <div class="date_goods_thumbnails">
+				                <a th:href="@{/user/goods/goodsDetailView(g_no=${date.g_no})}">
+				                    <div>
+				                        <img th:src="@{'http://14.42.124.95:8091/goodsUploadImg/' + ${date.g_thumbnail_name}}" />
+				                        <p th:text="${date.g_name}"></p>
+				                        <p th:text="|${#numbers.formatInteger(date.g_price, 0, 'COMMA')}원|"></p>
+				                    </div>
+				                </a>
+				            </div>
+				        </div>
+				    </div>
+				</div>
+	
+				<div class="likeGoodsList">
+				    <div class="slider_title">
+				        <h3>인기상품</h3>
+				        <!-- <a href="#none">더 보기</a> -->
+				    </div>
+				    <div class="slider">
+				        <div th:each="bookmark : ${orderByBookmark}">
+				            <div class="like_goods_thumbnails">
+				                <a th:href="@{/user/goods/goodsDetailView(g_no=${bookmark.g_no})}">
+				                    <div>
+				                        <img th:src="@{'http://14.42.124.95:8091/goodsUploadImg/' + ${bookmark.g_thumbnail_name}}" />
+				                        <p th:text="${bookmark.g_name}"></p>
+				                        <p th:text="|${#numbers.formatInteger(bookmark.g_price, 0, 'COMMA')}원|"></p>
+				                    </div>
+				                </a>
+				            </div>
+				        </div>
+				    </div>
+				</div>
+				
+				<div class="reviewGoodsList">
+				    <div class="slider_title">
+				        <h3>추천상품</h3>
+				        <!-- <a href="#none">더 보기</a> -->
+				    </div>
+				    <div class="slider">
+				        <div th:each="buy : ${orderByBuy}">
+				            <div class="buy_goods_thumbnails">
+				                <a th:href="@{/user/goods/goodsDetailView(g_no=${buy.g_no})}">
+				                    <div>
+				                        <img th:src="@{'http://14.42.124.95:8091/goodsUploadImg/' + ${buy.g_thumbnail_name}}" />
+				                        <p th:text="${buy.g_name}"></p>
+				                        <p th:text="|${#numbers.formatInteger(buy.g_price, 0, 'COMMA')}원|"></p>
+				                    </div>
+				                </a>
+				            </div>
+				        </div>
+				    </div>
+				</div>
 			</div>
-
-			<div class="likeGoodsList">
-			    <div>
-			        <h3>인기상품</h3>
-			        <!-- <a href="#none">더 보기</a> -->
-			    </div>
-			    <div class="slider">
-			        <div th:each="bookmark : ${orderByBookmark}">
-			            <div class="like_goods_thumbnails">
-			                <a th:href="@{/user/goods/goodsDetailView(g_no=${bookmark.g_no})}">
-			                    <div>
-			                        <img th:src="@{'http://14.42.124.95:8091/goodsUploadImg/' + ${bookmark.g_thumbnail_name}}" />
-			                    </div>
-			                </a>
-			            </div>
-			        </div>
-			    </div>
-			</div>
-			
-			<div class="reviewGoodsList">
-			    <div>
-			        <h3>추천상품</h3>
-			        <!-- <a href="#none">더 보기</a> -->
-			    </div>
-			    <div class="slider">
-			        <div th:each="buy : ${orderByBuy}">
-			            <div class="buy_goods_thumbnails">
-			                <a th:href="@{/user/goods/goodsDetailView(g_no=${buy.g_no})}">
-			                    <div>
-			                        <img th:src="@{'http://14.42.124.95:8091/goodsUploadImg/' + ${buy.g_thumbnail_name}}" />
-			                    </div>
-			                </a>
-			            </div>
-			        </div>
-			    </div>
-			</div>
-			
 
 		</div>
 	</section>

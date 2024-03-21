@@ -13,6 +13,7 @@
     margin-bottom: 50px;
 }
 
+
 /* 카테고리 목록 스타일 */
 #feed_category_wrap,
 #snack_category_wrap,
@@ -105,6 +106,7 @@ div.page a.active {
 
 .subcategory:hover {
     background-color: #F3BB00; /* 마우스 호버 시 배경색 변경 */
+    color: #242424;
 }
 
 .reviewLine img{

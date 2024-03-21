@@ -55,7 +55,12 @@ $(document).ready(function() {
 	<section>
 		<div id="section_wrap">
 			<div class="word">
-				<a th:href="@{/}"><</a> CATEGORY
+				<a th:href="@{/}"><</a>
+				<span th:if="${goodsDto.c_parents_no == 1}">사료</span>
+				<span th:if="${goodsDto.c_parents_no == 2}">간식</span>
+				<span th:if="${goodsDto.c_parents_no == 3}">미용용품</span>
+				<span th:if="${goodsDto.c_parents_no == 4}">의류/악세서리</span>
+				<span th:if="${goodsDto.c_parents_no == 5}">장난감</span>
 			</div>
 
 			<div class="goods-list">

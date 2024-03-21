@@ -142,5 +142,14 @@ public class MemberController {
 		return resultMap;
 	}
 	
+	@GetMapping("/my_page")
+	public String myPage() {
+		log.info("myPage()");
+		String nextPage = "user/member/info/my_page";
+		
+		return nextPage;
+		
+	}
+	
 
 }

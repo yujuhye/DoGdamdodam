@@ -1,105 +1,76 @@
-/*header {
-	width: 100%;
-	border-bottom: 1px solid #ccc;
-	padding: 7px 0;
-	}
-
-header #header_wrap {
-	width: 1500px;
-	margin: 0 auto;
-	text-align: right;
-	}
-
-nav {
-	width: 100%;
-	border-bottom: 1px solid #ccc;
-	padding: 10px 0;
-	}
-
-nav #nav_wrap {
-	width: 1500px;
-	margin: 0 auto;
-	text-align: right;
-	}
-	
-footer {
-	width: 100%;
-	border-top: 1px solid #ccc;
-	padding: 10px 0;
-	background-color: #363636;
-}
-
-footer #footer_wrap {
-	width: 1500px; height: 100px;
-	line-height: 100px;
-	color: #fafafa;
-	margin: 0 auto;
-	text-align: center;
-	font-size: .9em;
-	} */
-
-/*수정한 css*/
-header {
+.header_container {
+	height: 140px;
+	border-bottom: 2px solid rgba(242, 222, 172, 0.9);
+	margin: 30px 0;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
 }
 
+.logo {
+	
+	margin-right: 300px;
+	
+}
+
+
 header a img {
-	width: 200px; /* 로고 크기 조정 */
-	margin-left: 130px;
-	margin-top: 10px;
+	width: 330px;
+	height: 110px;
+
 }
 
-.search {
-	position: absolute;
-	right: 400px;
-	/* transform: translateY(-50%); */
+#header_wrap {
+	text-align: end;
+	font-size: 17px;
+	height: 80px;
+	align-items: center;
+	margin: 20px;
+
 }
 
-header .search {
-	width: 300px; /* 검색창 너비 조정 */
-	margin: 0;
+.greeting {
+	margin-bottom: 15px;
+	font-size: 18px;
+	margin-right: 20px;
 }
 
-header .search input[name="g_name"] {
-	border: 1px solid #FFCD4A;
-	border-radius: 7px;
-	width: 200px;
-	height: 25px;
-	width: 200px;
+.greeting p {
+	margin-top: 5px;
 }
 
-header .search input[type="button"] {
-	border: 1px solid #FFCD4A;
-	border-radius: 7px;
-	background-color: #FFCD4A;
-	width: 50px;
-	height: 25px;
+#header_wrap a {
+	margin-right: 20px;
+	padding: 1px 1px;
+	height: 28px;
 }
 
-header .search input[type="button"]:hover {
-	border: 1px solid #ffc62d;
-	background-color: #ffc62d;
-	cursor: pointer;
-}
+#header_wrap a:hover {
 
-header #header_wrap {
-	width: 1500px;
-	margin: 0 100px 0 0;
-	text-align: right;
+	background-color: rgba(252, 234, 190, 0.5);
+	font-size: 17.5px;
+	border-radius: 6px;
 }
 
 nav {
-	width: 100%;
-	border-bottom: 1px solid #ccc;
-	padding: 10px 0;
+	height: 30px;
+	border-bottom: 3px double rgba(244, 221, 164, 0.9);
+	line-height: 20px;
+	padding-bottom: 20px;
+	margin-bottom: 15px;
+	font-size: 20px;
 }
 
 nav #nav_wrap {
-	width: 100%;
-	margin: 0 auto;
-	text-align: right;
+	
+	margin-left: 40px;
+}
+
+nav #nav_wrap a:hover{
+	padding: 0 1px;
+	background-color: rgba(252, 234, 190, 0.8);
+	border-radius: 8px;
+
 }
 
 footer {

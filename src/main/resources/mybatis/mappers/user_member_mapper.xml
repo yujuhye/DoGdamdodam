@@ -104,5 +104,13 @@
 		  U_ID = #{u_id}
 	
 	</select>
+	
+	<select id="selectUserPetInfo" 
+		parameterType="String" 
+		resultType="com.dogdam.shop.user.member.petinfo.UserPetInfoDto">
+		
+		SELECT * FROM USER_PET_INFO WHERE U_ID = #{u_id} AND P_STEP = 1
+	
+	</select>
 
 </mapper>
