@@ -19,6 +19,7 @@ import com.dogdam.shop.admin.PageDefaultConfig;
 import com.dogdam.shop.admin.PageMakerDto;
 import com.dogdam.shop.admin.member.AdminMemberDto;
 import com.dogdam.shop.user.member.MemberDto;
+import com.dogdam.shop.user.member.petinfo.UserPetInfoDto;
 
 import jakarta.servlet.http.HttpSession;
 import lombok.extern.log4j.Log4j2;
@@ -183,6 +184,34 @@ public class AdminMgmController {
 		model.addAttribute("searchText", searchText);
 	
 		return nextPage;
+	}
+	
+	@GetMapping(AdminConfig.SELECT_USER_INFO)
+	public Object selectUserInfo(Model model, 
+								@RequestParam(value = "uNo") String uNo) {
+		log.info("selectUserInfo()");
+		
+		model.addAttribute(AdminConfig.ATTRIBUTE_NAME, adminConfig);
+		int u_no = Integer.parseInt(uNo);
+		
+		MemberDto memberDto = adminMgmService.selectUserDto(u_no);
+		
+		String u_id = memberDto.getU_id();
+		
+		UserPetInfoDto userPetInfoDto = adminMgmService.selectUserPetInfo(u_id);
+		
+		if(userPetInfoDto == null) {
+			model.addAttribute("userPetInfoDto", null);
+			
+		} else {
+			model.addAttribute("userPetInfoDto", userPetInfoDto);			
+		}
+		
+		model.addAttribute("selectUserDto", memberDto);
+		String nextPage = AdminConfig.managementViewPath(AdminConfig.SELECT_USER_INFO);
+		
+		return nextPage;
+		
 	}
 	
 

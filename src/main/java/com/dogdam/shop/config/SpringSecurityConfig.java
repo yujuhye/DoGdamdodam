@@ -57,6 +57,7 @@ public class SpringSecurityConfig {
 						"/review/reviewModifyConfirm",
 						"/review/reviewDelete",
 						"/user/qa/**",
+						"/user/privateqa/**",
 						"/user/bookmark/**"
 						).authenticated()
 				.requestMatchers(
@@ -72,7 +73,8 @@ public class SpringSecurityConfig {
                         "/review/reviewList",
                         "/user/bookmark/bookmarkList",
                         "/user/goods/goodsList",
-                        "/admin/**"
+                        "/admin/**",
+                        "/admin/mgm/select_user_info"
 						)
 				.permitAll());
 		

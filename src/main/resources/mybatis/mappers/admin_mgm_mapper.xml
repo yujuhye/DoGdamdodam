@@ -271,5 +271,21 @@
 				OR A_NAME LIKE CONCAT('%', #{searchText}, '%'));
 	
 	</select>
+	
+	<select id="selectUserDto" 
+			parameterType="int"
+			resultType="com.dogdam.shop.user.member.MemberDto">
+	
+		SELECT * FROM USER WHERE U_NO = #{u_no}
+	
+	</select>
+	
+	<select id="selectUserPetInfo" 
+			parameterType="String" 
+			resultType="com.dogdam.shop.user.member.petinfo.UserPetInfoDto">
+			
+			SELECT * FROM USER_PET_INFO WHERE U_ID = #{u_id} AND P_STEP = 1
+	
+	</select>
 
 </mapper>

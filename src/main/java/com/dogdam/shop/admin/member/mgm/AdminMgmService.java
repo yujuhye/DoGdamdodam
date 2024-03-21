@@ -11,6 +11,7 @@ import com.dogdam.shop.admin.CurrentSetPage;
 import com.dogdam.shop.admin.PageMakerDto;
 import com.dogdam.shop.admin.member.AdminMemberDto;
 import com.dogdam.shop.user.member.MemberDto;
+import com.dogdam.shop.user.member.petinfo.UserPetInfoDto;
 
 import lombok.extern.log4j.Log4j2;
 
@@ -233,6 +234,18 @@ public class AdminMgmService {
 		map.put("pageMakerDto", pageMakerDto);
 		
 		return map;
+	}
+
+
+	public MemberDto selectUserDto(int u_no) {
+		log.info("selectUserDto()");
+		return adminMgmDao.selectUserDto(u_no);
+	}
+
+
+	public UserPetInfoDto selectUserPetInfo(String u_id) {
+		log.info("selectUserPetInfo()");
+		return adminMgmDao.selectUserPetInfo(u_id);
 	}
 
 

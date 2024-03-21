@@ -32,6 +32,7 @@ public class AdminConfig {
 	final static public String APPROVED_LIST = "/approved_list";
 	
 	final static public String USER_LIST_MGM = "/user_list_mgm";
+	final static public String SELECT_USER_INFO = "/select_user_info";
 	final static public String TOOLS = "/admin_tools";
 	
 

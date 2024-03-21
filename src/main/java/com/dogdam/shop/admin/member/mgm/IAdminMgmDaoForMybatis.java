@@ -8,6 +8,7 @@ import org.apache.ibatis.annotations.Param;
 import com.dogdam.shop.admin.CurrentSetPage;
 import com.dogdam.shop.admin.member.AdminMemberDto;
 import com.dogdam.shop.user.member.MemberDto;
+import com.dogdam.shop.user.member.petinfo.UserPetInfoDto;
 
 @Mapper
 public interface IAdminMgmDaoForMybatis {
@@ -34,5 +35,9 @@ public interface IAdminMgmDaoForMybatis {
 	public int getTotalWaitingAdminPage();
 	public List<AdminMemberDto> searchWaitingAdminItme(@Param("skipPage") int skipPage, @Param("amount") int amount, @Param("searchText") String searchText);
 	public int getTotalNoBySearchWaitingAdmin(String searchText);
+
+	public MemberDto selectUserDto(int u_no);
+
+	public UserPetInfoDto selectUserPetInfo(String u_id);
 	
 }

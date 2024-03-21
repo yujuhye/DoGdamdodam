@@ -1,5 +1,23 @@
 <script th:fragment="js" th:inline="javascript" type="text/javascript">
 
+function selectUserInfo() {
+    console.log('selectUserInfo()');
+    
+    $(document).on('click', 'tbody > tr > td.id', function() {
+        console.log('selectUserInfo CALL!');
+        
+        let $tr = $(this).closest('tr');
+        console.log('tr --> ' + $tr);
+        let uno = $(this).data('uno');
+        console.log('uno --> ' + uno);
+
+        location.href = '/admin/mgm/select_user_info?uNo=' + uno;
+
+    })
+
+}
+
+
 function userSearch() {
     $('.user_search a').on('click', function(e) {
     e.preventDefault();
@@ -89,6 +107,9 @@ $(document).ready(function() {
     pagingEvent();
 
     userSearch();
+
+    selectUserInfo();
+
 });
 
 

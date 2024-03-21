@@ -49,7 +49,7 @@
 			
 				<tbody class="user_tbody">
 					<tr class="userListBody" th:each="userList : ${allUserDtos}">
-						<td class="id" th:text="${userList.u_id}" th:attr="data-u_no=${userList.u_no}"></td>
+						<td class="id" th:text="${userList.u_id}" th:attr="data-uno=${userList.u_no}"></td>
 						<td th:text="${userList.u_nickname}"></td>
 						<td th:text="${userList.u_grade}"></td>
 						<td th:text="${userList.u_mail}"></td>

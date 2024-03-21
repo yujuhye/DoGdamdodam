@@ -4,8 +4,8 @@ section {
 }
 
 section #section_wrap {
-	width: 800px;
-	margin: 0 auto;
+
+	align-items: center;
 }
 
 section #section_wrap .word {
@@ -17,13 +17,26 @@ section #section_wrap .create_account_form {
 	margin-top: 50px;
 	margin-bottom: 30px;
 	text-align: center;
+} 
+
+.create_account_form input {
+	width: 300px;
+	padding: 5px;
+	margin-bottom: 10px;
 }
 
-section #section_wrap .create_account_form input {
+
+input#u_id {
+
+    margin-left: 75px;
+    margin-right: 5px;
+}
+
+/* section #section_wrap .create_account_form input {
 	width: 300px;
 	padding: 5px;
 	margin: 3px;
-	}
+	} */
 
 section #section_wrap .create_account_form input[type='button'],
 section #section_wrap .create_account_form input[type='reset'] {
@@ -55,3 +68,4 @@ section #section_wrap .go_create_account_form {
 	margin: 50px 0;
 }
 /* CREATE ACCOUNT END */
+
