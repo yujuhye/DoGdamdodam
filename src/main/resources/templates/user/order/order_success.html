@@ -3,14 +3,23 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
+<link rel="stylesheet" th:href="@{/css/user/order/order_success.css}">
+
 </head>
 <body>
 
-	주문번호: <span th:text="${newOrderNumber}"></span><br>
+	<div id="order_wrap">
+
+	    <div class="success_letter">주문이 성공적으로 완료되었습니다.</div>
+		
+		<div class="order_number_wrap">
+			<span class="order_letter">주문번호:</span> <span class="order_number" th:text="${newOrderNumber}"></span>
+		</div>
+		
+		<a class="go_orderList" th:href="@{/basket/myOrderList}">나의 주문내역 ></a>
 	
-	주문이 성공적으로 완료되었습니다.
-	
-	<br><a th:href="@{/basket/myOrderList}">주문내역 ></a>
+	</div>
 	
 </body>
 </html>

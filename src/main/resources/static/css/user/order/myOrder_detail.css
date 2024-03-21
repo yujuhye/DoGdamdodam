@@ -3,8 +3,9 @@
     padding: 20px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    background-color: #f9f9f9;
-    max-width: 800px; /* 최대 너비 설정 */
+    background-color: #fcfcfc;
+    max-width: 800px;
+    font-family: Arial, sans-serif;
 }
 
 .myOrder_info {
@@ -25,7 +26,12 @@
 }
 
 .myOrder_info table th {
-    background-color: #f2f2f2;
+    background-color: #e0e0e0;
+    font-size: 21px;
+}
+
+.myOrder_info table td {
+    font-size: 18px;
 }
 
 .myOrder_info table td img {
@@ -37,6 +43,7 @@
 .myOrder_info a {
     color: #007bff;
     text-decoration: none;
+    font-weight: bold;
 }
 
 .myOrder_info a:hover {
@@ -50,8 +57,8 @@
 
 .product_info img {
     margin-right: 10px;
-    max-width: 100px; /* 이미지 너비 조정 */
-    max-height: 100px; /* 이미지 높이 조정 */
+    max-width: 100px; 
+    max-height: 100px;
 }
 
 .product_info div {
@@ -61,8 +68,29 @@
 
 .product_info div a {
     margin-bottom: 5px;
+    font-weight: bold;
 }
 
 .product_info div span {
+    display: flex;
+    align-items: center;
+}
+
+.product_info .price::after {
+    content: '원'; 
+    margin-left: 4px; 
+}
+.donation {
+    text-align: right;
+     font-size: 18px;
+}
+
+.order_date {
+	margin-bottom: 15px;
+	font-size: 23px; 
     font-weight: bold;
+}
+.address {
+	color: #666;
+	font-size: 16px; 
 }

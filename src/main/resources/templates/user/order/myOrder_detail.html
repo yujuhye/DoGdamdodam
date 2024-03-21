@@ -14,7 +14,7 @@
 	
 		<div class="myOrder_info">
 			
-			<div th:text="${#strings.substring(myOrderInfo.s_reg_date, 0, 10)}"></div>
+			<div class="order_date" th:text="${#strings.substring(myOrderInfo.s_reg_date, 0, 10)}"></div>
 			
 			<table>
 					<thead>
@@ -26,8 +26,8 @@
 					<tbody>
 						<tr>
 							<td>
-								<div th:text="${session.loginedMemberDto.u_name + '(' + session.loginedMemberDto.u_id + ')'}"></div>
-								<div th:text="${session.loginedMemberDto.u_mail}"></div>
+								<span class="address">사용자 이름(아이디):</span> <span th:text="${session.loginedMemberDto.u_name + '(' + session.loginedMemberDto.u_id + ')'}"></span><br>
+								<span class="address">사용자 메일:</span> <span th:text="${session.loginedMemberDto.u_mail}"></span>
 							</td>
 						</tr>
 					</tbody>
@@ -41,21 +41,21 @@
 					</thead>
 
 					  <tbody>
-	                    <tr th:each="goods : ${myOrderGoods}">
-	                        <td>
-	                            <div class="product_info">
-	                                <a th:href="@{/user/goods/goodsDetailView(g_no=${goods.g_no})}">
-	                                    <img th:src="@{'http://14.42.124.95:8091/goodsUploadImg/' + ${goods.g_thumbnail_name}}" />
-	                                </a>
-	                                <div>
-	                                    <a th:text="${goods.g_name}" th:href="@{/admin/goods/goodsDetailView(g_no=${goods.g_no})}"></a>
-	                                    <span th:text="${goods.g_price}"></span><span>원</span>
-	                                    <span>주문수량:</span> <span th:text="${goods.s_quantity}"></span>
-	                                </div>
+                		<tr th:each="goods : ${myOrderGoods}">
+	                    <td>
+	                        <div class="product_info">
+	                            <a th:href="@{/user/goods/goodsDetailView(g_no=${goods.g_no})}">
+	                                <img th:src="@{'http://14.42.124.95:8091/goodsUploadImg/' + ${goods.g_thumbnail_name}}" />
+	                            </a>
+	                            <div>
+	                                <a th:text="${goods.g_name}" th:href="@{/user/goods/goodsDetailView(g_no=${goods.g_no})}"></a>
+	                                <span class="price" th:text="${goods.g_price}"></span>
+	                                <span>주문수량: <span th:text="${goods.s_quantity}"></span></span>
 	                            </div>
-	                        </td>
-	                    </tr>
-                	</tbody>
+	                        </div>
+	                    </td>
+                		</tr>
+            		</tbody>
 			</table>
 			
 			<table>
@@ -84,9 +84,9 @@
 					<tbody>
 						<tr>
 							<td>
-								<span>수령인:</span> <span th:text="${myOrderInfo.da_name}"></span><br>
-								<span>연락처:</span> <span th:text="${myOrderInfo.da_addr_phone}"></span><br>
-								<span>주소:</span> <span th:text="${myOrderInfo.da_addr_text}"></span><br>
+								<span class="address">수령인:</span> <span th:text="${myOrderInfo.da_name}"></span><br>
+								<span class="address">연락처:</span> <span th:text="${myOrderInfo.da_addr_phone}"></span><br>
+								<span class="address">주소:</span> <span th:text="${myOrderInfo.da_addr_text}"></span><br>
 							</td>
 						</tr>
 					</tbody>
@@ -108,7 +108,7 @@
 					</tbody>
 			</table>
 			
-			<div><a th:href="@{/donation/mydonationList}">나의 기부내역></a></div>
+			<div class="donation"><a th:href="@{/donation/mydonationList}">나의 기부내역></a></div>
 			
 		</div>
 	

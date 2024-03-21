@@ -1,0 +1,36 @@
+* {
+   margin: 50px auto;
+    text-align: center;
+}
+
+.donation {
+    width: 45%; 
+    margin: 0 auto; 
+    border-collapse: collapse;
+}
+
+.donation th, .donation td {
+    border: 1px solid #dddddd; 
+    padding: 8px; 
+    text-align: center;
+}
+
+.donation th {
+    background-color: #f2f2f2; 
+    font-weight: bold; 
+    font-size: 19px;
+}
+
+.donation td {
+    font-size: 18px;
+}
+
+.donation_totalAmount {
+    margin: 20px auto;
+}
+
+.donation_totalAmount span {
+    font-weight: bold;
+    font-size: 20px;
+    text-align: center;
+}

@@ -1,49 +1,113 @@
-#order_list {
-    max-width: 800px;
-    margin: 0 auto;
+* {
+  font-family: Arial, sans-serif;
 }
 
-#order_list table {
+#order_list {
+    margin: 20px auto;
+    max-width: 800px;
+}
+
+h3 {
+    text-align: center;
+    font-size: 24px;
+}
+
+table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 20px;
 }
 
-#order_list th, #order_list td {
-    border: 1px solid #ddd;
-    padding: 8px;
-    text-align: left;
-}
-
-#order_list th {
+thead th {
     background-color: #f2f2f2;
+    padding: 10px;
 }
 
-#order_list tbody tr:nth-child(even) {
-    background-color: #f2f2f2;
+tbody td .datetime {
+    border-top: 1px solid #ddd;
+    padding: 20px;
+    margin: 10px;
 }
 
-#order_list tbody tr:hover {
-    background-color: #ddd;
+.product_info {
+    /*display: flex;*/
+    align-items: center;
+    position: relative;
 }
 
-#order_list img {
+.product_info img {
     max-width: 100px;
-    height: auto;
-    margin-bottom: 10px;
+    max-height: 100px;
+    margin-right: 10px;
 }
 
-#order_list .review-button {
-    display: block;
-    margin-top: 10px;
+.product_info a {
+    color: #333;
     text-decoration: none;
-    background-color: #007bff;
-    color: #fff;
-    padding: 5px 10px;
-    border-radius: 5px;
-    text-align: center;
+    font-weight: bold;
 }
 
-#order_list .review-button:hover {
-    background-color: #0056b3;
+.product_info a:hover {
+    text-decoration: underline;
+}
+
+.g_price, .s_quantity {
+    margin-right: 5px;
+}
+
+.review-button {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.review-button:hover {
+    text-decoration: underline;
+}
+
+tbody .datetime {
+	font-weight: bold;
+	font-size: 19px;
+	padding-top: 14px;
+}
+
+#order_list table .product_info  {
+    border: 1px solid #ccc;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#order_list table .product_info td {
+    border: 1px solid #ccc;
+    padding: 8px;
+}
+
+
+.order_detail_btn {
+    float: right;
+    border: none; 
+    background-color: transparent;
+    margin-top: 8px;
+    cursor: pointer; 
+    outline: none;
+    font-size: 16px;
+}
+.order_detail_btn:hover {
+    text-decoration: underline;
+}
+
+span .datetime_list {
+	
+	padding:1px 6px;
+}
+.product_details {
+	display: inline-block;
+    vertical-align: top; 
+	margin-top: 17px;
+}
+
+.product_info .review-button {
+    position: absolute;
+    right: 5px;
+    bottom: 42px;
+    color: #007bff;
 }

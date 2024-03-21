@@ -8,21 +8,21 @@ $( document ).ready(function() {
 //주문내역 상세보기 버튼 클릭시
 function init_events() {
     $('.order_detail_btn').click(function() {
-		
+        let productsInfo = $(this).closest('tr').next('tr').find('.product_info');
         let datetime = $(this).prev('.datetime').val();
-        let productsInfo = $(this).closest('tr').find('.product_info');
         let totalPrice = 0;
 
         productsInfo.each(function() {
             let price = parseInt($(this).find('.g_price').text());
             let quantity = parseInt($(this).find('.s_quantity').text());
 
-            totalPrice += (price * quantity) + 3000;
+            totalPrice += price * quantity;
         });
+        
+        totalPrice += 3000;
 
         window.location.href = '/basket/myOrderDetail?totalPrice=' + totalPrice + '&s_reg_date=' + datetime;
     });
-    
 }
 
     //주문내역 찾기

@@ -1,0 +1,37 @@
+#donation_ranking_wrap {
+    width: 55%; 
+    margin: 300px auto;
+}
+
+.donation_ranking {
+    width: 100%;
+    border-collapse: collapse; /
+}
+
+.donation_ranking th, .donation_ranking td {
+    border: 1px solid #dddddd;
+    padding: 8px; 
+    text-align: center;
+}
+
+.donation_ranking th {
+    background-color: #f2f2f2; 
+    font-weight: bold; 
+    font-size: 19px;
+}
+
+.donation_ranking td {
+    font-size: 18px;
+}
+
+.donation_ranking td:nth-child(1) {
+    width: 20%; 
+}
+
+.donation_ranking td:nth-child(2) {
+    width: 40%;
+}
+
+.donation_ranking td:nth-child(3) {
+    width: 40%; 
+}
