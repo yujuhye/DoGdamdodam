@@ -2,7 +2,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title th:replace="~{admin/include/title_header_nav_footer.html::admin_title}"></title>
+
+<link rel="stylesheet" th:href="@{/css/admin/common.css}">
 
 <script th:replace="~{/include/common_js.html::jquery_cdn}" type="text/javascript"></script>
 <script th:replace="~{/include/common_js.html::slick}" type="text/javascript"></script>
@@ -10,8 +12,7 @@
 <script type="text/javascript" th:src="@{/js/goods/insert_goods_form.js}"></script>
 <script type="text/javascript" th:src="@{/js/goods/goods_insert_ajax.js}"></script>
 
-<link rel="stylesheet" th:href="@{/css/common.css}">
-<link rel="stylesheet" th:href="@{/css/header_nav_footer.css}">
+
 <link rel="stylesheet" th:href="@{/css/admin/goods/insert_goods_form.css}">
 
 </head>

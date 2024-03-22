@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.dogdam.shop.admin.AdminConfig;
 import com.dogdam.shop.admin.category.CategoryDto;
 import com.dogdam.shop.admin.category.CategoryService;
 import com.dogdam.shop.admin.member.AdminMemberDto;
@@ -54,6 +55,9 @@ public class GoodsController {
 	
 	@Autowired
 	AQnaService aQnaService;
+	
+	@Autowired
+	AdminConfig adminConfig;
 
 	/*
 	 * 상품 리스트 조회
@@ -63,6 +67,8 @@ public class GoodsController {
 		log.info("goodsList()");
 
 		String nextPage = "admin/goods/goods_list";
+		
+		model.addAttribute(AdminConfig.ATTRIBUTE_NAME, adminConfig);
 
 		AdminMemberDto adminMemberDto = (AdminMemberDto) session.getAttribute("adminMemberDto");
 		if(adminMemberDto == null)
@@ -81,10 +87,12 @@ public class GoodsController {
 	 * 상품 등록
 	 */
 	@GetMapping("/insertGoodsForm")
-	public String insertGoods(HttpSession session) {
+	public String insertGoods(HttpSession session, Model model) {
 		log.info("insertGoods()");
 
 		String nextPage = "admin/goods/insert_goods_form";
+		
+		model.addAttribute(AdminConfig.ATTRIBUTE_NAME, adminConfig);
 		
 		AdminMemberDto adminMemberDto = (AdminMemberDto) session.getAttribute("adminMemberDto");
 		if(adminMemberDto == null)
@@ -117,7 +125,7 @@ public class GoodsController {
 	 */
 	@PostMapping("/insertGoodsConfirm")
 	@ResponseBody
-	public String insertGoodsConfirm(GoodsDto goodsDto, HttpSession session,
+	public String insertGoodsConfirm(GoodsDto goodsDto, HttpSession session, Model model,
 									@RequestParam("file1") MultipartFile file1,
 									@RequestParam("file2") MultipartFile file2, 
 									@RequestParam("file3") MultipartFile file3,
@@ -125,6 +133,8 @@ public class GoodsController {
 									@RequestParam(value = "c_no2") int c_no) throws Exception {
 
 		log.info("insertGoodsConfirm()");
+		
+		model.addAttribute(AdminConfig.ATTRIBUTE_NAME, adminConfig);
 		
 		// 관리자 session
 		//AdminMemberDto loginedAdminMemberDto = (AdminMemberDto) session.getAttribute("loginedAdminMemberDto");
@@ -194,7 +204,9 @@ public class GoodsController {
 		log.info("goodsDetailView()");
 
 		String nextPage = "admin/goods/goods_detail_view";
-
+		
+		model.addAttribute(AdminConfig.ATTRIBUTE_NAME, adminConfig);
+		
 		GoodsDto goodsDto = goodsService.goodsDetailView(g_no);
 		List<ReviewDto> reviewDtos = reviewService.selectList(g_no);
 
@@ -234,6 +246,8 @@ public class GoodsController {
 
 		String nextPage = "admin/goods/modify_goods_form";
 		
+		model.addAttribute(AdminConfig.ATTRIBUTE_NAME, adminConfig);
+		
 		AdminMemberDto adminMemberDto = (AdminMemberDto) session.getAttribute("adminMemberDto");
 		if(adminMemberDto == null)
 			return "redirect:/admin/member/login_form";
@@ -254,9 +268,11 @@ public class GoodsController {
 	public Object modifyGoodsConfirm(GoodsDto goodsDto, @RequestParam("file1") MultipartFile file1,
 			@RequestParam("file2") MultipartFile file2, @RequestParam("file3") MultipartFile file3,
 			@RequestParam("file4") MultipartFile file4, @RequestParam("c_no") int c_no,
-			@RequestParam("c_no2") int c_no2, HttpSession session) {
+			@RequestParam("c_no2") int c_no2, HttpSession session, Model model) {
 
 		log.info("modifyGoodsConfirm()");
+		
+		model.addAttribute(AdminConfig.ATTRIBUTE_NAME, adminConfig);
 		
 		// 클라이언트에서 받은 c_no와 c_parents_no 값을 이용하여 상품 정보 수정
 	    goodsDto.setC_no(c_no);
@@ -345,6 +361,8 @@ public class GoodsController {
 	@GetMapping("/deleteGoods")
 	public String deleteGoods(@RequestParam("g_no") int g_no, HttpSession session) {
 		log.info("deleteGoods()");
+		
+
 
 		AdminMemberDto adminMemberDto = (AdminMemberDto) session.getAttribute("adminMemberDto");
 		if(adminMemberDto == null)
@@ -368,6 +386,8 @@ public class GoodsController {
 	public String updateApproval(@RequestParam("g_no") int g_no) {
 		log.info("updateApproval()");
 		log.info("승인) g_no >>>>>>>>>> " + g_no);
+		
+
 		
 		String nextPage = "redirect:/admin/goods/goodsList";
 		
