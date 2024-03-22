@@ -2,7 +2,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title th:replace="~{admin/include/title_header_nav_footer.html::admin_title}"></title>
+
+<link rel="stylesheet" th:href="@{/css/admin/common.css}">
 
 <script th:replace="~{/include/common_js.html::jquery_cdn}" type="text/javascript"></script>
 <script th:replace="~{/include/common_js.html::slick}" type="text/javascript"></script>
@@ -10,11 +12,9 @@
 </head>
 <body>
 
-	<header></header>
-	
-	<nav>
-		
-	</nav>
+<header th:replace="~{admin/include/title_header_nav_footer.html::admin_header}"></header>
+
+<nav th:replace="~{admin/include/title_header_nav_footer.html::admin_nav}"></nav>
 	
 	<section>
 		<div id="section_wrap">
@@ -26,7 +26,7 @@
 		</div>
 	</section>
 	
-	<footer></footer>
+	<footer th:replace="~{admin/include/title_header_nav_footer.html::admin_footer}"></footer>
 
 </body>
 </html>
