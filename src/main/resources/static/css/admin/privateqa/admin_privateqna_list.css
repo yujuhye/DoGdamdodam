@@ -82,7 +82,7 @@
 
 .ws_table .hidden_ws_td {
     text-align: left;
-    padding: 20px 470px 20px 425px;
+   padding: 20px 200px 20px 350px;
 }
 
 .ws_inquiry {
@@ -90,8 +90,8 @@
 }
 
 .answer_privateqna_ajax_div textarea {
-    width: 600px;
-    height: 100px;
+    /* width: 600px;
+    height: 100px; */
     padding: 10px;
     margin-bottom: 10px;
     resize: none;
