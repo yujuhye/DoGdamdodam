@@ -77,12 +77,11 @@
 /* 토글 버튼이 포함된 행의 셀 배경색 변경 */
 .ws_yes_ws_tr:hover td {
     background-color: #f5f5f5;
-    /* 셀 배경색 변경 */
 }
 
 .ws_table .hidden_ws_td {
     text-align: left;
-   padding: 20px 200px 20px 350px;
+   padding: 20px 50px 20px 350px;
 }
 
 .ws_inquiry {
@@ -90,8 +89,8 @@
 }
 
 .answer_privateqna_ajax_div textarea {
-    /* width: 600px;
-    height: 100px; */
+    width: 400px;
+    height: 100px;
     padding: 10px;
     margin-bottom: 10px;
     resize: none;
@@ -103,5 +102,9 @@
 }
 
 .answer_privateqna_wrap {
-	text-align: right;
+	text-align: left;
+}
+
+.answer_privateqna_btn {
+    margin-left: 355px;
 }
