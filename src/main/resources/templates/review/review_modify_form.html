@@ -22,9 +22,11 @@
 </head>
 <body>
 
-<header	th:replace="~{include/title_header_nav_footer.html::user_header}"></header>
-
-<nav></nav>
+<header th:replace="~{include/title_header_nav_footer.html::user_header}">
+	</header>
+	
+	<nav th:replace="~{include/title_header_nav_footer.html::user_nav}">
+	</nav>
 
 <section>
     <div id="section_wrap">

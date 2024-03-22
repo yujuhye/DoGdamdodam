@@ -33,8 +33,12 @@
 
 </head>
 <body>
-    <header>
-    </header>
+   <header th:replace="~{include/title_header_nav_footer.html::user_header}">
+	</header>
+	
+	<nav th:replace="~{include/title_header_nav_footer.html::user_nav}">
+	</nav>
+	
     <main>
         <div class="review_detail">
             <div class="review_image">
@@ -64,7 +68,7 @@
             
         </div>
     </main>
-    <footer>
-        </footer>
+    <footer th:replace="~{include/title_header_nav_footer::user_footer}">
+	</footer>
 </body>
 </html>

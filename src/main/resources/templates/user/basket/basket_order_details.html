@@ -9,9 +9,19 @@
  <link rel="stylesheet" th:href="@{/css/address_modal.css}">
  <link rel="stylesheet" th:href="@{/css/user/order/basket_order_details.css}">
 
+<link rel="stylesheet" th:href="@{/css/common.css}">
+<link rel="stylesheet" th:href="@{/css/header_nav_footer.css}">
+
 
 </head>
 <body>
+
+	<header th:replace="~{include/title_header_nav_footer.html::user_header}">
+	</header>
+	
+	<nav th:replace="~{include/title_header_nav_footer.html::user_nav}">
+	</nav>
+
 
 		<form th:action="@{/basket/basket_order_confirm}" th:name="order_details" th:method="post">
 
@@ -145,7 +155,9 @@
    
    
    </form>
-
+	
+<footer th:replace="~{include/title_header_nav_footer::user_footer}">
+	</footer>
 
 </body>
 </html>

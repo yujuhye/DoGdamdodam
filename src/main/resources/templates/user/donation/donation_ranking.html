@@ -5,9 +5,19 @@
 <title>Insert title here</title>
 
 <link rel="stylesheet" th:href="@{/css/user/order/donation_ranking.css}">
+<link rel="stylesheet" th:href="@{/css/common.css}">
+<link rel="stylesheet" th:href="@{/css/header_nav_footer.css}">
+
+
 
 </head>
 <body>
+
+<header th:replace="~{include/title_header_nav_footer.html::user_header}">
+	</header>
+	
+	<nav th:replace="~{include/title_header_nav_footer.html::user_nav}">
+	</nav>
 
 
 	<div id="donation_ranking_wrap">
@@ -28,6 +38,9 @@
          </tbody>
        </table>
    </div>
+   
+   <footer th:replace="~{include/title_header_nav_footer::user_footer}">
+	</footer>
 
 </body>
 </html>

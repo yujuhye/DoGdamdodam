@@ -9,11 +9,17 @@
 <script type="text/javascript" th:src="@{/js/goods/basket_list.js}"></script> 
 
 <link rel="stylesheet" th:href="@{/css/user/basket/basket_list.css}">
+<link rel="stylesheet" th:href="@{/css/common.css}">
+<link rel="stylesheet" th:href="@{/css/header_nav_footer.css}">
 
 </head>
 <body>
 
-
+	<header th:replace="~{include/title_header_nav_footer.html::user_header}">
+	</header>
+	
+	<nav th:replace="~{include/title_header_nav_footer.html::user_nav}">
+	</nav>
    
    <form th:if="${basketDtos != null }" th:action="@{/basket/basketMap}" th:name="basket_list_form" th:method="post" id="basket_list_form"> 
    	
@@ -50,6 +56,8 @@
      </div>
    </form>   
   
+  <footer th:replace="~{include/title_header_nav_footer::user_footer}">
+	</footer>
    
      
   

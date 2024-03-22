@@ -7,13 +7,16 @@
 <script th:replace="~{/include/common_js.html::jquery_cdn}" type="text/javascript"></script>
 <script th:replace="~{/include/common_js.html::slick}" type="text/javascript"></script>
 
+<link rel="stylesheet" th:href="@{/css/common.css}">
+<link rel="stylesheet" th:href="@{/css/header_nav_footer.css}">
+
 </head>
 <body>
 
-	<header></header>
+	<header th:replace="~{include/title_header_nav_footer.html::user_header}">
+	</header>
 	
-	<nav>
-		
+	<nav th:replace="~{include/title_header_nav_footer.html::user_nav}">
 	</nav>
 	
 	<section>
@@ -26,7 +29,8 @@
 		</div>
 	</section>
 	
-	<footer></footer>
+	<footer th:replace="~{include/title_header_nav_footer::user_footer}">
+	</footer>
 
 </body>
 </html>

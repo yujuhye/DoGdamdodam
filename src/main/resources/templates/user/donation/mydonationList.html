@@ -2,12 +2,20 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title th:replace="~{include/title_header_nav_footer.html::user_title}"></title>
 
 <link rel="stylesheet" th:href="@{/css/user/order/mydonationList.css}">
+<link rel="stylesheet" th:href="@{/css/common.css}">
+<link rel="stylesheet" th:href="@{/css/header_nav_footer.css}">
 
 </head>
 <body>
+
+	<header th:replace="~{include/title_header_nav_footer.html::user_header}">
+	</header>
+	
+	<nav th:replace="~{include/title_header_nav_footer.html::user_nav}">
+	</nav>
 
 
 	<div class="myDonation_list">
@@ -37,6 +45,9 @@
             </div>
             
    </div>
+   
+   <footer th:replace="~{include/title_header_nav_footer::user_footer}">
+	</footer>
 
 	
 </body>

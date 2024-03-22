@@ -1,5 +1,5 @@
 #order_wrap {
-   margin: 400px auto;
+   margin: 200px auto;
    text-align: center;
 }
 
@@ -21,6 +21,7 @@
     text-decoration: none; 
     color: #007bff; 
     font-size:  20px;
+    font-weight: bold; 
 }
 
 .go_orderList:hover {
