@@ -21,17 +21,16 @@
 
 	<div id="section_wrap">
 	
-		<div class="section_header">
+		<div class="section_title">
 			<p>관리자 도구메뉴</p>
 		</div>
 		
 		<div class="menu_container">
 			
-			<a th:href="@{${adminConfig.requestMgmControllerPath(adminConfig.USER_LIST_MGM)}}">유저관리</a>
-			<a th:href="@{/admin/goods/goodsList}">상품 목록/관리</a>
-			<a th:href="@{/admin/goods/goodsList}">상품 리스트(상품 Q&A, 북마크 용)</a>
-			<a th:href="@{/admin/privateqa/adminPrivateqnaList}">1:1 문의</a>
-			<a th:href="@{/admin/qa/adminQnaList}">상품 문의</a>
+			<div><a th:href="@{${adminConfig.requestMgmControllerPath(adminConfig.USER_LIST_MGM)}}">유저관리</a></div>
+			<div><a th:href="@{/admin/goods/goodsList}">상품 관리</a></div>
+			<div><a th:href="@{/admin/privateqa/adminPrivateqnaList}">1:1 문의</a></div>
+			<div><a th:href="@{/admin/qa/adminQnaList}">상품 문의</a></div>
 
 		</div>
 		
