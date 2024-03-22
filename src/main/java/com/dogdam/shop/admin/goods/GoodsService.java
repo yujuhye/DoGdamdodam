@@ -7,6 +7,8 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.dogdam.shop.admin.CurrentSetPage;
+import com.dogdam.shop.admin.PageMakerDto;
 import com.dogdam.shop.admin.category.CategoryDto;
 
 import lombok.extern.log4j.Log4j2;
@@ -100,6 +102,41 @@ public class GoodsService {
 		log.info("updateApproval()");
 		
 		return goodsDao.updateApproval(g_no);
+	}
+
+	public Map<String, Object> getAllGoodsItme(int pageNum, int amount) {
+		log.info("getAllGoodsItme()");
+		
+		Map<String, Object> map = new HashMap<>();
+		
+		CurrentSetPage currentSetPage = new CurrentSetPage(pageNum, amount);
+		
+		List<GoodsDto> goodsDtos = goodsDao.getAllGoodsItem(currentSetPage);
+		map.put("goodsDtos", goodsDtos);
+		
+		int totalPageNo = goodsDao.getTotalGoodsPage();
+		PageMakerDto pageMakerDto = new PageMakerDto(currentSetPage, totalPageNo);
+		map.put("pageMakerDto", pageMakerDto);
+		
+		return map;
+	}
+
+	public Map<String, Object> searchGoodsItme(int pageNum, int amount, String searchText) {
+		log.info("searchGoodsItme()");
+		
+		Map<String, Object> map = new HashMap<>();
+		
+		CurrentSetPage currentSetPage = new CurrentSetPage(pageNum, amount);
+		int skipPage = currentSetPage.getSkipPage();
+		
+		List<GoodsDto> goodsDtos = goodsDao.searchGoodsItem(skipPage, amount, searchText);
+		map.put("goodsDtos", goodsDtos);
+		
+		int totalPageNo = goodsDao.getTotalNoBySearchGoods(searchText);
+		PageMakerDto pageMakerDto = new PageMakerDto(currentSetPage, totalPageNo);
+		map.put("pageMakerDto", pageMakerDto);
+		
+		return map;
 	}
 	
 

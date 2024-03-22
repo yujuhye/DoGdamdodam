@@ -21,6 +21,8 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.dogdam.shop.admin.AdminConfig;
+import com.dogdam.shop.admin.PageDefaultConfig;
+import com.dogdam.shop.admin.PageMakerDto;
 import com.dogdam.shop.admin.category.CategoryDto;
 import com.dogdam.shop.admin.category.CategoryService;
 import com.dogdam.shop.admin.member.AdminMemberDto;
@@ -62,8 +64,32 @@ public class GoodsController {
 	/*
 	 * 상품 리스트 조회
 	 */
+//	@GetMapping("/goodsList")
+//	public Object goodsList(HttpSession session, Model model) {
+//		log.info("goodsList()");
+//
+//		String nextPage = "admin/goods/goods_list";
+//		
+//		model.addAttribute(AdminConfig.ATTRIBUTE_NAME, adminConfig);
+//
+//		AdminMemberDto adminMemberDto = (AdminMemberDto) session.getAttribute("adminMemberDto");
+//		if(adminMemberDto == null)
+//			return "redirect:/admin/member/login_form";
+//		
+//		List<GoodsDto> goodsDtos = goodsService.selectList();
+//		
+//		log.info("goodsDtos >>>>>>>>>>>> ", goodsDtos);
+//
+//		model.addAttribute("goodsDtos", goodsDtos);
+//
+//		return nextPage;
+//	}
+	
 	@GetMapping("/goodsList")
-	public Object goodsList(HttpSession session, Model model) {
+	public Object goodsList(HttpSession session, Model model, 
+							@RequestParam(value = "pageNum", required = false, defaultValue = PageDefaultConfig.DEFAULT_PAGE_NUMBER_GOODS_LIST) int pageNum, 
+							@RequestParam(value = "amonut", required = false, defaultValue = PageDefaultConfig.DEFAULT_AMOUNT_GOODS_LIST) int amount, 
+							@RequestParam(value = "searchText", required = false, defaultValue = "") String searchText) {
 		log.info("goodsList()");
 
 		String nextPage = "admin/goods/goods_list";
@@ -74,11 +100,20 @@ public class GoodsController {
 		if(adminMemberDto == null)
 			return "redirect:/admin/member/login_form";
 		
-		List<GoodsDto> goodsDtos = goodsService.selectList();
+		Map<String, Object> map;
 		
-		log.info("goodsDtos >>>>>>>>>>>> ", goodsDtos);
+		if(searchText.isEmpty()) {
+			map = goodsService.getAllGoodsItme(pageNum, amount);
+		} else {
+			map = goodsService.searchGoodsItme(pageNum, amount, searchText);
+		}
+		
+		List<GoodsDto> goodsDtos = (List<GoodsDto>) map.get("goodsDtos");
+		PageMakerDto pageMakerDto = (PageMakerDto) map.get("pageMakerDto");
 
 		model.addAttribute("goodsDtos", goodsDtos);
+		model.addAttribute("pageMakerDto", pageMakerDto);
+		model.addAttribute("searchText", searchText);
 
 		return nextPage;
 	}

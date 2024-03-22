@@ -79,6 +79,14 @@
     		
 	</update>
 	
+	<select id="getLatesupdateMainPet" 
+			parameterType="map" 
+			resultType="com.dogdam.shop.user.member.petinfo.UserPetInfoDto">
+	
+		SELECT * FROM USER_PET_INFO WHERE U_ID = #{u_id} AND P_STEP = 1
+	
+	</select>
+	
 	<delete id="deletePet" 
 			parameterType="int">
 	

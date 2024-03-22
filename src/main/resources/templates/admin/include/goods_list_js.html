@@ -1,12 +1,25 @@
 <script th:fragment="js" th:inline="javascript" type="text/javascript">
 
+function goodsListClick() {
+	console.log('goodsListClick()');
+	$('.goods-list tr').click(function() {
+	    // 클릭된 라인의 a 태그 (상품 이름) 가져오기
+	    var productLink = $(this).find('a').attr('href');
+	    
+	    // 상세 페이지로 이동
+	    if (productLink) {
+	      location.href = productLink;
+	    }
+	  });
+	
+}
 
-function userSearch() {
-    $('.user_search a').on('click', function(e) {
+function GoodsSearch() {
+    $('.goods_search a').on('click', function(e) {
     e.preventDefault();
     
     let searchText = $('.searchText').val();
-    location.href = '/admin/mgm/user_list_mgm?searchText=' + searchText;
+    location.href = '/admin/goods/goodsList?searchText=' + searchText;
     // if(searchText.length < 2) {
     //     alert('검색어는 최소 2글자 이상 입력해주세요.')
     //     return false;
@@ -29,7 +42,7 @@ function pagingEvent() {
         let pageNum = $(this).data('pagenum');
         
         	
-        location.href = '/admin/mgm/user_list_mgm?pageNum=' + pageNum + '&searchText=' + searchText;
+        location.href = '/admin/goods/goodsList?pageNum=' + pageNum + '&searchText=' + searchText;
         
 
     });
@@ -83,12 +96,14 @@ function setPagination() {
 
 $(document).ready(function() {
     console.log('document ready!');
+    
+    goodsListClick();
 
     setPagination();
 
     pagingEvent();
 
-    userSearch();
+    GoodsSearch();
 
 
 

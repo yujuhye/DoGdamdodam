@@ -18,19 +18,19 @@
 </head>
 <body>
 
-<header></header>
+<header th:replace="~{admin/include/title_header_nav_footer.html::admin_header}"></header>
 
-<nav></nav>
+<nav th:replace="~{admin/include/title_header_nav_footer.html::admin_nav}"></nav>
 
 <section>
     <div id="section_wrap">
-        <div class="word">GOODS INSERT</div>
+        <div class="word">상품 등록</div>
 
         <div class="goods_insert_form">
 
             <form th:action="@{/admin/goods/insertGoodsConfirm}" name="insert_goods_form" method="post" enctype="multipart/form-data">
                 <label class="goodsName">상품명</label>
-                <input type="text" name="g_name" placeholder="Input goods name"><br>
+                <input type="text" name="g_name" placeholder="상품이름"><br>
 
                 <label class="thumImg">대표 이미지</label>
                 <input type="file" name="file1"><br>
@@ -58,14 +58,14 @@
                 <br>
 
 				<label class="goodsExplanation">상품 설명</label>
-                <input type="text" name="g_explanation" placeholder="Input goods explanation"><br>
+                <input type="text" name="g_explanation" placeholder="상품 설명"><br>
 
 				<label class="goodsPrice">상품 가격</label>
-                <input type="text" name="g_price" placeholder="Input goods price"><br>
+                <input type="text" name="g_price" placeholder="상품 가격"><br>
 
-                <input type="button" value="INSERT" class="goodsInsertBtn" onclick="insertGoods();">
-                <input type="reset" value="RESET">
-                <input type="button" value="CANCEL" class="goodsCancelBtn">
+                <input type="button" value="등록" class="goodsInsertBtn" onclick="insertGoods();">
+                <input type="reset" value="초기화">
+                <input type="button" value="취소" class="goodsCancelBtn">
             </form>
 
         </div>
@@ -73,7 +73,7 @@
     </div>
 </section>
 
-<footer></footer>
+<footer th:replace="~{admin/include/title_header_nav_footer.html::admin_footer}"></footer>
 
 </body>
 </html>

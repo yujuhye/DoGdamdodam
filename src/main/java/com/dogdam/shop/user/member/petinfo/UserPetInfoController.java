@@ -142,8 +142,16 @@ public class UserPetInfoController {
 		MemberDto memberDto = (MemberDto) session.getAttribute("loginedMemberDto");
 		String u_id = memberDto.getU_id();
 		int p_no = Integer.parseInt(pNoMap.get("p_no"));
+		int result = -1;
 		
-		int result = userPetInfoService.updateMainPet(u_id, p_no);
+		
+		UserPetInfoDto petInfoDto = userPetInfoService.updateMainPet(u_id, p_no);
+		if(petInfoDto != null) {
+			result = 1;
+			session.setAttribute("petInfoDto", petInfoDto);
+			session.setMaxInactiveInterval(60 * 60);
+		}
+		
 		resultMap.put("success", result > 0);
 		
 		
@@ -152,14 +160,24 @@ public class UserPetInfoController {
 	
 	@PostMapping("/delete_pet")
 	@ResponseBody
-	public Object deletePet(@RequestBody Map<String, String> pNoMap) {
+	public Object deletePet(@RequestBody Map<String, String> pNoMap, HttpSession session) {
 		log.info("deletePet()");
 		
 		Map<String, Object> resultMap = new HashMap<>();
 		
+		MemberDto memberDto = (MemberDto) session.getAttribute("loginedMemberDto");
+		String u_id = memberDto.getU_id();
 		int p_no = Integer.parseInt(pNoMap.get("p_no"));
 		
-		int result = userPetInfoService.deletePet(p_no);
+		int result = -1;
+		
+		UserPetInfoDto petInfoDto = userPetInfoService.deletePet(u_id, p_no);
+		if(petInfoDto == null) {
+			result = 1;
+			session.setAttribute("petInfoDto", null);
+			session.setMaxInactiveInterval(60 * 60);
+		}
+		
 		resultMap.put("success", result > 0);
 		
 		return resultMap;

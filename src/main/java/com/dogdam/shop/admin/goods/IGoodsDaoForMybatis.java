@@ -4,6 +4,9 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+
+import com.dogdam.shop.admin.CurrentSetPage;
 
 @Mapper
 public interface IGoodsDaoForMybatis {
@@ -23,6 +26,14 @@ public interface IGoodsDaoForMybatis {
 	public int deleteGoodsConfirm(int g_no);
 	public int updateApproval(int g_no);
 	public List<GoodsDto> searchGoodsConfirm(GoodsDto goodsDto);
+
+	public List<GoodsDto> getAllGoodsItem(CurrentSetPage currentSetPage);
+
+	public int getTotalGoodsPage();
+
+	public List<GoodsDto> searchGoodsItem(@Param("skipPage") int skipPage, @Param("amount") int amount, @Param("searchText") String searchText);
+
+	public int getTotalNoBySearchGoods(String searchText);
 	
 	
 }

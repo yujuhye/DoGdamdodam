@@ -5,6 +5,8 @@ import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import com.dogdam.shop.user.member.MemberDto;
+
 @Mapper
 public interface IUserPetInfoDaoForMybatis {
 
@@ -21,6 +23,8 @@ public interface IUserPetInfoDaoForMybatis {
 	int updateMainPetRegister(Map<String, Object> map);
 
 	int deletePet(int p_no);
+
+	UserPetInfoDto getLatesupdateMainPet(Map<String, Object> map);
 
 
 

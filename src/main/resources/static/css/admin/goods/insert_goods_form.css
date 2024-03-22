@@ -71,9 +71,15 @@
     border: none;
     border-radius: 5px; /* 버튼 모서리 둥글게 */
     background-color: #FFCD4A; /* 삽입 버튼 색 */
-    color: white;
-    margin-right: 10px; /* 버튼 사이 간격 */
+    color: black;
+    margin-right: 20px; /* 버튼 사이 간격 */
 }
+
+.goods_insert_form input[type=button]:hover, 
+.goods_insert_form input[type=reset]:hover {
+    color: white;
+}
+
 
 .goods_insert_form input[type=button].goodsCancelBtn {
     background-color: #FFCD4A; /* 취소 버튼 색 */

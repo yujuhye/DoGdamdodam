@@ -43,15 +43,66 @@
 .insertBtn {
     display: inline-block;
     background-color: #FFCD4A; /* 버튼 색상 */
-    color: white;
+    color: black;
     padding: 10px 20px;
     margin: 20px 0;
     border: none;
     border-radius: 5px; /* 버튼 모서리 둥글게 */
     text-decoration: none; /* 링크 밑줄 제거 */
     cursor: pointer;
+    margin-left: 10px;
 }
 
 .insertBtn:hover {
     background-color: #FFCD4A; /* 호버 시 버튼 색상 */
+    color: white;
+}
+
+.goods_search {
+	text-align: center;
+
+}
+
+.searchText {
+	padding: 3px 10px;
+	font-size: 1.1em;
+	border-radius: 3px;
+	width: 250px;
+	border: 1px solid #c5c2c2;
+	outline-color: rgba(197, 158, 158, 0.6);;
+}
+
+
+.goods_search a {
+	padding: 5px 8px;
+	border: 1px solid rgba(197, 158, 158, 0.6);
+	border-radius: 6px;
+	font-weight: bold;
+}
+
+.goods_search a:hover {
+	background-color: rgba(214, 171, 171, 0.6);
+}
+
+.page_container {
+	text-align: center;
+	margin-bottom: 30px;
+}
+
+.page_no a {
+	padding: 4px 11px;
+	margin: 0 7px;
+	font-weight: 500;
+	font-size: 20px;
+	color: #242424;
+}
+
+.page_no a:hover {
+	background-color: rgba(197, 158, 158, 0.5);
+	border-radius: 15px;
+}
+
+.selectedPageNum {
+	background-color: rgba(197, 158, 158, 0.5);
+	border-radius: 15px;
 }

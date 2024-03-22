@@ -25,7 +25,8 @@ function petDelete() {
 						
 					if(data.success) {
 						console.log('data success 성공');
-						petInfoPageSetUp();
+						// petInfoPageSetUp();
+						location.href = '/user/member/pet/my_pet_infos';
 						
 					} else {
 						console.log('서버 통신 성공, false');
@@ -73,7 +74,7 @@ function mainPetChange() {
 							
 							if(data.success) {
 								console.log('data success 성공');
-								petInfoPageSetUp();
+								location.href = '/user/member/pet/my_pet_infos';
 								
 	
 							} else {

@@ -77,7 +77,7 @@ public class UserPetInfoService {
 	}
 
 
-	public int updateMainPet(String u_id, int p_no) {
+	public UserPetInfoDto updateMainPet(String u_id, int p_no) {
 		log.info("updateMainPet()");
 		
 		Map<String, Object> map = new HashMap<>();
@@ -85,13 +85,20 @@ public class UserPetInfoService {
 		map.put("p_no", p_no);
 		/* userPetInfoDao.updateHasMainPetStep(u_id); */
 		
-		return userPetInfoDao.updateMainPetRegister(map);			
+		int result = userPetInfoDao.updateMainPetRegister(map); 
+		
+		return result > 0 ? userPetInfoDao.getLatesupdateMainPet(map) : null;			
 	}
 
-	public int deletePet(int p_no) {
+	public UserPetInfoDto deletePet(String u_id, int p_no) {
 		log.info("deletePet()");
+		Map<String, Object> map = new HashMap<>();
+		map.put("u_id", u_id);
+		map.put("p_no", p_no);
 		
-		return userPetInfoDao.deletePet(p_no);
+		int result = userPetInfoDao.deletePet(p_no);
+		
+		return result > 0 ?  userPetInfoDao.getLatesupdateMainPet(map) : null;
 	}
 	
 	

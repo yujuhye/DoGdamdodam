@@ -4,14 +4,14 @@
 <meta charset="UTF-8">
 <title th:replace="~{admin/include/title_header_nav_footer.html::admin_title}"></title>
 
+
 <!-- ajax 라이브러리 -->
 <script th:fragment="jquery_cdn" src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
-<!-- slick 라이브러리 -->
-<script th:fragment="slick" src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
 
 <script th:replace="~{/include/common_js.html::jquery_cdn}" type="text/javascript"></script>
-<script th:replace="~{/include/common_js.html::slick}" type="text/javascript"></script>
+<script th:replace="~{admin/include/goods_list_js.html::js}" type="text/javascript"></script>
+
 
 <!-- <link rel="stylesheet" th:href="@{/css/common.css}"> -->
 <link rel="stylesheet" th:href="@{/css/admin/goods/goods_list.css}">
@@ -42,10 +42,15 @@ $(document).ready(function() {
 	<section>
 		<div id="section_wrap">
 			<div class="word">
-				GOODS INSERT FAIL
+				상품 관리
 			</div>
 			
 			<div class="goods_list">
+			
+				<div class="goods_search">
+					<input type="text" class="searchText" placeholder="Goods Name or Number">
+					<a href="#" >검색</a>
+				</div>
 			
 				<table>
 					<thead>
@@ -74,6 +79,17 @@ $(document).ready(function() {
 				<a th:href="@{/admin/goods/insertGoodsForm}" class="insertBtn">상품 등록</a>
 			
 			</div>
+			
+			<div class="page_container">
+				<div class="page_no">
+			
+				</div>
+			
+				<div class="total_page">
+					<span class="page_total_num"></span>
+				</div>
+			</div>
+			
 		</div>
 	</section>
 	

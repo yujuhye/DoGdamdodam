@@ -86,5 +86,59 @@
 	    SELECT * FROM GOODS WHERE G_NAME LIKE CONCAT('%', #{g_name}, '%') ORDER BY G_NO DESC
 	</select>
 	
+	<select id="getAllGoodsItem" 
+			parameterType="com.dogdam.shop.admin.CurrentSetPage" 
+			resultType="com.dogdam.shop.admin.goods.GoodsDto">
+	
+		SELECT 
+			* 
+		FROM 
+			GOODS 
+		ORDER 
+			BY G_NO DESC LIMIT #{skipPage}, #{amount}
+	
+	</select>
+	
+	<select id="getTotalGoodsPage" resultType="Integer">
+		
+		SELECT 
+			COUNT(*) 
+		FROM 
+			GOODS
+		
+	</select>
+	
+	<select id="searchGoodsItem" 
+			resultType="com.dogdam.shop.admin.goods.GoodsDto">
+			
+			SELECT 
+				* 
+			FROM 
+				GOODS 
+			WHERE 
+				(G_NAME LIKE CONCAT('%', #{searchText}, '%') 
+			OR 
+				G_NO LIKE CONCAT('%', #{searchText}, '%'))
+			ORDER 
+				BY G_REG_DATE DESC 
+			LIMIT 
+				#{skipPage}, #{amount} ;
+			
+	</select>
+	
+	<select id="getTotalNoBySearchGoods" 
+			resultType="int">
+			
+			SELECT 
+				COUNT(*) 
+			FROM 
+				GOODS 
+			WHERE 
+				(G_NAME LIKE CONCAT('%', #{searchText}, '%') 
+			OR 
+				G_NO LIKE CONCAT('%', #{searchText}, '%'));
+	
+	</select>
+	
 
 </mapper>

@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>상품 상세 화면</title>
+<title th:replace="~{admin/include/title_header_nav_footer.html::admin_title}"></title>
 
 <!-- ajax 라이브러리 -->
 <script th:fragment="jquery_cdn"
@@ -19,7 +19,7 @@
 <script type="text/javascript" th:src="@{/js/goods/goods_view_ajax.js}"></script>
 
 <link rel="stylesheet" th:href="@{/css/admin/goods/goods_detail_view.css}">
-
+<link rel="stylesheet" th:href="@{/css/admin/common.css}">
 <link rel="stylesheet" th:href="@{/css/admin/qa/admin_qna_list_goods_detail_view.css}">
 
 <!-- 상품 문의 리스트 -->
@@ -29,11 +29,9 @@
 
 </head>
 <body>
-	<header>
-		<a href="/">
-	        <img src="/img/logo/001.png" alt="로고">
-	    </a>
-	</header>
+<header th:replace="~{admin/include/title_header_nav_footer.html::admin_header}"></header>
+
+<nav th:replace="~{admin/include/title_header_nav_footer.html::admin_nav}"></nav>
 	<div class="goods_detail">
 		<div class="goods_top">
 		 <div class="top-container">
@@ -177,6 +175,6 @@
 			id="goodsDeleteConfirm" class="btn">상품 삭제</a> 
 			
 		<a th:href="@{/admin/goods/goodsList}" class="btn">리스트</a>
-	<footer> </footer>
+	<footer th:replace="~{admin/include/title_header_nav_footer.html::admin_footer}"></footer>
 </body>
 </html>
