@@ -12,7 +12,7 @@
   2024.02.26 ~ 2024.03.21
 
 
-### 프로젝트 내용
+### 프로젝트 소개
 ---
 현대 사회에서 **반려견**을 키우는 가정이 급증하면서 애견용품에 대한 수요도 크게 늘어나고 있습니다. 이러한 트렌드를 반영하여, 저희는 **애견용품 쇼핑몰 프로젝트**를 시작하게 되었습니다. 
 #### 특징 
@@ -23,10 +23,12 @@
 
 ### 사용기술
 ---
-#### Back
-SpringBoot, security, Mybatis
-#### Front
-Thymeleaf, jquery, css, javascript
++ #### Back
+  SpringBoot, security, Mybatis
++ #### Front
+  Thymeleaf, jquery, css, javascript
++ #### Database
+  MySql
 
 ### 개발환경
 ---
